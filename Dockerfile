@@ -27,6 +27,6 @@ RUN pip3 install --no-cache-dir -r requirements.txt
 # ENV LC_ALL en_US.UTF-8
 COPY . .
 COPY .netrc /root/.netrc
-RUN chmod +x extract
+RUN chmod +x tracker.sh
 RUN chmod +x rclone.sh
 CMD ["bash","start.sh"]
