@@ -1,0 +1,1 @@
+curl -Ns https://trackerslist.com/all.txt --next https://raw.githubusercontent.com/XIU2/TrackersListCollection/master/all.txt --next https://ngosang.github.io/trackerslist/trackers_all_http.txt --next https://newtrackon.com/api/all --next https://raw.githubusercontent.com/DeSireFire/animeTrackerList/master/AT_all.txt | awk '$1' | tr '\n\n' ',' > tracker.txt
