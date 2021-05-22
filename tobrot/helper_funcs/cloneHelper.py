@@ -106,7 +106,8 @@ class CloneHelper:
                 gautii = f"https://drive.google.com/file/d/{gautam}/view?usp=drivesdk"
 
             LOGGER.info(gautii)
-            gau_link = re.search("(?P<url>https?://[^\s]+)", gautii).group("url")
+            gau_link = re.search(
+                "(?P<url>https?://[^\s]+)", gautii).group("url")
             LOGGER.info(gau_link)
             button = []
             button.append(
@@ -164,7 +165,7 @@ class CloneHelper:
         destination = f"{DESTINATION_FOLDER}"
         idd = "{" f"{self.g_id}" "}"
         cmd = [
-            "/app/gautam/gclone",
+            "/app/manssizz/gclone",
             "copy",
             "--config=rclone.conf",
             f"{self.dname}:{idd}",
