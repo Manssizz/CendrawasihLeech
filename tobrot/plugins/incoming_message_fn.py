@@ -50,13 +50,13 @@ async def incoming_purge_message_f(client, message):
 
 
 async def incoming_message_f(client, message):
-    """/leech command or /sync command"""
+    """/leech command or /gleech command"""
     user_command = message.command[0]
     g_id = message.from_user.id
-    # credit = await message.reply_text(
-    #     f"🧲 Leeching for you <a href='tg://user?id={g_id}'>🤕</a>", parse_mode="html"
-    # )
-    # i_m_sefg = await message.reply_text("processing...", quote=True)
+    credit = await message.reply_text(
+        f"🧲 Leeching for you <a href='tg://user?id={g_id}'>🤕</a>", parse_mode="html"
+    )
+    i_m_sefg = await message.reply_text("processing...", quote=True)
     # get link from the incoming message
     if message.reply_to_message:
         dl_url, cf_name, _, _ = await extract_link(message.reply_to_message, "LEECH")
@@ -82,7 +82,7 @@ async def incoming_message_f(client, message):
         # create download directory, if not exist
         if not os.path.isdir(new_download_location):
             os.makedirs(new_download_location)
-        await i_m_sefg.edit_text("Downloading")
+        await i_m_sefg.edit_text("trying to download")
         # try to download the "link"
         is_zip = False
         is_cloud = False
@@ -126,10 +126,10 @@ async def incoming_message_f(client, message):
 async def incoming_youtube_dl_f(client, message):
     """ /ytdl command """
     current_user_id = message.from_user.id
-    # credit = await message.reply_text(
-    #     f"💀 Downloading for you <a href='tg://user?id={current_user_id}'>🤕</a>",
-    #     parse_mode="html",
-    # )
+    credit = await message.reply_text(
+        f"💀 Downloading for you <a href='tg://user?id={current_user_id}'>🤕</a>",
+        parse_mode="html",
+    )
     i_m_sefg = await message.reply_text("processing...", quote=True)
     # LOGGER.info(message)
     # extract link from message
@@ -152,8 +152,7 @@ async def incoming_youtube_dl_f(client, message):
     if dl_url is not None:
         await i_m_sefg.edit_text("extracting links")
         # create an unique directory
-        user_working_dir = os.path.join(
-            DOWNLOAD_LOCATION, str(current_user_id))
+        user_working_dir = os.path.join(DOWNLOAD_LOCATION, str(current_user_id))
         # create download directory, if not exist
         if not os.path.isdir(user_working_dir):
             os.makedirs(user_working_dir)
@@ -185,7 +184,7 @@ async def incoming_youtube_dl_f(client, message):
 
 # playlist
 async def g_yt_playlist(client, message):
-    """ /pytleech command """
+    """ /pytdl command """
     user_command = message.command[0]
     usr_id = message.from_user.id
     is_cloud = False
@@ -216,7 +215,7 @@ async def g_yt_playlist(client, message):
 
 
 async def g_clonee(client, message):
-    """ /sync command """
+    """ /gclone command """
     g_id = message.from_user.id
     if message.reply_to_message is not None:
         LOGGER.info(message.reply_to_message.text)
@@ -240,8 +239,7 @@ async def rename_tg_file(client, message):
         return
     if len(message.command) > 1:
         new_name = (
-            str(Path().resolve()) + "/" +
-            message.text.split(" ", maxsplit=1)[1].strip()
+            str(Path().resolve()) + "/" + message.text.split(" ", maxsplit=1)[1].strip()
         )
         file, mess_age = await download_tg(client, message)
         try:
