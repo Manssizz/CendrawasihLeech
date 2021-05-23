@@ -39,6 +39,8 @@ from tobrot.helper_funcs.help_Nekmo_ffmpeg import take_screen_shot
 from tobrot.helper_funcs.split_large_files import split_large_files
 
 # stackoverflow🤐
+
+
 def getFolderSize(p):
     prepend = partial(os.path.join, p)
     return sum(
@@ -193,15 +195,16 @@ async def upload_to_gdrive(file_upload, message, messa_ge, g_id):
         )
         # os.remove("filter.txt")
         gau, tam = await gau_tam.communicate()
-        gautam = gau.decode().strip()
+        manssizz = gau.decode().strip()
         LOGGER.info(gau.decode())
         LOGGER.info(tam.decode())
         # os.remove("filter.txt")
-        gauti = f"https://drive.google.com/file/d/{gautam}/view?usp=drivesdk"
+        gauti = f"https://drive.google.com/file/d/{manssizz}/view?usp=drivesdk"
         gjay = size(os.path.getsize(file_upload))
         button = []
         button.append(
-            [pyrogram.InlineKeyboardButton(text="☁️ CloudUrl ☁️", url=f"{gauti}")]
+            [pyrogram.InlineKeyboardButton(
+                text="☁️ CloudUrl ☁️", url=f"{gauti}")]
         )
         if INDEX_LINK:
             indexurl = f"{INDEX_LINK}/{os.path.basename(file_upload)}"
@@ -260,16 +263,17 @@ async def upload_to_gdrive(file_upload, message, messa_ge, g_id):
         )
         # os.remove("filter1.txt")
         gau, tam = await gau_tam.communicate()
-        gautam = gau.decode("utf-8")
-        LOGGER.info(gautam)
+        manssizz = gau.decode("utf-8")
+        LOGGER.info(manssizz)
         LOGGER.info(tam.decode("utf-8"))
         # os.remove("filter1.txt")
-        gautii = f"https://drive.google.com/folderview?id={gautam}"
+        gautii = f"https://drive.google.com/folderview?id={manssizz}"
         gjay = size(getFolderSize(file_upload))
         LOGGER.info(gjay)
         button = []
         button.append(
-            [pyrogram.InlineKeyboardButton(text="☁️ CloudUrl ☁️", url=f"{gautii}")]
+            [pyrogram.InlineKeyboardButton(
+                text="☁️ CloudUrl ☁️", url=f"{gautii}")]
         )
         if INDEX_LINK:
             indexurl = f"{INDEX_LINK}/{os.path.basename(file_upload)}/"
@@ -312,13 +316,15 @@ async def upload_single_file(
         thumb_image_path = None
         if os.path.exists(thumbnail_location):
             thumb_image_path = await copy_file(
-                thumbnail_location, os.path.dirname(os.path.abspath(local_file_name))
+                thumbnail_location, os.path.dirname(
+                    os.path.abspath(local_file_name))
             )
             thumb = thumb_image_path
         message_for_progress_display = message
         if not edit_media:
             message_for_progress_display = await message.reply_text(
-                "starting upload of {}".format(os.path.basename(local_file_name))
+                "starting upload of {}".format(
+                    os.path.basename(local_file_name))
             )
             prog = Progress(from_user, client, message_for_progress_display)
         sent_message = await message.reply_document(
@@ -348,9 +354,11 @@ async def upload_single_file(
             message_for_progress_display = message
             if not edit_media:
                 message_for_progress_display = await message.reply_text(
-                    "starting upload of {}".format(os.path.basename(local_file_name))
+                    "starting upload of {}".format(
+                        os.path.basename(local_file_name))
                 )
-                prog = Progress(from_user, client, message_for_progress_display)
+                prog = Progress(from_user, client,
+                                message_for_progress_display)
             if local_file_name.upper().endswith(("MKV", "MP4", "WEBM")):
                 duration = 0
                 try:
@@ -386,7 +394,8 @@ async def upload_single_file(
                         img.save(thumb_image_path, format="jpeg")
                     # get the correct width, height, and duration for videos greater than 10MB
                     if os.path.exists(thumb_image_path):
-                        metadata = extractMetadata(createParser(thumb_image_path))
+                        metadata = extractMetadata(
+                            createParser(thumb_image_path))
                         if metadata.has("width"):
                             width = metadata.get("width")
                         if metadata.has("height"):

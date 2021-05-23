@@ -96,14 +96,14 @@ class CloneHelper:
             )
             gau, tam = await gau_tam.communicate()
             LOGGER.info(gau)
-            gautam = gau.decode("utf-8")
-            LOGGER.info(gautam)
+            manssizz = gau.decode("utf-8")
+            LOGGER.info(manssizz)
             LOGGER.info(tam.decode("utf-8"))
 
             if _drive == "folderba":
-                gautii = f"https://drive.google.com/folderview?id={gautam}"
+                gautii = f"https://drive.google.com/folderview?id={manssizz}"
             else:
-                gautii = f"https://drive.google.com/file/d/{gautam}/view?usp=drivesdk"
+                gautii = f"https://drive.google.com/file/d/{manssizz}/view?usp=drivesdk"
 
             LOGGER.info(gautii)
             gau_link = re.search(

@@ -50,7 +50,7 @@ async def incoming_purge_message_f(client, message):
 
 
 async def incoming_message_f(client, message):
-    """/leech command or /gleech command"""
+    """/leech command or /sync command"""
     user_command = message.command[0]
     g_id = message.from_user.id
     credit = await message.reply_text(
@@ -152,7 +152,8 @@ async def incoming_youtube_dl_f(client, message):
     if dl_url is not None:
         await i_m_sefg.edit_text("extracting links")
         # create an unique directory
-        user_working_dir = os.path.join(DOWNLOAD_LOCATION, str(current_user_id))
+        user_working_dir = os.path.join(
+            DOWNLOAD_LOCATION, str(current_user_id))
         # create download directory, if not exist
         if not os.path.isdir(user_working_dir):
             os.makedirs(user_working_dir)
@@ -184,7 +185,7 @@ async def incoming_youtube_dl_f(client, message):
 
 # playlist
 async def g_yt_playlist(client, message):
-    """ /pytdl command """
+    """ /pytdlsync command """
     user_command = message.command[0]
     usr_id = message.from_user.id
     is_cloud = False
@@ -215,7 +216,7 @@ async def g_yt_playlist(client, message):
 
 
 async def g_clonee(client, message):
-    """ /gclone command """
+    """ /clone command """
     g_id = message.from_user.id
     if message.reply_to_message is not None:
         LOGGER.info(message.reply_to_message.text)
@@ -239,7 +240,8 @@ async def rename_tg_file(client, message):
         return
     if len(message.command) > 1:
         new_name = (
-            str(Path().resolve()) + "/" + message.text.split(" ", maxsplit=1)[1].strip()
+            str(Path().resolve()) + "/" +
+            message.text.split(" ", maxsplit=1)[1].strip()
         )
         file, mess_age = await download_tg(client, message)
         try:
