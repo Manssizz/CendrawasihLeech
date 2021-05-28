@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-# (c) Shrimadhav U K | gautamajay52
+# (c) Shrimadhav U K | gautamajay52 | MaxxRider
 
 import logging
 import os
@@ -110,8 +110,8 @@ async def button(bot, update: CallbackQuery):
                 "runtime.txt",
                 "start.sh",
                 "tobrot",
-                "manssizz",
-                "CendrawasihLeech.txt",
+                "gautam",
+                "Torrentleech-Gdrive.txt",
                 "vendor",
                 "LeechBot.session",
                 "LeechBot.session-journal",

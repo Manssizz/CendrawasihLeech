@@ -21,7 +21,7 @@ async def split_large_files(input_file):
     # if input_file.upper().endswith(("MKV", "MP4", "WEBM", "MP3", "M4A", "FLAC", "WAV")):
     """The below logic is DERPed, so removing temporarily
     """
-    if input_file.upper().endswith(("MKV", "MP4", "WEBM", "AVI", "MOV", "MPEG", "WMV", "3GP")):
+    if input_file.upper().endswith(("MKV", "MP4", "WEBM")):
         # handle video / audio files here
         metadata = extractMetadata(createParser(input_file))
         total_duration = 0
@@ -31,8 +31,7 @@ async def split_large_files(input_file):
         LOGGER.info(total_duration)
         total_file_size = os.path.getsize(input_file)
         LOGGER.info(total_file_size)
-        minimum_duration = (total_duration / total_file_size) * \
-            (MAX_TG_SPLIT_FILE_SIZE)
+        minimum_duration = (total_duration / total_file_size) * (MAX_TG_SPLIT_FILE_SIZE)
         # casting to int cuz float Time Stamp can cause errors
         minimum_duration = int(minimum_duration)
 
@@ -61,8 +60,7 @@ async def split_large_files(input_file):
                     input_file, output_file, str(start_time), str(end_time)
                 )
             )
-            LOGGER.info(
-                f"Start time {start_time}, End time {end_time}, Itr {i}")
+            LOGGER.info(f"Start time {start_time}, End time {end_time}, Itr {i}")
 
             # adding offset of 3 seconds to ensure smooth playback
             start_time = end_time - 3
@@ -77,8 +75,7 @@ async def split_large_files(input_file):
 
     elif SP_LIT_ALGO_RITH_M.lower() == "hjs":
         # handle normal files here
-        o_d_t = os.path.join(new_working_directory,
-                             os.path.basename(input_file))
+        o_d_t = os.path.join(new_working_directory, os.path.basename(input_file))
         o_d_t = o_d_t + "."
         file_genertor_command = [
             "split",

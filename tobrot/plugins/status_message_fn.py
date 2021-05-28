@@ -11,15 +11,26 @@ import sys
 import time
 import traceback
 
-from tobrot import AUTH_CHANNEL, BOT_START_TIME, LOGGER, MAX_MESSAGE_LENGTH
+from tobrot import AUTH_CHANNEL, BOT_START_TIME, LOGGER, MAX_MESSAGE_LENGTH, user_specific_config
 from tobrot.helper_funcs.admin_check import AdminCheck
 
 # the logging things
 from tobrot.helper_funcs.display_progress import TimeFormatter, humanbytes
 from tobrot.helper_funcs.download_aria_p_n import aria_start, call_apropriate_function
 from tobrot.helper_funcs.upload_to_tg import upload_to_tg
+from tobrot.UserDynaConfig import UserDynaConfig
 
 
+async def upload_as_doc(client, message):
+    user_specific_config[message.from_user.id]=UserDynaConfig(message.from_user.id,True)
+    await message.reply_text("**🗞 Your Files Will Be Uploaded As Document 📁**")
+
+
+async def upload_as_video(client, message):
+    user_specific_config[message.from_user.id]=UserDynaConfig(message.from_user.id,False)
+    await message.reply_text("**🗞 Your Files Will Be Uploaded As Streamable 🎞**")
+    
+    
 async def status_message_f(client, message):
     aria_i_p = await aria_start()
     # Show All Downloads
@@ -58,7 +69,7 @@ async def status_message_f(client, message):
             msg += " | "
             msg += f"{download_current_status}"
             msg += " | "
-            msg += f"<code>/stop {current_gid}</code>"
+            msg += f"<code>/cancel {current_gid}</code>"
             msg += " | "
             msg += "\n\n"
         # LOGGER.info(msg)
