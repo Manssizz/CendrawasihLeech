@@ -58,7 +58,7 @@ async def status_message_f(client, message):
             msg += " | "
             msg += f"{download_current_status}"
             msg += " | "
-            msg += f"<code>/stop {current_gid}</code>"
+            msg += f"<code>/cancel {current_gid}</code>"
             msg += " | "
             msg += "\n\n"
         # LOGGER.info(msg)
@@ -237,4 +237,4 @@ def up_time(time_taken):
 async def upload_log_file(client, message):
     g = await AdminCheck(client, message.chat.id, message.from_user.id)
     if g:
-        await message.reply_document("Torrentleech-Gdrive.txt")
+        await message.reply_document("CendrawasihLeech.txt")
