@@ -1,16 +1,8 @@
-![MAXX LEECH V2](https://telegra.ph/file/af8f0596124714a17e4e2.png)
 
-👉 [Orginal Repository](https://github.com/gautamajay52/TorrentLeech-Gdrive)
+## Deploy
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://dashboard.heroku.com/new?template=https://github.com/Manssizz/CendrawasihLeech/tree/stable)
 
-![Maxx](https://telegra.ph/file/d18fa7fa33f26f733adb9.png)
-
-#<b>Don't Kill Heroku please ☹️</b>
-
-[![MAXX LEECH](https://telegra.ph/file/29d788a656dd517eafd0a.png)](https://telegram.dog/MaxxBots)
-
-
-
-# Benefits :-
+## Benefits :-
     ✓ Google Drive link cloning using gclone.(wip)
     ✓ Telegram File mirrorring to cloud along with its unzipping, unrar and untar
     ✓ Drive/Teamdrive support/All other cloud services rclone.org supports
@@ -29,8 +21,6 @@
     ✓ Changing rclone destination config on fly (By using `/rlcone` in private mode)
     ✓
 
-[![Maxx](https://telegra.ph/file/f3f3b950c2904756bb201.png)](https://t.me/MaxxRiderz) 👇
-
 ##### Mandatory Variables
 
 * `TG_BOT_TOKEN`: Create a bot using [@BotFather](https://telegram.dog/BotFather), and get the Telegram API token.
@@ -43,8 +33,6 @@
 
 * `OWNER_ID`: ID of the bot owner, He/she can be abled to access bot in bot only mode too(private mode).
 
-
-[![Maxx](https://telegra.ph/file/7e3a50f29f871defe0bcb.png)](https://t.me/MaxxBots)
 
 ##### Optional Configuration Variables
 
@@ -110,15 +98,6 @@
 
 * `DESTINATION_FOLDER`: Name of your folder in ur respective drive where you want to upload the files using the bot.
 
-🔴 <b> Currently Support HEORKO . But not permanent ☹️🤧 Coz Heroku won't allow Torrent Things</b>.
-
-## ARE YOU NEW ??? Then READ Full 👉 [Instructions](https://GitHub.com/MaxxRider/About-Leech)
-
-
-🤧🤧 <b> Before Deploy 𝗣𝗹𝗲𝗮𝘀𝗲 𝗛𝗶𝘁 𝗦𝘁𝗮𝗿𝘀</b>
-
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://dashboard.heroku.com/new?template=https://github.com/Manssizz/CendrawasihLeech)
-
-
-[![MaxxRider](https://telegra.ph/file/aac59f2f35ee73b63019e.png)](https://telegram.dog/MaxxRiderz)
-
+# Based
+- [TorrentLeech-Gdrive](https://github.com/gautamajay52/TorrentLeech-Gdrive)
+- [Maxx Rider](https://GitHub.com/MaxxRider)
