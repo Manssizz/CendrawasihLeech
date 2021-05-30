@@ -7,6 +7,7 @@ import logging
 import os
 import sys
 import time
+import requests
 
 import aria2p
 from pyrogram.errors import FloodWait, MessageNotModified
@@ -30,24 +31,27 @@ from tobrot.helper_funcs.upload_to_tg import upload_to_gdrive, upload_to_tg
 
 sys.setrecursionlimit(10 ** 4)
 
+
 def KopyasizListe(string):
     kopyasiz = list(string.split(","))
     kopyasiz = list(dict.fromkeys(kopyasiz))
     return kopyasiz
 
+
 def Virgullustring(string):
-    string = string.replace("\n\n",",")
-    string = string.replace("\n",",")
-    string = string.replace(",,",",")
+    string = string.replace("\n\n", ",")
+    string = string.replace("\n", ",")
+    string = string.replace(",,", ",")
     string = string.rstrip(',')
     string = string.lstrip(',')
     return string
+
 
 tracker_urlsss = [
     "https://raw.githubusercontent.com/XIU2/TrackersListCollection/master/all.txt",
     "https://raw.githubusercontent.com/ngosang/trackerslist/master/trackers_all.txt",
     "https://raw.githubusercontent.com/DeSireFire/animeTrackerList/master/AT_all.txt"
-    ]
+]
 tumtorrenttrackerstringi = ""
 sonstringtrckr = ""
 for i in range(len(tracker_urlsss)):
@@ -59,6 +63,8 @@ trackerlistemiz = KopyasizListe(Virgullustring(tumtorrenttrackerstringi))
 sonstringtrckr = ','.join(trackerlistemiz)
 # LOGGER.info(sonstringtrckr)
 # trackelreri alıyoz dinamik olarak
+
+
 async def aria_start():
     global sonstringtrckr
     aria2_daemon_start_cmd = []
