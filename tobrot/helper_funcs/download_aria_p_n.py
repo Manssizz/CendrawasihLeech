@@ -30,7 +30,6 @@ from tobrot.helper_funcs.upload_to_tg import upload_to_gdrive, upload_to_tg
 
 sys.setrecursionlimit(10 ** 4)
 
-
 def KopyasizListe(string):
     kopyasiz = list(string.split(","))
     kopyasiz = list(dict.fromkeys(kopyasiz))
@@ -98,6 +97,7 @@ async def aria_start():
     aria2_daemon_start_cmd.append("--min-split-size=10M")
     aria2_daemon_start_cmd.append("--enable-rpc")
     aria2_daemon_start_cmd.append("--rpc-listen-all=false")
+    aria2_daemon_start_cmd.append("--rpc-listen-port=6800")
     aria2_daemon_start_cmd.append("--rpc-max-request-size=1024M")
     aria2_daemon_start_cmd.append("--seed-time=0")
     aria2_daemon_start_cmd.append("--max-overall-upload-limit=1K")
