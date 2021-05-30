@@ -88,7 +88,7 @@ async def aria_start():
     aria2_daemon_start_cmd.append("--max-tries=20")
     aria2_daemon_start_cmd.append("--bt-enable-lpd=true")
     aria2_daemon_start_cmd.append("--seed-ratio=1.0")
-    aria2_daemon_start_cmd.append(f"--bt-tracker={tracker_list}")
+    aria2_daemon_start_cmd.append(f"--bt-tracker={sonstringtrckr}")
     aria2_daemon_start_cmd.append("--content-disposition-default-utf8=true")
     aria2_daemon_start_cmd.append("--http-accept-gzip=true")
     aria2_daemon_start_cmd.append("--reuse-uri=true")
