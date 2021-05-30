@@ -31,10 +31,10 @@ async def check_size_g(client, message):
     LOGGER.info(gau)
     LOGGER.info(tam)
     LOGGER.info(tam.decode("utf-8"))
-    gautam = gau.decode("utf-8")
-    LOGGER.info(gautam)
+    manssizz = gau.decode("utf-8")
+    LOGGER.info(manssizz)
     await asyncio.sleep(5)
-    await message.reply_text(f"🔊CloudInfo:\n\n{gautam}")
+    await message.reply_text(f"🔊CloudInfo:\n\n{manssizz}")
     await del_it.delete()
 
 
@@ -45,7 +45,8 @@ async def g_clearme(client, message):
     inline_keyboard = []
     ikeyboard = []
     ikeyboard.append(
-        InlineKeyboardButton("Yes 🚫", callback_data=("fuckingdo").encode("UTF-8"))
+        InlineKeyboardButton("Yes 🚫", callback_data=(
+            "fuckingdo").encode("UTF-8"))
     )
     ikeyboard.append(
         InlineKeyboardButton("No 🤗", callback_data=("fuckoff").encode("UTF-8"))

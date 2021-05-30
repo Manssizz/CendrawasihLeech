@@ -1,7 +1,3 @@
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
-
-Command
-```
 leech - Leech torrent file or direct link file and upload to Telegram.
 clone - Clone Drive file or folder to your Drive.
 sync - Leech torrent/direct link to Drive.
@@ -25,4 +21,4 @@ ytdl - This will download and upload to your Drive.
 ytpl - This download youtube playlist and upload to your Drive.
 rclone - This will change your drive config on fly.(First one will be default)
 rename - To rename the telegram files.
-```
+

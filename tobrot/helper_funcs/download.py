@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 # (c) gautamajay52 | Shrimadhav U K
- 
+
 import asyncio
 import logging
 import math
@@ -11,19 +11,19 @@ import subprocess
 import time
 from datetime import datetime
 from pathlib import Path
- 
+
 from pyrogram import Client, filters
 from tobrot import DOWNLOAD_LOCATION, LOGGER, TELEGRAM_LEECH_UNZIP_COMMAND
 from tobrot.helper_funcs.create_compressed_archive import unzip_me, get_base_name
 from tobrot.helper_funcs.display_progress import Progress
 from tobrot.helper_funcs.upload_to_tg import upload_to_gdrive
- 
- 
+
+
 async def down_load_media_f(client, message):
     user_command = message.command[0]
     user_id = message.from_user.id
     LOGGER.info(user_id)
-    mess_age = await message.reply_text("**Renaming**...🐈", quote=True)
+    mess_age = await message.reply_text("...", quote=True)
     if not os.path.isdir(DOWNLOAD_LOCATION):
         os.makedirs(DOWNLOAD_LOCATION)
     if message.reply_to_message is not None:
@@ -70,12 +70,12 @@ async def down_load_media_f(client, message):
         await mess_age.edit_text(
             "Reply to a Telegram Media, to upload to the Cloud Drive."
         )
- 
- 
+
+
 async def download_tg(client, message):
     user_id = message.from_user.id
     LOGGER.info(user_id)
-    mess_age = await message.reply_text("**DownloadinG...**", quote=True)
+    mess_age = await message.reply_text("...", quote=True)
     if not os.path.isdir(DOWNLOAD_LOCATION):
         os.makedirs(DOWNLOAD_LOCATION)
     if message.reply_to_message is not None:

@@ -2,7 +2,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 # (c) gautamajay52
-# (c) MaxxRider
+
 
 import asyncio
 import logging
@@ -96,23 +96,24 @@ class CloneHelper:
             )
             gau, tam = await gau_tam.communicate()
             LOGGER.info(gau)
-            gautam = gau.decode("utf-8")
-            LOGGER.info(gautam)
+            manssizz = gau.decode("utf-8")
+            LOGGER.info(manssizz)
             LOGGER.info(tam.decode("utf-8"))
 
             if _drive == "folderba":
-                gautii = f"https://drive.google.com/folderview?id={gautam}"
+                gautii = f"https://drive.google.com/folderview?id={manssizz}"
             else:
-                gautii = f"https://drive.google.com/file/d/{gautam}/view?usp=drivesdk"
+                gautii = f"https://drive.google.com/file/d/{manssizz}/view?usp=drivesdk"
 
             LOGGER.info(gautii)
-            gau_link = re.search("(?P<url>https?://[^\s]+)", gautii).group("url")
+            gau_link = re.search(
+                "(?P<url>https?://[^\s]+)", gautii).group("url")
             LOGGER.info(gau_link)
             button = []
             button.append(
                 [
                     pyrogram.InlineKeyboardButton(
-                        text="🔮 CLOUD LINK", url=f"{gau_link}"
+                        text="☁️ CloudUrl ☁️", url=f"{gau_link}"
                     )
                 ]
             )
@@ -126,13 +127,13 @@ class CloneHelper:
                 button.append(
                     [
                         pyrogram.InlineKeyboardButton(
-                            text="💡 𝐈𝐧𝐝𝐞𝐱 𝐋𝐢𝐧𝐤", url=f"{tam_link}"
+                            text="ℹ️ IndexUrl ℹ️", url=f"{tam_link}"
                         )
                     ]
                 )
             button_markup = pyrogram.InlineKeyboardMarkup(button)
             msg = await self.lsg.edit_text(
-                f"🐈: {_up} Cloned successfully in your Cloud <a href='tg://user?id={self.u_id}'>😊</a>\
+                f"🤖: {_up} cloned successfully in your Cloud <a href='tg://user?id={self.u_id}'>🤒</a>\
                 \n📀 Info: Calculating...",
                 reply_markup=button_markup,
                 parse_mode="html",
@@ -153,7 +154,7 @@ class CloneHelper:
             LOGGER.info(am.decode("utf-8"))
             await asyncio.sleep(EDIT_SLEEP_TIME_OUT)
             await msg.edit_text(
-                f"🐈: {_up} Cloned successfully in your Cloud <a href='tg://user?id={self.u_id}'>😊</a>\
+                f"🤖: {_up} cloned successfully in your Cloud <a href='tg://user?id={self.u_id}'>🤒</a>\
                 \n📀 Info:\n{g_autam}",
                 reply_markup=button_markup,
                 parse_mode="html",
@@ -164,7 +165,7 @@ class CloneHelper:
         destination = f"{DESTINATION_FOLDER}"
         idd = "{" f"{self.g_id}" "}"
         cmd = [
-            "/app/gautam/gclone",
+            "/app/manssizz/gclone",
             "copy",
             "--config=rclone.conf",
             f"{self.dname}:{idd}",

@@ -1,13 +1,12 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-# (c) Shrimadhav U K | gautamajay52 | MaxxRider | NickxFury
+# (c) Shrimadhav U K | gautamajay52
 
 import asyncio
 import logging
 import os
 import sys
 import time
-import requests
 
 import aria2p
 from pyrogram.errors import FloodWait, MessageNotModified
@@ -28,8 +27,7 @@ from tobrot.helper_funcs.create_compressed_archive import (
 )
 from tobrot.helper_funcs.extract_link_from_message import extract_link
 from tobrot.helper_funcs.upload_to_tg import upload_to_gdrive, upload_to_tg
-from tobrot.helper_funcs.direct_link_generator import direct_link_generator
-from tobrot.helper_funcs.exceptions import DirectDownloadLinkException
+
 sys.setrecursionlimit(10 ** 4)
 
 def KopyasizListe(string):
@@ -84,7 +82,8 @@ async def aria_start():
     aria2_daemon_start_cmd.append("--auto-file-renaming=true")
     aria2_daemon_start_cmd.append("--max-tries=20")
     aria2_daemon_start_cmd.append("--bt-enable-lpd=true")
-    aria2_daemon_start_cmd.append("--seed-ratio=0.0")
+    aria2_daemon_start_cmd.append("--seed-ratio=1.0")
+    aria2_daemon_start_cmd.append(f"--bt-tracker={tracker_list}")
     aria2_daemon_start_cmd.append("--content-disposition-default-utf8=true")
     aria2_daemon_start_cmd.append("--http-accept-gzip=true")
     aria2_daemon_start_cmd.append("--reuse-uri=true")
@@ -94,12 +93,10 @@ async def aria_start():
     aria2_daemon_start_cmd.append("--min-split-size=10M")
     aria2_daemon_start_cmd.append("--enable-rpc")
     aria2_daemon_start_cmd.append("--rpc-listen-all=false")
-    aria2_daemon_start_cmd.append("--rpc-listen-port=6800")
     aria2_daemon_start_cmd.append("--rpc-max-request-size=1024M")
     aria2_daemon_start_cmd.append("--seed-time=0")
     aria2_daemon_start_cmd.append("--max-overall-upload-limit=1K")
     aria2_daemon_start_cmd.append("--split=10")
-    aria2_daemon_start_cmd.append(f"--bt-tracker={sonstringtrckr}")
     aria2_daemon_start_cmd.append(
         f"--bt-stop-timeout={MAX_TIME_TO_WAIT_FOR_TORRENTS_TO_START}"
     )
@@ -119,6 +116,7 @@ async def aria_start():
     )
     return aria2
 
+
 def add_magnet(aria_instance, magnetic_link, c_file_name):
     options = None
     # if c_file_name is not None:
@@ -130,7 +128,8 @@ def add_magnet(aria_instance, magnetic_link, c_file_name):
     except Exception as e:
         return (
             False,
-            "**FAILED** \n" + str(e) + " \n<b> Your link is Dead 🐈</b>",
+            "**FAILED** \n" +
+            str(e) + " \nPlease do not send SLOW links. Read /help",
         )
     else:
         return True, "" + download.gid + ""
@@ -155,7 +154,7 @@ def add_torrent(aria_instance, torrent_file_path):
                 False,
                 "**FAILED** \n"
                 + str(e)
-                + " \n<b> Your Link is Dead 🐈</b>",
+                + " \nPlease do not send SLOW links. Read /help",
             )
         else:
             return True, "" + download.gid + ""
@@ -169,29 +168,15 @@ def add_url(aria_instance, text_url, c_file_name):
     #     options = {
     #         "dir": c_file_name
     #     }
-    #
-    # or "cloud.mail.ru" in text_url \  doesnt work.
-    # or "github.com" in text_url \   doesnt work.
-    #
-    if "zippyshare.com" in text_url \
-        or "osdn.net" in text_url \
-        or "mediafire.com" in text_url \
-        or "yadi.sk" in text_url  \
-        or "racaty.net" in text_url:
-            try:
-                urisitring = direct_link_generator(text_url)
-                uris = [urisitring]
-            except DirectDownloadLinkException as e:
-                LOGGER.info(f'{text_url}: {e}')
-    else:
-        uris = [text_url]
+    uris = [text_url]
     # Add URL Into Queue
     try:
         download = aria_instance.add_uris(uris, options=options)
     except Exception as e:
         return (
             False,
-            "**FAILED** \n" + str(e) + " \nPlease do not send SLOW links. Read /help",
+            "**FAILED** \n" +
+            str(e) + " \nPlease do not send SLOW links. Read /help",
         )
     else:
         return True, "" + download.gid + ""
@@ -210,11 +195,13 @@ async def call_apropriate_function(
     client,
 ):
     if incoming_link.lower().startswith("magnet:"):
-        sagtus, err_message = add_magnet(aria_instance, incoming_link, c_file_name)
+        sagtus, err_message = add_magnet(
+            aria_instance, incoming_link, c_file_name)
     elif incoming_link.lower().endswith(".torrent"):
         sagtus, err_message = add_torrent(aria_instance, incoming_link)
     else:
-        sagtus, err_message = add_url(aria_instance, incoming_link, c_file_name)
+        sagtus, err_message = add_url(
+            aria_instance, incoming_link, c_file_name)
     if not sagtus:
         return sagtus, err_message
     LOGGER.info(err_message)
@@ -258,7 +245,8 @@ async def call_apropriate_function(
     if to_upload_file:
         if CUSTOM_FILE_NAME:
             if os.path.isfile(to_upload_file):
-                os.rename(to_upload_file, f"{CUSTOM_FILE_NAME}{to_upload_file}")
+                os.rename(to_upload_file,
+                          f"{CUSTOM_FILE_NAME}{to_upload_file}")
                 to_upload_file = f"{CUSTOM_FILE_NAME}{to_upload_file}"
             else:
                 for root, _, files in os.walk(to_upload_file):
@@ -294,7 +282,7 @@ async def call_apropriate_function(
                     message_id = final_response[key_f_res_se]
                     channel_id = str(sent_message_to_update_tg_p.chat.id)[4:]
                     private_link = f"https://t.me/c/{channel_id}/{message_id}"
-                    message_to_send += "✘ <a href='"
+                    message_to_send += "👉 <a href='"
                     message_to_send += private_link
                     message_to_send += "'>"
                     message_to_send += local_file_name
@@ -302,10 +290,10 @@ async def call_apropriate_function(
                     message_to_send += "\n"
                 if message_to_send != "":
                     mention_req_user = (
-                        f"<b><a href='tg://user?id={user_id}'>📁 Your Requested Files</a></b>\n\n"
+                        f"<a href='tg://user?id={user_id}'>Your Requested Files</a>\n\n"
                     )
                     message_to_send = mention_req_user + message_to_send
-                    message_to_send = message_to_send + "\n\n" + "#uploaded</b>"
+                    message_to_send = message_to_send + "\n\n" + "#uploads"
                 else:
                     message_to_send = "<i>FAILED</i> to upload files. 😞😞"
                 await user_message.reply_text(
@@ -341,17 +329,27 @@ async def check_progress_for_dl(aria2, gid, event, previous_message):
                     pass
                 #
                 if is_file is None:
-                    msgg = f"<b>➩ Connections : {file.connections} </b>"
+                    msgg = f"Conn: {file.connections} <b>|</b> GID: <code>{gid}</code>"
                 else:
-                    msgg = f"<b>➩ Info :- P: {file.connections} || S: {file.num_seeders} </b>\n\n<b>🗑️ GID :</b> <code>{gid}</code>"
-                    msg = f"\n<b>📘 File Name :</b> `{downloading_dir_name}`\n\n<b>➩ Speed :</b> `{file.download_speed_string()}`"
-                    msg += f"\n<b>➩ Size :</b> `{file.total_length_string()}`"
-                    msg += f"\n<b>➩ Downloaded</b> : `{file.progress_string()}` \n<b>➩ ETA :</b> `{file.eta_string()}` \n {msgg}"
+                    msgg = f"P: {file.connections} | S: {file.num_seeders} <b>|</b> GID: <code>{gid}</code>"
+                msg = f"\n`{downloading_dir_name}`"
+                msg += f"\n<b>Speed</b>: {file.download_speed_string()}"
+                msg += f"\n<b>Status</b>: {file.progress_string()} <b>of</b> {file.total_length_string()} <b>|</b> {file.eta_string()} <b>|</b> {msgg}"
+                # msg += f"\nSize: {file.total_length_string()}"
+
+                # if is_file is None :
+                # msg += f"\n<b>Conn:</b> {file.connections}, GID: <code>{gid}</code>"
+                # else :
+                # msg += f"\n<b>Info:</b>[ P : {file.connections} | S : {file.num_seeders} ], GID: <code>{gid}</code>"
+
+                # msg += f"\nStatus: {file.status}"
+                # msg += f"\nETA: {file.eta_string()}"
+                # msg += f"\nGID: <code>{gid}</code>"
                 inline_keyboard = []
                 ikeyboard = []
                 ikeyboard.append(
                     InlineKeyboardButton(
-                        "Cancel", callback_data=(f"cancel {gid}").encode("UTF-8")
+                        "Cancel 🚫", callback_data=(f"cancel {gid}").encode("UTF-8")
                     )
                 )
                 inline_keyboard.append(ikeyboard)
@@ -372,7 +370,7 @@ async def check_progress_for_dl(aria2, gid, event, previous_message):
                             f"Cancelling downloading of {file.name} may be due to slow torrent"
                         )
                         await event.edit(
-                            f"**Download cancelled :**\n<code>{file.name}</code>\n\n #MetaDataError"
+                            f"Download cancelled :\n<code>{file.name}</code>\n\n #MetaDataError"
                         )
                         file.remove(force=True, files=True)
                         return False
@@ -386,11 +384,11 @@ async def check_progress_for_dl(aria2, gid, event, previous_message):
             await check_progress_for_dl(aria2, gid, event, previous_message)
         else:
             LOGGER.info(
-                f"<b> Leechd Successfully</b>: `{file.name} ({file.total_length_string()})` 🤒"
+                f"Downloaded Successfully: `{file.name} ({file.total_length_string()})` 🤒"
             )
             await asyncio.sleep(EDIT_SLEEP_TIME_OUT)
             await event.edit(
-                f"<b>Leech Successfully</b>:\n\n📙 <b>File Name</b>: \n`{file.name}`\n\n📀 <b>Total Size</b>: `〘{file.total_length_string()}〙`"
+                f"Downloaded Successfully: `{file.name} ({file.total_length_string()})` 🤒"
             )
             return True
     except aria2p.client.ClientException:
@@ -407,8 +405,8 @@ async def check_progress_for_dl(aria2, gid, event, previous_message):
     except RecursionError:
         file.remove(force=True, files=True)
         await event.edit(
-            "*Download Auto Canceled :**\n\n"
-            "`Your Torrent/Link is Dead.`👺".format(file.name)
+            "Download Auto Canceled :\n\n"
+            "Your Torrent/Link is Dead.".format(file.name)
         )
         return False
     except Exception as e:
