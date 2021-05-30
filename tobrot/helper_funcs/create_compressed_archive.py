@@ -8,7 +8,7 @@ import os
 import shutil
 import subprocess
 
-from tobrot import LOGGER
+from tobrot import LEECH_UNZIP_COMMAND, LOGGER
 
 
 async def create_archive(input_directory):
@@ -19,7 +19,8 @@ async def create_archive(input_directory):
         # #BlameTelegram
         suffix_extention_length = 1 + 3 + 1 + 2
         if len(base_dir_name) > (64 - suffix_extention_length):
-            compressed_file_name = base_dir_name[0 : (64 - suffix_extention_length)]
+            compressed_file_name = base_dir_name[0: (
+                64 - suffix_extention_length)]
             compressed_file_name += ".tar.gz"
         # fix for https://t.me/c/1434259219/13344
         file_genertor_command = [
@@ -56,7 +57,7 @@ async def unzip_me(input_directory):
         # uncompressed_file_name = os.path.splitext(base_dir_name)[0]
         uncompressed_file_name = get_base_name(base_dir_name)
         LOGGER.info(uncompressed_file_name)
-        g_cmd = ["./extract", f"{input_directory}"]
+        g_cmd = [LEECH_UNZIP_COMMAND, f"{input_directory}"]
         ga_utam = await asyncio.create_subprocess_exec(
             *g_cmd, stdout=asyncio.subprocess.PIPE, stderr=asyncio.subprocess.PIPE
         )
@@ -125,7 +126,8 @@ async def unrar_me(input_directory):
             *m_k_gau, stdout=asyncio.subprocess.PIPE, stderr=asyncio.subprocess.PIPE
         )
         print(base_dir_name)
-        gau_tam_r = ["unrar", "x", f"{base_dir_name}", f"{uncompressed_file_name}"]
+        gau_tam_r = ["unrar", "x",
+                     f"{base_dir_name}", f"{uncompressed_file_name}"]
         jai_hind = await asyncio.create_subprocess_exec(
             *gau_tam_r, stdout=asyncio.subprocess.PIPE, stderr=asyncio.subprocess.PIPE
         )
