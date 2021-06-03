@@ -20,6 +20,15 @@ from tobrot.helper_funcs.download_aria_p_n import aria_start, call_apropriate_fu
 from tobrot.helper_funcs.upload_to_tg import upload_to_tg
 from tobrot.UserDynaConfig import UserDynaConfig
 
+async def upload_as_doc(client, message):
+    user_specific_config[message.from_user.id]=UserDynaConfig(message.from_user.id,True)
+    await message.reply_text("**Your Files Will Be Uploaded As Document**")
+
+
+async def upload_as_video(client, message):
+    user_specific_config[message.from_user.id]=UserDynaConfig(message.from_user.id,False)
+    await message.reply_text("**Your Files Will Be Uploaded As Streamable**")
+
 async def status_message_f(client, message):
     aria_i_p = await aria_start()
     # Show All Downloads
