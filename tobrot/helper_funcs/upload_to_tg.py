@@ -73,7 +73,7 @@ async def upload_to_tg(
         new_m_esg = message
         if not message.photo:
             new_m_esg = await message.reply_text(
-                f"Found {len(directory_contents)} files <a href='tg://user?id={from_user}'>🤒</a>",
+                f"<code>{len(directory_contents)}</code> files in <code>{local_file_name}</code>",
                 quote=True
                 # reply_to_message_id=message.message_id
             )
@@ -94,8 +94,8 @@ async def upload_to_tg(
             d_f_s = humanbytes(os.path.getsize(local_file_name))
             i_m_s_g = await message.reply_text(
                 "Telegram does not support uploading this file.\n"
-                f"Detected File Size: {d_f_s} 😡\n"
-                "\n🤖 trying to split the files 🌝🌝🌚"
+                f"Detected File Size: {d_f_s}\n"
+                "Trying to split the files"
             )
             splitted_dir = await split_large_files(local_file_name)
             totlaa_sleif = os.listdir(splitted_dir)
@@ -104,9 +104,9 @@ async def upload_to_tg(
             LOGGER.info(totlaa_sleif)
             ba_se_file_name = os.path.basename(local_file_name)
             await i_m_s_g.edit_text(
-                f"Detected File Size: {d_f_s} 😡\n"
+                f"Detected File Size: {d_f_s}\n"
                 f"<code>{ba_se_file_name}</code> splitted into {number_of_files} files.\n"
-                "trying to upload to Telegram, now ..."
+                "Trying to upload to Telegram, now ..."
             )
             for le_file in totlaa_sleif:
                 # recursion: will this FAIL somewhere?
@@ -359,7 +359,7 @@ async def upload_single_file(
                 )
                 prog = Progress(from_user, client,
                                 message_for_progress_display)
-            if local_file_name.upper().endswith(("MKV", "MP4", "WEBM")):
+            if local_file_name.upper().endswith(("MKV", "MP4", "WEBM", "AVI", "MOV", "MPEG", "WMV", "3GP")):
                 duration = 0
                 try:
                     metadata = extractMetadata(createParser(local_file_name))
