@@ -18,7 +18,7 @@ from tobrot.helper_funcs.admin_check import AdminCheck
 from tobrot.helper_funcs.display_progress import TimeFormatter, humanbytes
 from tobrot.helper_funcs.download_aria_p_n import aria_start, call_apropriate_function
 from tobrot.helper_funcs.upload_to_tg import upload_to_tg
-
+from tobrot.UserDynaConfig import UserDynaConfig
 
 async def status_message_f(client, message):
     aria_i_p = await aria_start()
@@ -64,7 +64,7 @@ async def status_message_f(client, message):
         # LOGGER.info(msg)
 
         if msg == "":
-            msg = "🤷‍♂️ No Active, Queued or Paused TORRENTs"
+            msg = "No Active, Queued or Paused TORRENTs"
 
     hr, mi, se = up_time(time.time() - BOT_START_TIME)
     total, used, free = shutil.disk_usage(".")
@@ -96,7 +96,7 @@ async def status_message_f(client, message):
 async def cancel_message_f(client, message):
     if len(message.command) > 1:
         # /cancel command
-        i_m_s_e_g = await message.reply_text("checking..?", quote=True)
+        i_m_s_e_g = await message.reply_text("Checking...", quote=True)
         aria_i_p = await aria_start()
         g_id = message.command[1].strip()
         LOGGER.info(g_id)
@@ -153,7 +153,7 @@ async def exec_message_f(client, message):
 
 
 async def upload_document_f(client, message):
-    imsegd = await message.reply_text("processing ...")
+    imsegd = await message.reply_text("Processing ...")
     if message.from_user.id in AUTH_CHANNEL:
         if " " in message.text:
             recvd_command, local_file_name = message.text.split(" ", 1)
