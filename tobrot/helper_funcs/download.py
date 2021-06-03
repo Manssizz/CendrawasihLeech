@@ -23,7 +23,7 @@ async def down_load_media_f(client, message):
     user_command = message.command[0]
     user_id = message.from_user.id
     LOGGER.info(user_id)
-    mess_age = await message.reply_text("**Renaming**...", quote=True)
+    mess_age = await message.reply_text("...", quote=True)
     if not os.path.isdir(DOWNLOAD_LOCATION):
         os.makedirs(DOWNLOAD_LOCATION)
     if message.reply_to_message is not None:
@@ -51,7 +51,7 @@ async def down_load_media_f(client, message):
                 f"Downloaded to <code>{the_real_download_location}</code> in <u>{ms}</u> seconds"
             )
         else:
-            await mess_age.edit_text("Download Cancelled or some error happened")
+            await mess_age.edit_text("😔 Download Cancelled or some error happened")
             return
         the_real_download_location_g = the_real_download_location
         if user_command == TELEGRAM_LEECH_UNZIP_COMMAND.lower():
@@ -103,6 +103,6 @@ async def download_tg(client, message):
                 f"Downloaded to <code>{the_real_download_location}</code> in <u>{ms}</u> seconds"
             )
         else:
-            await mess_age.edit_text("Download Cancelled or some error happened")
+            await mess_age.edit_text("😔 Download Cancelled or some error happened")
             return
     return the_real_download_location, mess_age

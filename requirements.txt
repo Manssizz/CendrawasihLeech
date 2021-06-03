@@ -14,4 +14,3 @@ requests
 messages
 speedtest
 datetime
-js2py
