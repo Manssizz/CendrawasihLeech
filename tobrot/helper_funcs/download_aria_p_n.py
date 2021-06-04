@@ -13,7 +13,7 @@ import aria2p
 from pyrogram.errors import FloodWait, MessageNotModified
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message
 from tobrot import (
-    ARIA_TWO_STARTED_PORT,
+    # ARIA_TWO_STARTED_PORT,
     AUTH_CHANNEL,
     CUSTOM_FILE_NAME,
     DOWNLOAD_LOCATION,
@@ -122,7 +122,7 @@ async def aria_start():
     aria2_daemon_start_cmd.append("--min-split-size=10M")
     aria2_daemon_start_cmd.append("--enable-rpc")
     aria2_daemon_start_cmd.append("--rpc-listen-all=false")
-    aria2_daemon_start_cmd.append("--rpc-listen-port=6800")
+    aria2_daemon_start_cmd.append("--rpc-listen-port=8100")
     aria2_daemon_start_cmd.append("--rpc-max-request-size=1024M")
     aria2_daemon_start_cmd.append("--seed-time=0")
     aria2_daemon_start_cmd.append("--max-overall-upload-limit=1K")
