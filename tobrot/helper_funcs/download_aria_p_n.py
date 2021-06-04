@@ -152,7 +152,7 @@ def add_magnet(aria_instance, magnetic_link, c_file_name):
     except Exception as e:
         return (
             False,
-            "**FAILED** \n" + str(e) + " \nnPlease do not send SLOW links",
+            "**FAILED** \n" + str(e) + " \nPlease do not send slow links",
         )
     else:
         return True, "" + download.gid + ""
@@ -177,7 +177,7 @@ def add_torrent(aria_instance, torrent_file_path):
                 False,
                 "**FAILED** \n"
                 + str(e)
-                + "Please do not send SLOW links",
+                + "Please do not send slow links",
             )
         else:
             return True, "" + download.gid + ""
@@ -216,7 +216,7 @@ def add_url(aria_instance, text_url, c_file_name):
     except Exception as e:
         return (
             False,
-            "**FAILED** \n" + str(e) + " \nPlease do not send SLOW links. Read /help",
+            "**FAILED** \n" + str(e) + " \nPlease do not send slow links. Read /help",
         )
     else:
         return True, "" + download.gid + ""
@@ -366,27 +366,17 @@ async def check_progress_for_dl(aria2, gid, event, previous_message):
                     pass
                 #
                 if is_file is None:
-                    msgg = f"Conn: {file.connections} <b>|</b> GID: <code>{gid}</code>"
+                    msgg = f"<b>• Connections : {file.connections} </b>"
                 else:
-                    msgg = f"P: {file.connections} | S: {file.num_seeders} <b>|</b> GID: <code>{gid}</code>"
-                msg = f"\n`{downloading_dir_name}`"
-                msg += f"\n<b>Kecepatan</b>: <code>{file.download_speed_string()}</code>"
-                msg += f"\n<b>Status</b>: <code>{file.progress_string()}</code> <b>dari</b> <code>{file.total_length_string()}</code> <b>|</b> {file.eta_string()} <b>|</b> {msgg}"
-                # msg += f"\nSize: {file.total_length_string()}"
-
-                # if is_file is None :
-                # msg += f"\n<b>Conn:</b> {file.connections}, GID: <code>{gid}</code>"
-                # else :
-                # msg += f"\n<b>Info:</b>[ P : {file.connections} | S : {file.num_seeders} ], GID: <code>{gid}</code>"
-
-                # msg += f"\nStatus: {file.status}"
-                # msg += f"\nETA: {file.eta_string()}"
-                # msg += f"\nGID: <code>{gid}</code>"
+                    msgg = f"<b>• Peers:</b> <code>{file.connections}</code> <b>Seeds:</b> <code>{file.num_seeders}</code>\n<b>• GID :</b> <code>{gid}</code>"
+                    msg = f"\n<b>• File Name :</b> `{downloading_dir_name}`"
+                    msg += f"\n<b>• Speed :</b> <code>{file.download_speed_string()}</code> <b>ETA :</b> <code>{file.eta_string()}</code>"
+                    msg += f"\n<b>• Size :</b> <code>{file.total_length_string()}</code>  [<code>{file.progress_string()}</code>]\n{msgg}"
                 inline_keyboard = []
                 ikeyboard = []
                 ikeyboard.append(
                     InlineKeyboardButton(
-                        "Batalkan 🚫", callback_data=(f"cancel {gid}").encode("UTF-8")
+                        "Cancel", callback_data=(f"cancel {gid}").encode("UTF-8")
                     )
                 )
                 inline_keyboard.append(ikeyboard)
@@ -404,10 +394,10 @@ async def check_progress_for_dl(aria2, gid, event, previous_message):
                         previous_message = msg
                     else:
                         LOGGER.info(
-                            f"Membatalkan download {file.name} karena torrent lambat"
+                            f"Cancelling {file.name} slow torrent detect"
                         )
                         await event.edit(
-                            f"Download dibatalkan:\n<code>{file.name}</code>\n\n #MetaDataError"
+                            f"Canceled\n<code>{file.name}</code>\n\n #MetaDataError"
                         )
                         file.remove(force=True, files=True)
                         return False
@@ -421,16 +411,16 @@ async def check_progress_for_dl(aria2, gid, event, previous_message):
             await check_progress_for_dl(aria2, gid, event, previous_message)
         else:
             LOGGER.info(
-                f"Berhasil diunduh : `{file.name} ({file.total_length_string()})` 🤒"
+                f"<b>Download Successfully</b> \n `• {file.name} ({file.total_length_string()})`"
             )
             await asyncio.sleep(EDIT_SLEEP_TIME_OUT)
             await event.edit(
-                f"Berhasil diunduh : `{file.name} ({file.total_length_string()})` 🤒"
+                f"Download Complete \n <code>• {file.name} ({file.total_length_string()})</code>"
             )
             return True
     except aria2p.client.ClientException:
         await event.edit(
-            f"Unduhan dibatalkan :\n<code>{file.name} ({file.total_length_string()})</code>"
+            f"Download cancelled\n <code>• {file.name} ({file.total_length_string()})</code>"
         )
     except MessageNotModified as ep:
         LOGGER.info(ep)
@@ -442,21 +432,20 @@ async def check_progress_for_dl(aria2, gid, event, previous_message):
     except RecursionError:
         file.remove(force=True, files=True)
         await event.edit(
-            "Download Otomatis Dibatalkan :\n\n"
-            "Torrent atau link sudah mati.".format(file.name)
+                f"Download cancelled :\n<code>{file.name} ({file.total_length_string()})</code>"
         )
         return False
     except Exception as e:
         LOGGER.info(str(e))
         if "not found" in str(e) or "'file'" in str(e):
             await event.edit(
-                f"Unduhan dibatalkan:\n<code>{file.name} ({file.total_length_string()})</code>"
+                f"Download cancelled \n<code>{file.name} ({file.total_length_string()})</code>"
             )
             return False
         else:
             LOGGER.info(str(e))
             await event.edit(
-                "<u>error</u> :\n<code>{}</code> \n\n#error".format(str(e))
+                "<u>error</u> \n<code>{}</code> \n\n#error".format(str(e))
             )
             return False
 
