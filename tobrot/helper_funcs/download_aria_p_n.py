@@ -72,7 +72,9 @@ def Virgullustring(string):
 
 
 tracker_urlsss = [
-    "https://raw.githubusercontent.com/XIU2/TrackersListCollection/master/all.txt",
+    "https://newtrackon.com/api/all"
+    # "https://trackerslist.com/all.txt"
+    "https://trackerslist.com/best.txt"
     "https://raw.githubusercontent.com/ngosang/trackerslist/master/trackers_all.txt",
     "https://raw.githubusercontent.com/DeSireFire/animeTrackerList/master/AT_all.txt"
 ]
