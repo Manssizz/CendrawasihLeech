@@ -1,12 +1,12 @@
 {
-  "name": "Telegram Torrent Leecher",
-  "description": "A Telegram Torrent (and youtube-dl) Leecher based on Pyrogram. Powered by @torrentleechgdrivesupport!",
+  "name": "CendrawasihLeech",
+  "description": "A Telegram Torrent (and youtube-dl) Leecher based on Pyrogram. Original repository by gautamajay52",
   "keywords": [
     "telegram"
   ],
-  "repository": "https://github.com/gautamajay52/TorrentLeech-Gdrive",
-  "success_url": "https://t.me/torrentleechgdrivesupport",
-  "website": "https://github.com/gautamajay52/TorrentLeech-Gdrive",
+  "repository": "https://github.com/Manssizz/CendrawasihLeech/",
+  "success_url": "https://github.com/Manssizz/CendrawasihLeech/README.md",
+  "website": "https://github.com/Manssizz/CendrawasihLeech/",
   "env": {
     "ENV": {
       "description": "Setting this to ANYTHING will enable webhooks when in env mode",
@@ -57,10 +57,12 @@
     },
     "FINISHED_PROGRESS_STR": {
       "description": "should be a single character.",
+      "value":"█",
       "required": false
     },
     "UN_FINISHED_PROGRESS_STR": {
       "description": "should be a single character.",
+      "value":"⣿",
       "required": false
     },
     "TG_OFFENSIVE_API": {
@@ -76,11 +78,11 @@
       "required": false
     },
     "GLEECH_COMMAND": {
-      "description": "Enter your custom gleech command like /gleech1@urgroupname and so on. Default is /gleech",
+      "description": "Enter your custom sync command like /sync1@urgroupname and so on. Default is /sync",
       "required": false
     },
     "TELEGRAM_LEECH_COMMAND_G": {
-      "description": "Enter your custom tleech command like /tleech1@urgroupname and so on. Default is /tleech",
+      "description": "Enter your custom tgsync command like /tgsync1@urgroupname and so on. Default is /tgsync",
       "required": false
     },
     "YTDL_COMMAND": {
@@ -100,7 +102,7 @@
       "required": false
     },
     "RCLONE_CONFIG": {
-      "description": "Enter your copied text from rclone config. Compulsory for /gleech as well as /tleech command ",
+      "description": "Enter your copied text from rclone config. Compulsory for /gleech as well as /tgsync command ",
       "required": false
     },
     "DESTINATION_FOLDER": {
