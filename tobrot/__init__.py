@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-# (c) Shrimadhav U K | gautamajay52 | MaxxRider
+# (c) Shrimadhav U K | gautamajay52
 
 import logging
 import os
@@ -33,8 +33,6 @@ logging.getLogger("PIL").setLevel(logging.WARNING)
 
 LOGGER = logging.getLogger(__name__)
 
-user_specific_config=dict()
-
 dotenv.load_dotenv("config.env")
 
 # checking compulsory variable
@@ -49,27 +47,27 @@ for imp in ["TG_BOT_TOKEN", "APP_ID", "API_HASH", "OWNER_ID", "AUTH_CHANNEL"]:
 
 # The Telegram API things
 TG_BOT_TOKEN = os.environ.get("TG_BOT_TOKEN", "")
-APP_ID = int(os.environ.get("APP_ID", "12345"))
+APP_ID = int(os.environ.get("APP_ID", ""))
 API_HASH = os.environ.get("API_HASH")
-OWNER_ID = int(os.environ.get("OWNER_ID", "539295917"))
+OWNER_ID = int(os.environ.get("OWNER_ID", 1036440597))
 
 # Get these values from my.telegram.org
 # to store the channel ID who are authorized to use the bot
-AUTH_CHANNEL = [int(x) for x in os.environ.get("AUTH_CHANNEL", "539295917").split()]
+AUTH_CHANNEL = [int(x) for x in os.environ.get("AUTH_CHANNEL").split()]
 
 # the download location, where the HTTP Server runs
 DOWNLOAD_LOCATION = "./DOWNLOADS"
 # Telegram maximum file upload size
 MAX_FILE_SIZE = 50000000
-TG_MAX_FILE_SIZE = 2097152000
+TG_MAX_FILE_SIZE = 2093796556
 FREE_USER_MAX_FILE_SIZE = 50000000
-AUTH_CHANNEL.append(539295917)
+AUTH_CHANNEL.append(1036440597)
 AUTH_CHANNEL.append(OWNER_ID)
 # chunk size that should be used with requests
 CHUNK_SIZE = int(os.environ.get("CHUNK_SIZE", "128"))
 # default thumbnail to be used in the videos
 DEF_THUMB_NAIL_VID_S = os.environ.get(
-    "DEF_THUMB_NAIL_VID_S", "https://telegra.ph/file/3a7f09b89943b51cdba38.jpg"
+    "DEF_THUMB_NAIL_VID_S", "https://via.placeholder.com/90.jpg"
 )
 # maximum message length in Telegram
 MAX_MESSAGE_LENGTH = 4096
@@ -77,48 +75,46 @@ MAX_MESSAGE_LENGTH = 4096
 PROCESS_MAX_TIMEOUT = 3600
 #
 SP_LIT_ALGO_RITH_M = os.environ.get("SP_LIT_ALGO_RITH_M", "hjs")
-#ARIA_TWO_STARTED_PORT = int(os.environ.get("ARIA_TWO_STARTED_PORT", "6800"))
-EDIT_SLEEP_TIME_OUT = int(os.environ.get("EDIT_SLEEP_TIME_OUT", "5"))
+# ARIA_TWO_STARTED_PORT = int(os.environ.get("ARIA_TWO_STARTED_PORT", "6800"))
+EDIT_SLEEP_TIME_OUT = int(os.environ.get("EDIT_SLEEP_TIME_OUT", "15"))
 MAX_TIME_TO_WAIT_FOR_TORRENTS_TO_START = int(
-    os.environ.get("MAX_TIME_TO_WAIT_FOR_TORRENTS_TO_START", 300)
+    os.environ.get("MAX_TIME_TO_WAIT_FOR_TORRENTS_TO_START", 600)
 )
-MAX_TG_SPLIT_FILE_SIZE = int(os.environ.get("MAX_TG_SPLIT_FILE_SIZE", "2097152000"))
+MAX_TG_SPLIT_FILE_SIZE = int(os.environ.get(
+    "MAX_TG_SPLIT_FILE_SIZE", "2093796556"))
 # add config vars for the display progress
 FINISHED_PROGRESS_STR = os.environ.get("FINISHED_PROGRESS_STR", "█")
-UN_FINISHED_PROGRESS_STR = os.environ.get("UN_FINISHED_PROGRESS_STR", " ")
+UN_FINISHED_PROGRESS_STR = os.environ.get("UN_FINISHED_PROGRESS_STR", "⠀")
 # add offensive API
 TG_OFFENSIVE_API = os.environ.get("TG_OFFENSIVE_API", None)
 CUSTOM_FILE_NAME = os.environ.get("CUSTOM_FILE_NAME", "")
 LEECH_COMMAND = os.environ.get("LEECH_COMMAND", "leech")
-LEECH_UNZIP_COMMAND = os.environ.get("LEECH_UNZIP_COMMAND", "extract")
-LEECH_ZIP_COMMAND = os.environ.get("LEECH_ZIP_COMMAND", "archive")
-GLEECH_COMMAND = os.environ.get("GLEECH_COMMAND", "gleech")
-GLEECH_UNZIP_COMMAND = os.environ.get("GLEECH_UNZIP_COMMAND", "gleechunzip")
-GLEECH_ZIP_COMMAND = os.environ.get("GLEECH_ZIP_COMMAND", "gleechzip")
+LEECH_UNZIP_COMMAND = os.environ.get("LEECH_UNZIP_COMMAND", "leechuntar")
+LEECH_ZIP_COMMAND = os.environ.get("LEECH_ZIP_COMMAND", "tarleech")
+GLEECH_COMMAND = os.environ.get("GLEECH_COMMAND", "sync")
+GLEECH_UNZIP_COMMAND = os.environ.get("GLEECH_UNZIP_COMMAND", "untarsync")
+GLEECH_ZIP_COMMAND = os.environ.get("GLEECH_ZIP_COMMAND", "tarsync")
 YTDL_COMMAND = os.environ.get("YTDL_COMMAND", "ytdl")
-GYTDL_COMMAND = os.environ.get("GYTDL_COMMAND", "gytdl")
+GYTDL_COMMAND = os.environ.get("GYTDL_COMMAND", "ytdlsync")
 RCLONE_CONFIG = os.environ.get("RCLONE_CONFIG", "")
-DESTINATION_FOLDER = os.environ.get("DESTINATION_FOLDER", "Maxx TD")
+DESTINATION_FOLDER = os.environ.get("DESTINATION_FOLDER", "CendrawasihLeech")
 INDEX_LINK = os.environ.get("INDEX_LINK", "")
-TELEGRAM_LEECH_COMMAND = os.environ.get("TELEGRAM_LEECH_COMMAND", "tgfile_leech")
+TELEGRAM_LEECH_COMMAND = os.environ.get("TELEGRAM_LEECH_COMMAND", "tgsync")
 TELEGRAM_LEECH_UNZIP_COMMAND = os.environ.get(
-    "TELEGRAM_LEECH_UNZIP_COMMAND", "tgfile_extract"
+    "TELEGRAM_LEECH_UNZIP_COMMAND", "tguntar"
 )
-CANCEL_COMMAND_G = os.environ.get("CANCEL_COMMAND_G", "cancel")
+CANCEL_COMMAND_G = os.environ.get("CANCEL_COMMAND_G", "stop")
 GET_SIZE_G = os.environ.get("GET_SIZE_G", "getsize")
 STATUS_COMMAND = os.environ.get("STATUS_COMMAND", "status")
 SAVE_THUMBNAIL = os.environ.get("SAVE_THUMBNAIL", "savethumbnail")
 CLEAR_THUMBNAIL = os.environ.get("CLEAR_THUMBNAIL", "clearthumbnail")
 UPLOAD_AS_DOC = os.environ.get("UPLOAD_AS_DOC", "False")
-PYTDL_COMMAND = os.environ.get("PYTDL_COMMAND", "pytdl")
-GPYTDL_COMMAND = os.environ.get("GPYTDL_COMMAND", "gpytdl")
+PYTDL_COMMAND = os.environ.get("PYTDL_COMMAND", "pytleech")
+GPYTDL_COMMAND = os.environ.get("GPYTDL_COMMAND", "pytdlsync")
 LOG_COMMAND = os.environ.get("LOG_COMMAND", "log")
-CLONE_COMMAND_G = os.environ.get("CLONE_COMMAND_G", "gclone")
+CLONE_COMMAND_G = os.environ.get("CLONE_COMMAND_G", "clone")
 UPLOAD_COMMAND = os.environ.get("UPLOAD_COMMAND", "upload")
 RENEWME_COMMAND = os.environ.get("RENEWME_COMMAND", "renewme")
-RENAME_COMMAND = os.environ.get("RENAME_COMMAND", "rename")
-TOGGLE_VID = os.environ.get("TOGGLE_VID", "upload_vid")
-TOGGLE_DOC = os.environ.get("TOGGLE_DOC", "upload_doc")
 BOT_START_TIME = time.time()
 # dict to control uploading and downloading
 gDict = defaultdict(lambda: [])
@@ -128,7 +124,8 @@ user_settings = defaultdict(lambda: {})
 
 def multi_rclone_init():
     if RCLONE_CONFIG:
-        LOGGER.warning("Don't use this var now, put your rclone.conf in root directory")
+        LOGGER.warning(
+            "Don't use this var now, put your rclone.conf in root directory")
     if not os.path.exists("rclone.conf"):
         LOGGER.warning("Sed, No rclone.conf found in root directory")
         return

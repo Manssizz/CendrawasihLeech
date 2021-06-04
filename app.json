@@ -1,13 +1,12 @@
 {
   "name": "Telegram Torrent Leecher",
-  "description": "A Telegram Torrent (and youtube-dl) Leecher based on Pyrogram. Powered by @MaxxBots",
-  "logo": "https://telegra.ph/file/101a7d52e02772152c6e3.jpg",
+  "description": "A Telegram Torrent (and youtube-dl) Leecher based on Pyrogram. Powered by @torrentleechgdrivesupport!",
   "keywords": [
     "telegram"
   ],
-  "repository": "https://github.com/MaxxRider/Leech-Pro",
-  "success_url": "https://t.me/MaxxBotChat",
-  "website": "https://github.com/MaxxRider/Leech-Pro",
+  "repository": "https://github.com/gautamajay52/TorrentLeech-Gdrive",
+  "success_url": "https://t.me/torrentleechgdrivesupport",
+  "website": "https://github.com/gautamajay52/TorrentLeech-Gdrive",
   "env": {
     "ENV": {
       "description": "Setting this to ANYTHING will enable webhooks when in env mode",
@@ -26,7 +25,7 @@
       "value": ""
     },
     "AUTH_CHANNEL": {
-      "description": "should be an integer. The BOT API ID of the Telegram Group, where the Leecher should work., Put Group ID",
+      "description": "should be an integer. The BOT API ID of the Telegram Group, where the Leecher should work.",
       "value": ""
     },
     "OWNER_ID": {
@@ -40,6 +39,11 @@
     "CHUNK_SIZE": {
       "description": "should be an integer",
       "value": "128",
+      "required": false
+    },
+    "ARIA_TWO_STARTED_PORT": {
+      "description": "should be an integer. The port on which aria2c daemon must start, and keep listening.",
+      "value": "6800",
       "required": false
     },
     "EDIT_SLEEP_TIME_OUT": {
@@ -64,15 +68,7 @@
       "required": false
     },
     "LEECH_COMMAND": {
-      "description": "Enter your custom leech command like /leech@botname and so on. Default is /leech",
-      "required": false
-    },
-    "SAVE_THUMBNAIL": {
-      "description": "For custom thumbnail Command. default is /savethumbnail",
-      "required": false
-    },
-    "CLEAR_THUMBNAIL": {
-      "description": "For Delete Thumbnail Command. Default is /clearthumbnail",
+      "description": "Enter your custom leech command like /leech@urgroupname and so on. Default is /leech",
       "required": false
     },
     "INDEX_LINK": {

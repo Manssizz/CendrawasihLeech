@@ -28,20 +28,79 @@ def direct_link_generator(text_url: str):
         return zippy_share(text_url)
     elif 'yadi.sk' in text_url:
         return yandex_disk(text_url)
-    # elif 'cloud.mail.ru' in text_url:
-        # return cm_ru(text_url)
+    elif 'cloud.mail.ru' in text_url:
+        return cm_ru(text_url)
     elif 'mediafire.com' in text_url:
         return mediafire(text_url)
     elif 'osdn.net' in text_url:
         return osdn(text_url)
-    # elif 'github.com' in text_url:
-        # return github(text_url)
+    elif 'github.com' in text_url:
+        return github(text_url)
     elif 'racaty.net' in text_url:
         return racaty(text_url)
+    elif 'letsupload.io' in text_url:
+        return letsupload(text_url)
+    elif 'hxfile.co' in text_url:
+        return hxfile(text_url)
+    elif 'layarkacaxxi.icu' in text_url:
+        return fembed720(text_url)
+    elif 'femax20.com' in text_url:
+        return fembed480(text_url)
+    elif 'anonfiles.com' in text_url:
+        return anon(text_url)
     else:
         raise DirectDownloadLinkException(f'No Direct link function found for {text_url}')
 
+def letsupload(url: str) -> str:
+    dl_url = ''
+    try:
+        link = re.findall(r'\bhttps?://.*letsupload\.io\S+', url)[0]
+    except IndexError:
+        raise DirectDownloadLinkException("`No Letsupload links found`\n")
+    bypasser = lk21.Bypass()
+    dl_url=bypasser.bypass_url(link)
+    return dl_url
 
+def hxfile(url: str) -> str:
+    dl_url = ''
+    try:
+        link = re.findall(r'\bhttps?://.*hxfile\.co\S+', url)[0]
+    except IndexError:
+        raise DirectDownloadLinkException("`No HXFile links found`\n")
+    bypasser = lk21.Bypass()
+    dl_url=bypasser.bypass_url(link)
+    return dl_url
+
+def fembed720(url: str) -> str:
+    dl_url = ''
+    try:
+        link = re.findall(r'\bhttps?://.*layarkacaxxi\.icu\S+', url)[0]
+    except IndexError:
+        raise DirectDownloadLinkException("`No Fembed links found`\n")
+    bypasser = lk21.Bypass()
+    dl_url=bypasser.bypass_url(link)
+    return dl_url["720p/mp4"]
+
+def fembed480(url: str) -> str:
+    dl_url = ''
+    try:
+        link = re.findall(r'\bhttps?://.*femax20\.com\S+', url)[0]
+    except IndexError:
+        raise DirectDownloadLinkException("`No Fembed links found`\n")
+    bypasser = lk21.Bypass()
+    dl_url=bypasser.bypass_url(link)
+    return dl_url["480p/mp4"]
+
+def anon(url: str) -> str:
+    dl_url = ''
+    try:
+        link = re.findall(r'\bhttps?://.*anonfiles\.com\S+', url)[0]
+    except IndexError:
+        raise DirectDownloadLinkException("`No anonfiles links found`\n")
+    bypasser = lk21.Bypass()
+    dl_url=bypasser.bypass_url(link)
+    return dl_url
+        
 def zippy_share(url: str) -> str:
     link = re.findall("https:/.(.*?).zippyshare", url)[0]
     response_content = (requests.get(url)).content
@@ -82,7 +141,7 @@ def yandex_disk(url: str) -> str:
     except KeyError:
         raise DirectDownloadLinkException("`Error: File not found / Download limit reached`\n")
 
-'''
+
 def cm_ru(url: str) -> str:
     """ cloud.mail.ru direct links generator
     Using https://github.com/JrMasterModelBuilder/cmrudl.py"""
@@ -100,7 +159,7 @@ def cm_ru(url: str) -> str:
         raise DirectDownloadLinkException("`Error: Can't extract the link`\n")
     dl_url = data['download']
     return dl_url
-'''
+
 
 def mediafire(url: str) -> str:
     """ MediaFire direct links generator """
@@ -132,7 +191,7 @@ def osdn(url: str) -> str:
         urls.append(re.sub(r'm=(.*)&f', f'm={mirror}&f', text_url))
     return urls[0]
 
-'''
+
 def github(url: str) -> str:
     """ GitHub direct links generator """
     try:
@@ -145,7 +204,7 @@ def github(url: str) -> str:
         return dl_url
     except KeyError:
         raise DirectDownloadLinkException("`Error: Can't extract the link`\n")
-'''
+
 
 def useragent():
     """

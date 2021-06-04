@@ -11,26 +11,15 @@ import sys
 import time
 import traceback
 
-from tobrot import AUTH_CHANNEL, BOT_START_TIME, LOGGER, MAX_MESSAGE_LENGTH, user_specific_config
+from tobrot import AUTH_CHANNEL, BOT_START_TIME, LOGGER, MAX_MESSAGE_LENGTH
 from tobrot.helper_funcs.admin_check import AdminCheck
 
 # the logging things
 from tobrot.helper_funcs.display_progress import TimeFormatter, humanbytes
 from tobrot.helper_funcs.download_aria_p_n import aria_start, call_apropriate_function
 from tobrot.helper_funcs.upload_to_tg import upload_to_tg
-from tobrot.UserDynaConfig import UserDynaConfig
 
 
-async def upload_as_doc(client, message):
-    user_specific_config[message.from_user.id]=UserDynaConfig(message.from_user.id,True)
-    await message.reply_text("**🗞 Your Files Will Be Uploaded As Document 📁**")
-
-
-async def upload_as_video(client, message):
-    user_specific_config[message.from_user.id]=UserDynaConfig(message.from_user.id,False)
-    await message.reply_text("**🗞 Your Files Will Be Uploaded As Streamable 🎞**")
-    
-    
 async def status_message_f(client, message):
     aria_i_p = await aria_start()
     # Show All Downloads
@@ -75,7 +64,7 @@ async def status_message_f(client, message):
         # LOGGER.info(msg)
 
         if msg == "":
-            msg = "🤷‍♂️ No Active, Queued or Paused TORRENTs"
+            msg = "No Active, Queued or Paused Torrents"
 
     hr, mi, se = up_time(time.time() - BOT_START_TIME)
     total, used, free = shutil.disk_usage(".")
@@ -107,7 +96,7 @@ async def status_message_f(client, message):
 async def cancel_message_f(client, message):
     if len(message.command) > 1:
         # /cancel command
-        i_m_s_e_g = await message.reply_text("checking..?", quote=True)
+        i_m_s_e_g = await message.reply_text("Checking..", quote=True)
         aria_i_p = await aria_start()
         g_id = message.command[1].strip()
         LOGGER.info(g_id)
@@ -115,7 +104,7 @@ async def cancel_message_f(client, message):
             downloads = aria_i_p.get_download(g_id)
             LOGGER.info(downloads)
             LOGGER.info(downloads.remove(force=True, files=True))
-            await i_m_s_e_g.edit_text("Leech Cancelled")
+            await i_m_s_e_g.edit_text("Leech Canceled")
         except Exception as e:
             await i_m_s_e_g.edit_text("<i>FAILED</i>\n\n" + str(e) + "\n#error")
     else:
@@ -164,7 +153,7 @@ async def exec_message_f(client, message):
 
 
 async def upload_document_f(client, message):
-    imsegd = await message.reply_text("processing ...")
+    imsegd = await message.reply_text("Processing...")
     if message.from_user.id in AUTH_CHANNEL:
         if " " in message.text:
             recvd_command, local_file_name = message.text.split(" ", 1)
@@ -177,7 +166,7 @@ async def upload_document_f(client, message):
 
 async def eval_message_f(client, message):
     if message.from_user.id in AUTH_CHANNEL:
-        status_message = await message.reply_text("Processing ...")
+        status_message = await message.reply_text("Processing...")
         cmd = message.text.split(" ", maxsplit=1)[1]
 
         reply_to_id = message.message_id
@@ -248,4 +237,4 @@ def up_time(time_taken):
 async def upload_log_file(client, message):
     g = await AdminCheck(client, message.chat.id, message.from_user.id)
     if g:
-        await message.reply_document("Torrentleech-Gdrive.txt")
+        await message.reply_document("CendrawasihLeech.txt")

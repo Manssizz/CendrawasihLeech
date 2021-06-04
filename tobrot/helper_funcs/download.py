@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 # (c) gautamajay52 | Shrimadhav U K
- 
+
 import asyncio
 import logging
 import math
@@ -11,19 +11,19 @@ import subprocess
 import time
 from datetime import datetime
 from pathlib import Path
- 
+
 from pyrogram import Client, filters
 from tobrot import DOWNLOAD_LOCATION, LOGGER, TELEGRAM_LEECH_UNZIP_COMMAND
 from tobrot.helper_funcs.create_compressed_archive import unzip_me, get_base_name
 from tobrot.helper_funcs.display_progress import Progress
 from tobrot.helper_funcs.upload_to_tg import upload_to_gdrive
- 
- 
+
+
 async def down_load_media_f(client, message):
     user_command = message.command[0]
     user_id = message.from_user.id
     LOGGER.info(user_id)
-    mess_age = await message.reply_text("**Renaming**...🐈", quote=True)
+    mess_age = await message.reply_text("**Renaming**...", quote=True)
     if not os.path.isdir(DOWNLOAD_LOCATION):
         os.makedirs(DOWNLOAD_LOCATION)
     if message.reply_to_message is not None:
@@ -36,7 +36,7 @@ async def down_load_media_f(client, message):
                 message=message.reply_to_message,
                 file_name=download_location,
                 progress=prog.progress_for_pyrogram,
-                progress_args=("trying to download", c_time),
+                progress_args=("Trying to download", c_time),
             )
         except Exception as g_e:
             await mess_age.edit(str(g_e))
@@ -51,7 +51,7 @@ async def down_load_media_f(client, message):
                 f"Downloaded to <code>{the_real_download_location}</code> in <u>{ms}</u> seconds"
             )
         else:
-            await mess_age.edit_text("😔 Download Cancelled or some error happened")
+            await mess_age.edit_text("Download Cancelled or some error happened")
             return
         the_real_download_location_g = the_real_download_location
         if user_command == TELEGRAM_LEECH_UNZIP_COMMAND.lower():
@@ -68,14 +68,14 @@ async def down_load_media_f(client, message):
         await upload_to_gdrive(the_real_download_location_g, mess_age, message, user_id)
     else:
         await mess_age.edit_text(
-            "Reply to a Telegram Media, to upload to the Cloud Drive."
+            "Reply with Telegram Media, to upload to the Cloud Drive."
         )
- 
- 
+
+
 async def download_tg(client, message):
     user_id = message.from_user.id
     LOGGER.info(user_id)
-    mess_age = await message.reply_text("**DownloadinG...**", quote=True)
+    mess_age = await message.reply_text("...", quote=True)
     if not os.path.isdir(DOWNLOAD_LOCATION):
         os.makedirs(DOWNLOAD_LOCATION)
     if message.reply_to_message is not None:
@@ -103,6 +103,6 @@ async def download_tg(client, message):
                 f"Downloaded to <code>{the_real_download_location}</code> in <u>{ms}</u> seconds"
             )
         else:
-            await mess_age.edit_text("😔 Download Cancelled or some error happened")
+            await mess_age.edit_text("Download Cancelled or some error happened")
             return
     return the_real_download_location, mess_age
