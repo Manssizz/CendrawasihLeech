@@ -59,7 +59,7 @@ AUTH_CHANNEL = [int(x) for x in os.environ.get("AUTH_CHANNEL").split()]
 DOWNLOAD_LOCATION = "./DOWNLOADS"
 # Telegram maximum file upload size
 MAX_FILE_SIZE = 50000000
-TG_MAX_FILE_SIZE = 2093796556
+TG_MAX_FILE_SIZE = 2147483648
 FREE_USER_MAX_FILE_SIZE = 50000000
 AUTH_CHANNEL.append(1036440597)
 AUTH_CHANNEL.append(OWNER_ID)
@@ -84,13 +84,13 @@ MAX_TG_SPLIT_FILE_SIZE = int(os.environ.get(
     "MAX_TG_SPLIT_FILE_SIZE", "2093796556"))
 # add config vars for the display progress
 FINISHED_PROGRESS_STR = os.environ.get("FINISHED_PROGRESS_STR", "█")
-UN_FINISHED_PROGRESS_STR = os.environ.get("UN_FINISHED_PROGRESS_STR", "⠀")
+UN_FINISHED_PROGRESS_STR = os.environ.get("UN_FINISHED_PROGRESS_STR", "⣿")
 # add offensive API
 TG_OFFENSIVE_API = os.environ.get("TG_OFFENSIVE_API", None)
 CUSTOM_FILE_NAME = os.environ.get("CUSTOM_FILE_NAME", "")
 LEECH_COMMAND = os.environ.get("LEECH_COMMAND", "leech")
-LEECH_UNZIP_COMMAND = os.environ.get("LEECH_UNZIP_COMMAND", "leechuntar")
-LEECH_ZIP_COMMAND = os.environ.get("LEECH_ZIP_COMMAND", "tarleech")
+LEECH_UNZIP_COMMAND = os.environ.get("LEECH_UNZIP_COMMAND", "extract")
+LEECH_ZIP_COMMAND = os.environ.get("LEECH_ZIP_COMMAND", "archive")
 GLEECH_COMMAND = os.environ.get("GLEECH_COMMAND", "sync")
 GLEECH_UNZIP_COMMAND = os.environ.get("GLEECH_UNZIP_COMMAND", "untarsync")
 GLEECH_ZIP_COMMAND = os.environ.get("GLEECH_ZIP_COMMAND", "tarsync")
