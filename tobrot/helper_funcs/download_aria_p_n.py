@@ -74,7 +74,7 @@ async def aria_start():
     aria2_daemon_start_cmd.append("--dht-listen-port=6881")
     aria2_daemon_start_cmd.append("--follow-metalink=mem")
     # Testing download location
-    aria2_daemon_start_cmd.append(f"--dir={DOWNLOAD_LOCATION}")
+    # aria2_daemon_start_cmd.append(f"--dir={DOWNLOAD_LOCATION}")
     aria2_daemon_start_cmd.append("--bt-max-peers=0")
     aria2_daemon_start_cmd.append("--seed-time=0.01")
     aria2_daemon_start_cmd.append("--min-split-size=10M")
