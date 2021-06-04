@@ -33,29 +33,6 @@ from tobrot.helper_funcs.exceptions import DirectDownloadLinkException
 
 sys.setrecursionlimit(10 ** 4)
 
-
-# async def aria_start():
-#     aria2_daemon_start_cmd = []
-#     # start the daemon, aria2c command
-#     aria2_daemon_start_cmd.append("aria2c")
-#     aria2_daemon_start_cmd.append("--allow-overwrite=true")
-#     aria2_daemon_start_cmd.append("--daemon=true")
-#     # aria2_daemon_start_cmd.append(f"--dir={DOWNLOAD_LOCATION}")
-#     # TODO: this does not work, need to investigate this.
-#     # but for now, https://t.me/TrollVoiceBot?start=858
-#     aria2_daemon_start_cmd.append("--enable-rpc")
-#     aria2_daemon_start_cmd.append("--follow-torrent=mem")
-#     aria2_daemon_start_cmd.append("--max-connection-per-server=10")
-#     aria2_daemon_start_cmd.append("--min-split-size=10M")
-#     aria2_daemon_start_cmd.append("--rpc-listen-all=false")
-#     aria2_daemon_start_cmd.append(f"--rpc-listen-port={ARIA_TWO_STARTED_PORT}")
-#     aria2_daemon_start_cmd.append("--rpc-max-request-size=1024M")
-#     aria2_daemon_start_cmd.append("--seed-time=0")
-#     aria2_daemon_start_cmd.append("--max-overall-upload-limit=1K")
-#     aria2_daemon_start_cmd.append("--split=10")
-#     aria2_daemon_start_cmd.append(
-#         f"--bt-stop-timeout={MAX_TIME_TO_WAIT_FOR_TORRENTS_TO_START}"
-#     )
 def KopyasizListe(string):
     kopyasiz = list(string.split(","))
     kopyasiz = list(dict.fromkeys(kopyasiz))
@@ -90,7 +67,6 @@ sonstringtrckr = ','.join(trackerlistemiz)
 # LOGGER.info(sonstringtrckr)
 # trackelreri alıyoz dinamik olarak
 
-
 async def aria_start():
     global sonstringtrckr
     aria2_daemon_start_cmd = []
@@ -99,8 +75,8 @@ async def aria_start():
     aria2_daemon_start_cmd.append("--allow-overwrite=true")
     aria2_daemon_start_cmd.append("--daemon=true")
     aria2_daemon_start_cmd.append("--check-certificate=false")
-    aria2_daemon_start_cmd.append("--enable-dht")
-    aria2_daemon_start_cmd.append("--dht-listen-port=6881")
+    # aria2_daemon_start_cmd.append("--enable-dht")
+    # aria2_daemon_start_cmd.append("--dht-listen-port=6881")
     aria2_daemon_start_cmd.append("--follow-metalink=mem")
     aria2_daemon_start_cmd.append("--bt-max-peers=0")
     aria2_daemon_start_cmd.append("--seed-time=0.01")
@@ -131,7 +107,6 @@ async def aria_start():
     aria2_daemon_start_cmd.append("--split=10")
     aria2_daemon_start_cmd.append(f"--bt-tracker={sonstringtrckr}")
     #
-    #
     LOGGER.info(aria2_daemon_start_cmd)
     #
     process = await asyncio.create_subprocess_exec(
@@ -147,27 +122,32 @@ async def aria_start():
     )
     return aria2
 
+
 def add_magnet(aria_instance, magnetic_link, c_file_name):
     options = None
+    # if c_file_name is not None:
+    #     options = {
+    #         "dir": c_file_name
+    #     }
     try:
         download = aria_instance.add_magnet(magnetic_link, options=options)
     except Exception as e:
         return (
             False,
-            "**FAILED** \n" + str(e) + " \nPlease do not send slow links",
+            "**FAILED** \n" + str(e) + " \nPlease don't send slow torrent links",
         )
     else:
         return True, "" + download.gid + ""
+
 
 def add_torrent(aria_instance, torrent_file_path):
     if torrent_file_path is None:
         return (
             False,
-            "**FAILED** \n"
+            "**FAILED**"
             + str(e)
-            + "Failed to getting data <u>TORRENT</u> file",
+            + " \nFailed to getting data <u>Torrent</u> file.",
         )
-
     if os.path.exists(torrent_file_path):
         # Add Torrent Into Queue
         try:
@@ -177,14 +157,14 @@ def add_torrent(aria_instance, torrent_file_path):
         except Exception as e:
             return (
                 False,
-                "**FAILED** \n"
+                "**FAILED**"
                 + str(e)
-                + "Please do not send slow links",
+                + " \nTolong jangan menggunakan link lambat",
             )
         else:
             return True, "" + download.gid + ""
     else:
-        return False, "**FAILED** \n" + str(e) + " \nPlease try other sources to get workable link"
+        return False, "**FAILED** \nPlease try another source links"
 
 
 def add_url(aria_instance, text_url, c_file_name):
@@ -218,7 +198,7 @@ def add_url(aria_instance, text_url, c_file_name):
     except Exception as e:
         return (
             False,
-            "**FAILED** \n" + str(e) + " \nPlease do not send slow links. Read /help",
+            "**FAILED** \n" + str(e) + " Slow link detect",
         )
     else:
         return True, "" + download.gid + ""
@@ -332,9 +312,9 @@ async def call_apropriate_function(
                         f"<a href='tg://user?id={user_id}'>Uploaded</a>\n\n"
                     )
                     message_to_send = mention_req_user + message_to_send
-                    message_to_send = message_to_send + "\n\n" + "#Uploaded"
+                    message_to_send = message_to_send + "#Uploaded"
                 else:
-                    message_to_send = "<i>FAILED</i> Failed upload files."
+                    message_to_send = "<i>FAILED</i> uploading files."
                 await user_message.reply_text(
                     text=message_to_send, quote=True, disable_web_page_preview=True
                 )
@@ -396,10 +376,10 @@ async def check_progress_for_dl(aria2, gid, event, previous_message):
                         previous_message = msg
                     else:
                         LOGGER.info(
-                            f"Cancelling {file.name} slow torrent detect"
+                            f"Cancelling {file.name} \nSlow torrent source detect"
                         )
                         await event.edit(
-                            f"Canceled\n<code>{file.name}</code>\n\n #MetaDataError"
+                            f"Cancelled\n<code>{file.name}</code>\n\n #MetaDataError"
                         )
                         file.remove(force=True, files=True)
                         return False
@@ -413,16 +393,16 @@ async def check_progress_for_dl(aria2, gid, event, previous_message):
             await check_progress_for_dl(aria2, gid, event, previous_message)
         else:
             LOGGER.info(
-                f"<b>Download Successfully</b> <code>• {file.name} ({file.total_length_string()})</code>"
+                f"<b>Download Successfully</b> \n`{file.name} ({file.total_length_string()})`"
             )
             await asyncio.sleep(EDIT_SLEEP_TIME_OUT)
             await event.edit(
-                f"<b>Download Complete\n</b><code>• {file.name} ({file.total_length_string()})</code>"
+                f"<b>Download Complete</b> \n`{file.name} ({file.total_length_string()})`"
             )
             return True
     except aria2p.client.ClientException:
         await event.edit(
-            f"<b>Download cancelled</b>\n<code>• {file.name} ({file.total_length_string()})</code>"
+            f"<b>Download cancelled</b> \n<code>> {file.name} ({file.total_length_string()})</code>"
         )
     except MessageNotModified as ep:
         LOGGER.info(ep)
@@ -434,20 +414,21 @@ async def check_progress_for_dl(aria2, gid, event, previous_message):
     except RecursionError:
         file.remove(force=True, files=True)
         await event.edit(
-                f"Download cancelled :\n<code>{file.name} ({file.total_length_string()})</code>"
+            "<b>Download stoped</b> \n"
+            "`Timeout was reached.`".format(file.name)
         )
         return False
     except Exception as e:
         LOGGER.info(str(e))
         if "not found" in str(e) or "'file'" in str(e):
             await event.edit(
-                f"Download cancelled \n<code>{file.name} ({file.total_length_string()})</code>"
+                f"<b>Download stoped</b> \n<code>{file.name} ({file.total_length_string()})</code>"
             )
             return False
         else:
             LOGGER.info(str(e))
             await event.edit(
-                "<u>error</u> \n<code>{}</code> \n\n#error".format(str(e))
+                "<u>error</u> :\n<code>{}</code> \n\n#error".format(str(e))
             )
             return False
 
