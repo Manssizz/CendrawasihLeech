@@ -70,7 +70,7 @@ async def incoming_message_f(client, message):
         await i_m_sefg.edit("<code>No downloading source provided</code>")
         return
     if dl_url is not None:
-        await i_m_sefg.edit_text("Extracting links")
+        await i_m_sefg.edit_text("<code>Extracting links</code>")
         # start the aria2c daemon
         aria_i_p = await aria_start()
         # LOGGER.info(aria_i_p)
@@ -127,7 +127,7 @@ async def incoming_youtube_dl_f(client, message):
     """ /ytdl command """
     current_user_id = message.from_user.id
     # credit = await message.reply_text(
-    #     f"💀 Mengunduh untukmu <a href='tg://user?id={current_user_id}'>🤕</a>",
+    #     f"💀 Meng untukmu <a href='tg://user?id={current_user_id}'>🤕</a>",
     #     parse_mode="html",
     # )
     i_m_sefg = await message.reply_text("<code>Processing...</code>", quote=True)
@@ -150,7 +150,7 @@ async def incoming_youtube_dl_f(client, message):
         await i_m_sefg.edit("<code>Reply with Youtube playlist.</code>")
         return
     if dl_url is not None:
-        await i_m_sefg.edit_text("Extracting links")
+        await i_m_sefg.edit_text("<code>Extracting links</code>")
         # create an unique directory
         user_working_dir = os.path.join(DOWNLOAD_LOCATION, str(current_user_id))
         # create download directory, if not exist
