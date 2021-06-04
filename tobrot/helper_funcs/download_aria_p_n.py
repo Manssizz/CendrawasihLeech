@@ -413,16 +413,16 @@ async def check_progress_for_dl(aria2, gid, event, previous_message):
             await check_progress_for_dl(aria2, gid, event, previous_message)
         else:
             LOGGER.info(
-                f"<b>Download Successfully</b> \n `• {file.name} ({file.total_length_string()})`"
+                f"<b>Download Successfully</b> <code>• {file.name} ({file.total_length_string()})</code>"
             )
             await asyncio.sleep(EDIT_SLEEP_TIME_OUT)
             await event.edit(
-                f"Download Complete \n <code>• {file.name} ({file.total_length_string()})</code>"
+                f"<b>Download Complete\n</b><code>• {file.name} ({file.total_length_string()})</code>"
             )
             return True
     except aria2p.client.ClientException:
         await event.edit(
-            f"Download cancelled\n <code>• {file.name} ({file.total_length_string()})</code>"
+            f"<b>Download cancelled</b>\n<code>• {file.name} ({file.total_length_string()})</code>"
         )
     except MessageNotModified as ep:
         LOGGER.info(ep)
