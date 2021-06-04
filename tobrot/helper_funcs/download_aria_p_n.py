@@ -33,6 +33,11 @@ from tobrot.helper_funcs.exceptions import DirectDownloadLinkException
 
 sys.setrecursionlimit(10 ** 4)
 
+def KopyasizListe(string):
+    kopyasiz = list(string.split(","))
+    kopyasiz = list(dict.fromkeys(kopyasiz))
+    return kopyasiz
+    
 def Virgullustring(string):
     string = string.replace("\n\n", ",")
     string = string.replace("\n", ",")
@@ -40,7 +45,6 @@ def Virgullustring(string):
     string = string.rstrip(',')
     string = string.lstrip(',')
     return string
-
 
 tracker_urlsss = [
     "https://newtrackon.com/api/all"
