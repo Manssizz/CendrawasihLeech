@@ -141,7 +141,7 @@ async def aria_start():
     LOGGER.info(stdout)
     LOGGER.info(stderr)
     aria2 = aria2p.API(
-        aria2p.Client(host="http://localhost", port=ARIA_TWO_STARTED_PORT, secret="")
+        aria2p.Client(host="http://localhost", port=8100, secret="")
     )
     return aria2
 
