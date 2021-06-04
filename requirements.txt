@@ -13,4 +13,3 @@ lxml
 requests
 js2py
 lk21
-flask
