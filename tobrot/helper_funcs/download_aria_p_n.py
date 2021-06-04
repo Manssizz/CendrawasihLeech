@@ -150,7 +150,7 @@ def add_magnet(aria_instance, magnetic_link, c_file_name):
     try:
         download = await aloop.run_in_executor(None, aria_instance.add_magnet, magnetic_link)
     except Exception as e:
-        return False, "**FAILED** \n" + str(e) + " \nPlease do not send SLOW links. Read /help"
+        return False, "**FAILED** \n" + str(e) + " \nPlease do not send SLOW links. Read /help",
     else:
         return True, "" + download.gid + ""
 
@@ -165,7 +165,7 @@ def add_torrent(aria_instance, torrent_file_path):
             download = await aloop.run_in_executor(None, partial(aria_instance.add_torrent, torrent_file_path, uris=None, options=None, position=None))
 
         except Exception as e:
-            return False, "**FAILED** \n" + str(e) + " \nPlease do not send SLOW links. Read /help"
+            return False, "**FAILED** \n" + str(e) + " \nPlease do not send SLOW links. Read /help",
         else:
             return True, "" + download.gid + ""
     else:
