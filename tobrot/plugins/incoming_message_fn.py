@@ -52,10 +52,10 @@ async def incoming_purge_message_f(client, message):
 async def incoming_message_f(client, message):
     """/leech command or /gleech command"""
     user_command = message.command[0]
-    g_id = message.from_user.id
-    credit = await message.reply_text(
-        f"🧲 Mengupload untukmu <a href='tg://user?id={g_id}'>🤕</a>", parse_mode="html"
-    )
+    # g_id = message.from_user.id
+    # credit = await message.reply_text(
+    #     f"🧲 Mengupload untukmu <a href='tg://user?id={g_id}'>🤕</a>", parse_mode="html"
+    # )
     i_m_sefg = await message.reply_text("`Processing...`", quote=True)
     # get link from the incoming message
     if message.reply_to_message:
