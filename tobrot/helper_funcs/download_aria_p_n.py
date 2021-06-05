@@ -353,7 +353,7 @@ async def check_progress_for_dl(aria2, gid, event, previous_message):
                     msgg = f"P: {file.connections} | S: {file.num_seeders} <b>|</b> GID: <code>{gid}</code>"
                 msg = f"\n`{downloading_dir_name}`"
                 msg += f"\n<b>• Speed</b>: <code>{file.download_speed_string()}</code>"
-                msg += f"\n<b>• Status</b>: <code>{file.progress_string()}</code> <b>of</b> <code>{file.total_length_strinStatusg()}</code> <b>|</b> {file.eta_string()} <b>|</b> {msgg}"
+                msg += f"\n<b>• Status</b>: <code>{file.progress_string()}</code> <b>of</b> <code>{file.total_length_string()}</code> <b>|</b> {file.eta_string()} <b>|</b> {msgg}"
                 # msg += f"\nSize: {file.total_length_string()}"
 
                 # if is_file is None :
