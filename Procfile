@@ -1,1 +1,1 @@
-worker: python3 -m tobot
+worker: bash start.sh
