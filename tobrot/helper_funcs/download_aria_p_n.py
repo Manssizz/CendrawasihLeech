@@ -348,22 +348,18 @@ async def check_progress_for_dl(aria2, gid, event, previous_message):
                     pass
                 #
                 if is_file is None:
-                    msgg = f"Conn: {file.connections} <b>|</b> GID: <code>{gid}</code>"
+                    msgg = f"<b>• Connections : {file.connections} </b>"
                 else:
-                    msgg = f"P: {file.connections} | S: {file.num_seeders} <b>|</b> GID: <code>{gid}</code>"
-                msg = f"\n`{downloading_dir_name}`"
-                msg += f"\n<b>• Speed</b>: <code>{file.download_speed_string()}</code>"
-                msg += f"\n<b>• Status</b>: <code>{file.progress_string()}</code> <b>of</b> <code>{file.total_length_string()}</code> <b>|</b> {file.eta_string()} <b>|</b> {msgg}"
-                # msg += f"\nSize: {file.total_length_string()}"
-
-                # if is_file is None :
-                # msg += f"\n<b>Conn:</b> {file.connections}, GID: <code>{gid}</code>"
-                # else :
-                # msg += f"\n<b>Info:</b>[ P : {file.connections} | S : {file.num_seeders} ], GID: <code>{gid}</code>"
-
-                # msg += f"\nStatus: {file.status}"
-                # msg += f"\nETA: {file.eta_string()}"
-                # msg += f"\nGID: <code>{gid}</code>"
+                    msgg = f"<b>• Peers:</b> <code>{file.connections}</code> <b>Seeds:</b> <code>{file.num_seeders}</code>\n<b>• GID :</b> <code>{gid}</code>"
+                    msg = f"\n<b>• File Name :</b> `{downloading_dir_name}`"
+                    msg += f"\n<b>• Speed :</b> <code>{file.download_speed_string()}</code> <b>ETA :</b> <code>{file.eta_string()}</code>"
+                    msg += f"\n<b>• Size :</b> <code>{file.total_length_string()}</code>  [<code>{file.progress_string()}</code>]\n{msgg}"                
+                #     msgg = f"Conn: {file.connections} <b>|</b> GID: <code>{gid}</code>"
+                # else:
+                #     msgg = f"P: {file.connections} | S: {file.num_seeders} <b>|</b> GID: <code>{gid}</code>"
+                # msg = f"\n`{downloading_dir_name}`"
+                # msg += f"\n<b>• Speed</b>: <code>{file.download_speed_string()}</code>"
+                # msg += f"\n<b>• Status</b>: <code>{file.progress_string()}</code> <b>of</b> <code>{file.total_length_string()}</code> <b>|</b> {file.eta_string()} <b>|</b> {msgg}"
                 inline_keyboard = []
                 ikeyboard = []
                 ikeyboard.append(
