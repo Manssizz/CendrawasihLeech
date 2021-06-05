@@ -1,11 +1,11 @@
 {
   "name": "CendrawasihLeech",
-  "description": "A Telegram Torrent (and youtube-dl) Leecher based on Pyrogram. Original repository by gautamajay52",
+  "description": "A Telegram Torrent (and youtube-dl) Leecher based on Pyrogram. Original repository by gautamajay52. for command list can found here https://github.com/Manssizz/CendrawasihLeech#command",
   "keywords": [
     "telegram"
   ],
   "repository": "https://github.com/Manssizz/CendrawasihLeech/",
-  "success_url": "https://github.com/Manssizz/CendrawasihLeech/README.md",
+  "success_url": "https://github.com/Manssizz/CendrawasihLeech#README.md",
   "website": "https://github.com/Manssizz/CendrawasihLeech/",
   "env": {
     "ENV": {
