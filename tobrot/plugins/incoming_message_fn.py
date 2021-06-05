@@ -272,7 +272,7 @@ async def rename_tg_file(client, message):
                 message_to_send += "\n"
             if message_to_send != "":
                 mention_req_user = (
-                    f"<a href='tg://user?id={usr_id}'>Permintaan File Kamu</a>\n\n"
+                    f"<a href='tg://user?id={usr_id}'>Request files</a>\n\n"
                 )
                 message_to_send = mention_req_user + message_to_send
                 message_to_send = message_to_send + "\n\n" + "#uploads"
@@ -286,5 +286,5 @@ async def rename_tg_file(client, message):
 
     else:
         await message.reply_text(
-            "Provide Name with extension\n➩<b>Example</b>: <code>/rename Avengers Endgame.mkv", quote=True
+            "Provide Name with extension \n<b>Example</b>: <code>/rename Avengers Endgame.mkv", quote=True
         )
