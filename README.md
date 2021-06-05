@@ -1,7 +1,18 @@
-## Branch
+## About Repo
+This repo based [GautamKumar](https://github.com/gautamajay52/TorrentLeech-Gdrive) TorrentLeech with some tweaks
+
+### Tweaks
+- Support thumbnail AVI, MOV, 3GP, etc. even you must download the file first
+- Add aria2 advance configuration
+- Support few link host
+- Simply status messages
+
+### Know Issue
+I still stuck with aria direct download issue even just change strings text, so i implement aria source from [yasirarism](https://github.com/yasirarism) file
+
+### Branch
 - Master branch is development version
 - Stable branch is stable version
-<br>
 
 ### Command
 ```
@@ -32,3 +43,7 @@ rename - To rename the telegram files.
 
 ### Deploy
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
+
+### Credits
+* [GautamKumar](https://github.com/gautamajay52/TorrentLeech-Gdrive) for original source
+* [yasirarism](https://github.com/yasirarism) for direct link support
