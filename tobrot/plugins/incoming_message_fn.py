@@ -22,6 +22,7 @@ from tobrot import (
     YTDL_COMMAND,
     GPYTDL_COMMAND,
     PYTDL_COMMAND,
+    RESTART_COMMAND,
 )
 from tobrot.helper_funcs.admin_check import AdminCheck
 from tobrot.helper_funcs.cloneHelper import CloneHelper
