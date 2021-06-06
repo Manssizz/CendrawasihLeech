@@ -229,6 +229,6 @@ if __name__ == "__main__":
     restart_handler = MessageHandler(
         filters=filters.command(["restart"]) & filters.chat(chats=AUTH_CHANNEL),
     )
-    app.add_handler(restart)
+    app.add_handler(restart_handler)
     #
     app.run()
