@@ -239,7 +239,7 @@ async def call_apropriate_function(
                 aria_instance, err_message, sent_message_to_update_tg_p, None
             )
         else:
-            return False, "Can't geeting metadata \n\n#MetaDataError"
+            return False, "Can't getting metadata \n\n#MetaDataError"
     await asyncio.sleep(1)
     file = aria_instance.get_download(err_message)
     to_upload_file = file.name
@@ -348,12 +348,13 @@ async def check_progress_for_dl(aria2, gid, event, previous_message):
                     pass
                 #
                 if is_file is None:
-                    msgg = f"Conn: {file.connections} <b>|</b> GID: <code>{gid}</code>"
+                    msgg = f"<b>• Conn:</b> {file.connections} /n<b>• GID:</b> <code>{gid}</code>"
                 else:
-                    msgg = f"P: {file.connections} | S: {file.num_seeders} <b>|</b> GID: <code>{gid}</code>"
-                msg = f"\n`{downloading_dir_name}`"
-                msg += f"\n<b>Kecepatan</b>: <code>{file.download_speed_string()}</code>"
-                msg += f"\n<b>Status</b>: <code>{file.progress_string()}</code> <b>dari</b> <code>{file.total_length_string()}</code> <b>|</b> {file.eta_string()} <b>|</b> {msgg}"
+                    msgg = f"<b>• Peers:</b> {file.connections} <b>• Seeds:</b> {file.num_seeders} \n<b>• GID:</b> <code>{gid}</code>"
+                msg = f"\n<b>• File>:</b`{downloading_dir_name}`"
+                msg += f"\n<b>• Speed:</b> <code>{file.download_speed_string()}</code>"
+                msg += f"\n<b>• Status:</b> <code>{file.progress_string()}</code> <b>of</b> <code>{file.total_length_string()}</code>"
+                msg += f"\n<b>• ETA:</b> `{file.eta_string()}` \n{msgg}"
                 # msg += f"\nSize: {file.total_length_string()}"
 
                 # if is_file is None :
