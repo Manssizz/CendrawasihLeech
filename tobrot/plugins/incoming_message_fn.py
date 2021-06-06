@@ -40,7 +40,7 @@ from tobrot.helper_funcs.ytplaylist import yt_playlist_downg
 async def incoming_purge_message_f(client, message):
     """/purge command"""
     print(message.client)
-    i_m_sefg2 = await message.reply_text("Membersihkan...", quote=True)
+    i_m_sefg2 = await message.reply_text("Purging...", quote=True)
     if await AdminCheck(client, message.chat.id, message.from_user.id):
         aria_i_p = await aria_start()
         # Show All Downloads
@@ -290,11 +290,11 @@ async def rename_tg_file(client, message):
             "Provide Name with extension \n<b>Example</b>: <code>/rename Avengers Endgame.mkv", quote=True
         )
 
-def restart(update, context):
-    restart_message = sendMessage(
-        "Restarting, Please wait!", context.bot, update)
-    # Save restart message object in order to reply to it after restarting
-    fs_utils.clean_all()
-    with open('restart.pickle', 'wb') as status:
-        pickle.dump(restart_message, status)
-    execl(executable, executable, "-m", "tobrot")
+    async def restart_msg(client, message):
+        restart_message = sendMessage(
+            "Restarting, Please wait!", context.bot, update)
+        # Save restart message object in order to reply to it after restarting
+        fs_utils.clean_all()
+        with open('restart.pickle', 'wb') as status:
+            pickle.dump(restart_message, status)
+        execl(executable, executable, "-m", "tobrot")
