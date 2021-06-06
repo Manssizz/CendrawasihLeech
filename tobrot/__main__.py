@@ -39,6 +39,7 @@ from tobrot import (
     YTDL_COMMAND,
     GYTDL_COMMAND,
     GPYTDL_COMMAND,
+    RESTART_COMMAND,
 )
 from tobrot.helper_funcs.download import down_load_media_f
 from tobrot.plugins.call_back_button_handler import button
@@ -53,6 +54,7 @@ from tobrot.plugins.incoming_message_fn import (
     incoming_purge_message_f,
     incoming_youtube_dl_f,
     rename_tg_file,
+    restart_msg,
 )
 from tobrot.plugins.new_join_fn import help_message_f, new_join_f
 from tobrot.plugins.rclone_size import check_size_g, g_clearme
@@ -225,8 +227,4 @@ if __name__ == "__main__":
     )
     app.add_handler(rclone_config_handler)
     #
-    restart_handler = MessageHandler(
-        filters=filters.command(["restart"]) & filters.chat(chats=),
-    app.add_handler(restart)
-    )
     app.run()
