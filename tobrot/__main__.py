@@ -39,7 +39,6 @@ from tobrot import (
     YTDL_COMMAND,
     GYTDL_COMMAND,
     GPYTDL_COMMAND,
-    RESTART_COMMAND,
 )
 from tobrot.helper_funcs.download import down_load_media_f
 from tobrot.plugins.call_back_button_handler import button
