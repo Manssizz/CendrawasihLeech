@@ -227,8 +227,19 @@ if __name__ == "__main__":
     app.add_handler(rclone_config_handler)
     #
     restart_handler = MessageHandler(
+        restart_msg,
         filters=filters.command(["restart"]) & filters.chat(chats=AUTH_CHANNEL),
     )
     app.add_handler(restart_handler)
     #
+
+    def main():
+        fs_utils.start_cleanup()
+        # Check if the bot is restarting
+        if path.exists('restart.pickle'):
+            with open('restart.pickle', 'rb') as status:
+                restart_message = pickle.load(status)
+            restart_message.edit_text("Restarted Successfully!")
+            remove('restart.pickle')
+
     app.run()
