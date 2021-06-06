@@ -56,7 +56,7 @@ OWNER_ID = int(os.environ.get("OWNER_ID", 1036440597))
 AUTH_CHANNEL = [int(x) for x in os.environ.get("AUTH_CHANNEL").split()]
 
 # the download location, where the HTTP Server runs
-DOWNLOAD_LOCATION = "./DOWNLOADS"
+DOWNLOAD_LOCATION = "CendrawasihLeech"
 # Telegram maximum file upload size
 MAX_FILE_SIZE = 50000000
 TG_MAX_FILE_SIZE = 2147483648
@@ -84,7 +84,7 @@ MAX_TG_SPLIT_FILE_SIZE = int(os.environ.get(
     "MAX_TG_SPLIT_FILE_SIZE", "2093796556"))
 # add config vars for the display progress
 FINISHED_PROGRESS_STR = os.environ.get("FINISHED_PROGRESS_STR", "█")
-UN_FINISHED_PROGRESS_STR = os.environ.get("UN_FINISHED_PROGRESS_STR", "ㅤ")
+UN_FINISHED_PROGRESS_STR = os.environ.get("UN_FINISHED_PROGRESS_STR", "⠀")
 # add offensive API
 TG_OFFENSIVE_API = os.environ.get("TG_OFFENSIVE_API", None)
 CUSTOM_FILE_NAME = os.environ.get("CUSTOM_FILE_NAME", "")
