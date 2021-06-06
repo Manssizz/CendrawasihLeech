@@ -4,7 +4,7 @@ This repo based [GautamKumar](https://github.com/gautamajay52/TorrentLeech-Gdriv
 ### Tweaks
 - Support thumbnail AVI, MOV, 3GP, etc. even you must download the file first
 - Add aria2 advance configuration
-- Support few link host
+- Support hxfile, anonfiles, letsupload, etc. based [zevtyardt](https://github.com/zevtyardt/lk21) module
 - Simply status messages
 
 ### Branch
