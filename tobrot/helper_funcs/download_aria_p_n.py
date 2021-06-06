@@ -48,8 +48,8 @@ def Virgullustring(string):
 
 tracker_urlsss = [
     "https://newtrackon.com/api/all"
-    # "https://trackerslist.com/all.txt"
-    "https://trackerslist.com/best.txt"
+    "https://trackerslist.com/all.txt"
+    # "https://trackerslist.com/best.txt"
     "https://raw.githubusercontent.com/ngosang/trackerslist/master/trackers_all.txt",
     "https://raw.githubusercontent.com/DeSireFire/animeTrackerList/master/AT_all.txt"
 ]
@@ -348,10 +348,10 @@ async def check_progress_for_dl(aria2, gid, event, previous_message):
                     pass
                 #
                 if is_file is None:
-                    msgg = f"<b>• Conn:</b> {file.connections} /n<b>• GID:</b> <code>{gid}</code>"
+                    msgg = f"<b>• Conn:</b> {file.connections} \n<b>• GID:</b> <code>{gid}</code>"
                 else:
                     msgg = f"<b>• Peers:</b> {file.connections} <b>• Seeds:</b> {file.num_seeders} \n<b>• GID:</b> <code>{gid}</code>"
-                msg = f"\n<b>• File>:</b`{downloading_dir_name}`"
+                msg = f"\n<b>• File:</b>`{downloading_dir_name}`"
                 msg += f"\n<b>• Speed:</b> <code>{file.download_speed_string()}</code>"
                 msg += f"\n<b>• Status:</b> <code>{file.progress_string()}</code> <b>of</b> <code>{file.total_length_string()}</code>"
                 msg += f"\n<b>• ETA:</b> `{file.eta_string()}` \n{msgg}"
