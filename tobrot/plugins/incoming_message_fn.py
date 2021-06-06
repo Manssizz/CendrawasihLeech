@@ -5,6 +5,7 @@
 import asyncio
 import logging
 import os
+from sys import executable
 import time
 from pathlib import Path
 import aria2p
