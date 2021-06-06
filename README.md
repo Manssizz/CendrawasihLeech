@@ -7,9 +7,6 @@ This repo based [GautamKumar](https://github.com/gautamajay52/TorrentLeech-Gdriv
 - Support few link host
 - Simply status messages
 
-### Know Issue
-I still stuck with aria direct download issue even just change strings text, so i implement aria source from [yasirarism](https://github.com/yasirarism) file
-
 ### Branch
 - Master branch is development version
 - Stable branch is stable version
