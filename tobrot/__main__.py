@@ -53,6 +53,7 @@ from tobrot.plugins.incoming_message_fn import (
     incoming_purge_message_f,
     incoming_youtube_dl_f,
     rename_tg_file,
+    restart,
 )
 from tobrot.plugins.new_join_fn import help_message_f, new_join_f
 from tobrot.plugins.rclone_size import check_size_g, g_clearme
@@ -224,5 +225,10 @@ if __name__ == "__main__":
         rclone_command_f, filters=filters.command(["rclone"])
     )
     app.add_handler(rclone_config_handler)
+    #
+    restart_handler = MessageHandler(
+        filters=filters.command(["restart"]) & filters.chat(chats=AUTH_CHANNEL),
+    )
+    app.add_handler(restart)
     #
     app.run()
