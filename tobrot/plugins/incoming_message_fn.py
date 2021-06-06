@@ -5,7 +5,6 @@
 import asyncio
 import logging
 import os
-from sys import executable
 import time
 from pathlib import Path
 import aria2p
@@ -22,7 +21,6 @@ from tobrot import (
     YTDL_COMMAND,
     GPYTDL_COMMAND,
     PYTDL_COMMAND,
-    RESTART_COMMAND,
 )
 from tobrot.helper_funcs.admin_check import AdminCheck
 from tobrot.helper_funcs.cloneHelper import CloneHelper
@@ -290,12 +288,3 @@ async def rename_tg_file(client, message):
         await message.reply_text(
             "Provide Name with extension \n<b>Example</b>: <code>/rename Avengers Endgame.mkv", quote=True
         )
-
-    async def restart_msg(client, message):
-        restart_message = sendMessage(
-            "Restarting, Please wait!", context.bot, update)
-        # Save restart message object in order to reply to it after restarting
-        fs_utils.clean_all()
-        with open('restart.pickle', 'wb') as status:
-            pickle.dump(restart_message, status)
-        execl(executable, executable, "-m", "tobrot")
