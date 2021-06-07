@@ -50,7 +50,7 @@ async def split_large_files(input_file):
         while end_time <= total_duration:
             LOGGER.info(i)
             # file name generate
-            parted_file_name = "{}_[PART{}].{}".format(
+            parted_file_name = "_(PART{}).{}".format(
                 str(base_name), str(i).zfill(5), str(input_extension)
             )
 
