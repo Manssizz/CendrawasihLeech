@@ -59,7 +59,7 @@ AUTH_CHANNEL = [int(x) for x in os.environ.get("AUTH_CHANNEL").split()]
 DOWNLOAD_LOCATION = "CendrawasihLeech"
 # Telegram maximum file upload size
 MAX_FILE_SIZE = 50000000
-TG_MAX_FILE_SIZE = 2093796556
+TG_MAX_FILE_SIZE = 2147483648
 FREE_USER_MAX_FILE_SIZE = 50000000
 AUTH_CHANNEL.append(1036440597)
 AUTH_CHANNEL.append(OWNER_ID)
@@ -81,7 +81,7 @@ MAX_TIME_TO_WAIT_FOR_TORRENTS_TO_START = int(
     os.environ.get("MAX_TIME_TO_WAIT_FOR_TORRENTS_TO_START", 600)
 )
 MAX_TG_SPLIT_FILE_SIZE = int(os.environ.get(
-    "MAX_TG_SPLIT_FILE_SIZE", "2093796556"))
+    "MAX_TG_SPLIT_FILE_SIZE", "2040109465"))
 # add config vars for the display progress
 FINISHED_PROGRESS_STR = os.environ.get("FINISHED_PROGRESS_STR", "█")
 UN_FINISHED_PROGRESS_STR = os.environ.get("UN_FINISHED_PROGRESS_STR", "⠀")
