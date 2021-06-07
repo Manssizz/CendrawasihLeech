@@ -59,7 +59,7 @@ AUTH_CHANNEL = [int(x) for x in os.environ.get("AUTH_CHANNEL").split()]
 DOWNLOAD_LOCATION = "CendrawasihLeech"
 # Telegram maximum file upload size
 MAX_FILE_SIZE = 50000000
-TG_MAX_FILE_SIZE = 2147483648
+TG_MAX_FILE_SIZE = 2126008811
 FREE_USER_MAX_FILE_SIZE = 50000000
 AUTH_CHANNEL.append(1036440597)
 AUTH_CHANNEL.append(OWNER_ID)
@@ -72,7 +72,7 @@ DEF_THUMB_NAIL_VID_S = os.environ.get(
 # maximum message length in Telegram
 MAX_MESSAGE_LENGTH = 4096
 # set timeout for subprocess
-PROCESS_MAX_TIMEOUT = 3600
+PROCESS_MAX_TIMEOUT = 7200
 #
 SP_LIT_ALGO_RITH_M = os.environ.get("SP_LIT_ALGO_RITH_M", "hjs")
 ARIA_TWO_STARTED_PORT = int(os.environ.get("ARIA_TWO_STARTED_PORT", "6800"))
