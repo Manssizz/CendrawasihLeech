@@ -38,6 +38,14 @@ rclone - This will change your drive config on fly.(First one will be default)
 rename - To rename the telegram files.
 ```
 
+### Archive supports
+```
+ZIP, RAR, TAR, 7z, ISO, WIM, CAB, GZIP, BZIP2, 
+APM, ARJ, CHM, CPIO, CramFS, DEB, DMG, FAT, 
+HFS, LZH, LZMA, LZMA2, MBR, MSI, MSLZ, NSIS, 
+NTFS, RPM, SquashFS, UDF, VHD, XAR, Z.
+```
+
 ### Deploy
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
 
