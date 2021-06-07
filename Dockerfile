@@ -21,7 +21,8 @@ RUN apt -qq update --fix-missing && \
     ffmpeg \
     python3-pip \
     p7zip-full \
-    p7zip-rar
+    p7zip-rar \
+    apt-utils
 
 RUN wget https://rclone.org/install.sh
 RUN bash install.sh
