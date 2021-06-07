@@ -89,7 +89,7 @@ class Progress:
                 round(percentage, 2),
             )
 
-            tmp = progress + "<b>• Uploading:</b> <code>{0} of {1}</code>\n<b>• Speed: </b><code>{2}/s</code>  <b>ETA:</b> <i>{3}</i>\n".format(
+            tmp = progress + "<b>• Uploading:</b> <code>{0} of {1}</code>\n<b>• Speed:</b> <code>{2}/s</code>  <b>ETA:</b> <i>{3}</i>\n".format(
                 humanbytes(current),
                 humanbytes(total),
                 humanbytes(speed),
@@ -99,11 +99,11 @@ class Progress:
             try:
                 if not self._mess.photo:
                     await self._mess.edit_text(
-                        text="<b>• File:</b>{}\n {}".format(ud_type, tmp), reply_markup=reply_markup
+                        text="<b>• File:</b> <code>{}</code> \n {}".format(ud_type, tmp), reply_markup=reply_markup
                     )
                 else:
                     await self._mess.edit_caption(
-                        caption="{}<b>• File:</b>\n {}".format(ud_type, tmp)
+                        caption="{}<b>• File: </b>\n {}".format(ud_type, tmp)
                     )
             except FloodWait as fd:
                 logger.warning(f"{fd}")
