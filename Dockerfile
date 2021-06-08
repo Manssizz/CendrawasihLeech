@@ -1,9 +1,9 @@
 FROM ubuntu:20.04
 
 
-RUN mkdir ./app
-RUN chmod 777 ./app
-WORKDIR /app
+RUN mkdir ./CendrawasihLeech
+RUN chmod 777 ./CendrawasihLeech
+WORKDIR /CendrawasihLeech
 
 ENV DEBIAN_FRONTEND=noninteractive
 ENV TZ=Asia/Jakarta
@@ -11,7 +11,6 @@ ENV TZ=Asia/Jakarta
 RUN apt -qq update && \
     apt-get install -y software-properties-common && \
     rm -rf /var/lib/apt/lists/* && \
-    apt-add-repository non-free && \
     apt-get -qq update --fix-missing && \
     apt -qq install -y git aria2 wget curl busybox unzip \
     python3 ffmpeg python3-pip p7zip-full p7zip-rar \
@@ -21,10 +20,10 @@ RUN apt -qq update && \
 RUN wget https://rclone.org/install.sh
 RUN bash install.sh
 
-RUN mkdir /app/CendrawasihLeech
-RUN wget -O /app/CendrawasihLeech/gclone.gz https://git.io/JJMSG
-RUN gzip -d /app/CendrawasihLeech/gclone.gz
-RUN chmod 0775 /app/CendrawasihLeech/gclone
+RUN mkdir /CendrawasihLeech/Leech
+RUN wget -O /CendrawasihLeech/Leech/gclone.gz https://git.io/JJMSG
+RUN gzip -d /CendrawasihLeech/Leech/gclone.gz
+RUN chmod 0775 /CendrawasihLeech/Leech/gclone
 
 COPY requirements.txt .
 RUN pip3 install --no-cache-dir -r requirements.txt
