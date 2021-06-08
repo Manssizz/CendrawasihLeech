@@ -71,18 +71,20 @@ async def aria_start():
     aria2_daemon_start_cmd.append("--daemon=true")
     aria2_daemon_start_cmd.append("--check-certificate=false")
     aria2_daemon_start_cmd.append("--enable-dht=true")
-    aria2_daemon_start_cmd.append("--dht-file-path=aria/dht.dat")
-    # aria2_daemon_start_cmd.append("--enable-dht6=true")
-    # aria2_daemon_start_cmd.append("--dht-file-path=aria/dht6.dat")
-    aria2_daemon_start_cmd.append("--dht-listen-port=6881")
+    aria2_daemon_start_cmd.append("--dht-file-path=/CendrawasihLeech/dht.dat")
+    aria2_daemon_start_cmd.append("--dht-entry-point=dht.transmissionbt.com:6881")
+    aria2_daemon_start_cmd.append("--enable-dht6=true")
+    aria2_daemon_start_cmd.append("--dht-file-path=/CendrawasihLeech/dht6.dat")
+    aria2_daemon_start_cmd.append("--dht-entry-point6=dht.transmissionbt.com:6881")
+    aria2_daemon_start_cmd.append("--dht-listen-port=51413")
     aria2_daemon_start_cmd.append("--follow-metalink=mem")
     # Testing download location
     # aria2_daemon_start_cmd.append(f"--dir={DOWNLOAD_LOCATION}")
-    aria2_daemon_start_cmd.append("--bt-max-peers=0")
+    aria2_daemon_start_cmd.append("--bt-max-peers=128")
     aria2_daemon_start_cmd.append("--seed-time=0.01")
-    aria2_daemon_start_cmd.append("--peer-id-prefix=-qB4341-")
-    aria2_daemon_start_cmd.append("--peer-agent=Transmission/2.77")
-    aria2_daemon_start_cmd.append("--user-agent=qBittorrent/4.3.4.1")
+    aria2_daemon_start_cmd.append("--peer-id-prefix=-qB4350-")
+    aria2_daemon_start_cmd.append("--peer-agent=qBittorrent/4.3.5")
+    aria2_daemon_start_cmd.append("--user-agent=qBittorrent/4.3.5")
     aria2_daemon_start_cmd.append("--disk-cache=64M")
     aria2_daemon_start_cmd.append("--file-allocation=prealloc")
     aria2_daemon_start_cmd.append("--continue=true")
@@ -97,15 +99,16 @@ async def aria_start():
     aria2_daemon_start_cmd.append("--max-file-not-found=5")
     aria2_daemon_start_cmd.append("--follow-torrent=mem")
     aria2_daemon_start_cmd.append("--max-connection-per-server=10")
-    aria2_daemon_start_cmd.append("--min-split-size=10M")
+    aria2_daemon_start_cmd.append("--min-split-size=4M")
     aria2_daemon_start_cmd.append("--enable-rpc")
     aria2_daemon_start_cmd.append("--rpc-listen-all=false")
     aria2_daemon_start_cmd.append(f"--rpc-listen-port={ARIA_TWO_STARTED_PORT}")
     aria2_daemon_start_cmd.append("--rpc-max-request-size=1024M")
     aria2_daemon_start_cmd.append("--seed-time=0")
     aria2_daemon_start_cmd.append("--max-overall-upload-limit=1K")
-    aria2_daemon_start_cmd.append("--split=10")
+    aria2_daemon_start_cmd.append("--split=64")
     aria2_daemon_start_cmd.append("--netrc-path=/root/.netrc")
+    aria2_daemon_start_cmd.append("--user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36 Edg/87.0.664.57")
     aria2_daemon_start_cmd.append(f"--bt-tracker={sonstringtrckr}")
     aria2_daemon_start_cmd.append(
         f"--bt-stop-timeout={MAX_TIME_TO_WAIT_FOR_TORRENTS_TO_START}"
@@ -148,7 +151,7 @@ def add_torrent(aria_instance, torrent_file_path):
     if torrent_file_path is None:
         return (
             False,
-            "**GAGAL** "
+            "**ERRIR** "
             + str(e)
             + " \nFailed to geeting data <u>TORRENT</u> file",
         )
