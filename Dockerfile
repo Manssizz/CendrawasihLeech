@@ -11,14 +11,12 @@ ENV DEBIAN_FRONTEND=noninteractive
 ENV TZ=Asia/Jakarta
 
 RUN apt -qq update --fix-missing && \
-    apt -qq install -y software-properties-common && \
+    # apt -qq install -y software-properties-common && \
     rm -rf /var/lib/apt/lists/* && \
     # apt add-repository non-free && \
     apt -qq update && \
     apt -qq install -y git aria2 wget curl busybox unzip \
-    python3 ffmpeg python3-pip p7zip-full p7zip-rar \
-    locales \
-    apt --qq purge -y software-properties-common    
+    python3 ffmpeg python3-pip p7zip-full p7zip-rar locales
 
 RUN wget https://rclone.org/install.sh
 RUN bash install.sh
