@@ -11,7 +11,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 ENV TZ=Asia/Jakarta
 
 RUN apt -qq update --fix-missing && \
-    apt-get install -y software-properties-common && \
+    apt -qq install -y software-properties-common && \
     rm -rf /var/lib/apt/lists/* && \
     apt add-repository non-free && \
     apt -qq update && \
