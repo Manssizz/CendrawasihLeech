@@ -38,6 +38,13 @@ rclone - This will change your drive config on fly.(First one will be default)
 rename - To rename the telegram files.
 ```
 
+### Thumbnail supports
+```
+"MKV", "MP4", "WEBM", "AVI", "MOV", 
+"MPEG", "WMV", "M4V", "3GP"
+```
+> Note: Even thumbnail support, telegram only support mp4 and mkv for stream directly in app.
+
 ### Archive supports
 ```
 ZIP, RAR, TAR, 7z, ISO, WIM, CAB, GZIP, BZIP2, 
@@ -52,3 +59,5 @@ NTFS, RPM, SquashFS, UDF, VHD, XAR, Z.
 ### Credits
 * [GautamKumar](https://github.com/gautamajay52/TorrentLeech-Gdrive) for original source
 * [yasirarism](https://github.com/yasirarism) for direct link support
+* [SlamMirror](https://github.com/breakdowns/slam-mirrorbot) I pick piece of this repos
+* [P3TERX](https://github.com/P3TERX/) for advance aria config
