@@ -1,4 +1,4 @@
-FROM ubuntu:20.04
+FROM ubuntu:latest
 # FROM lzzy12/mega-sdk-python:latest
 
 # WORKDIR /usr/src/app
