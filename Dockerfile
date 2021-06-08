@@ -29,8 +29,8 @@ RUN chmod 0775 /CendrawasihLeech/Leech/gclone
 COPY requirements.txt .
 RUN pip3 install --no-cache-dir -r requirements.txt
 COPY extract /usr/local/bin
-RUN chmod +x /usr/local/bin/extract
 COPY .netrc /root/.netrc
+RUN chmod +x /usr/local/bin/extract && chmod 600 /root/.netrc
 RUN sed -i '/en_US.UTF-8/s/^# //g' /etc/locale.gen && locale-gen
 ENV LANG en_US.UTF-8
 ENV LANGUAGE en_US:en
