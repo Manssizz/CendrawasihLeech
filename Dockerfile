@@ -1,24 +1,24 @@
-# FROM ubuntu:20.04
-FROM lzzy12/mega-sdk-python:latest
+FROM ubuntu:20.04
+# FROM lzzy12/mega-sdk-python:latest
 
-WORKDIR /usr/src/app
-RUN chmod 777 /usr/src/app
+# WORKDIR /usr/src/app
+# RUN chmod 777 /usr/src/app
 RUN mkdir ./CendrawasihLeech
 RUN chmod 777 ./CendrawasihLeech
-# WORKDIR /CendrawasihLeech
+WORKDIR /CendrawasihLeech
 
-# ENV DEBIAN_FRONTEND=noninteractive
+ENV DEBIAN_FRONTEND=noninteractive
 ENV TZ=Asia/Jakarta
 
-RUN apt -qq update && \
+RUN apt -qq update --fix-missing && \
     apt-get install -y software-properties-common && \
     rm -rf /var/lib/apt/lists/* && \
-    apt-add-repository non-free && \
-    apt-get -qq update --fix-missing && \
-    apt-get -qq install -y git aria2 wget curl busybox unzip \
+    apt add-repository non-free && \
+    apt -qq update && \
+    apt -qq install -y git aria2 wget curl busybox unzip \
     python3 ffmpeg python3-pip p7zip-full p7zip-rar \
     locales \
-    apt-get purge -y software-properties-common    
+    apt purge -y software-properties-common    
 
 RUN wget https://rclone.org/install.sh
 RUN bash install.sh
