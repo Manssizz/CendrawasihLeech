@@ -47,11 +47,12 @@ def Virgullustring(string):
     return string
 
 tracker_urlsss = [
-    "https://newtrackon.com/api/all"
-    "https://trackerslist.com/all.txt"
-    # "https://trackerslist.com/best.txt"
+    "https://newtrackon.com/api/all",
+    "https://trackerslist.com/all.txt",
+    # "https://trackerslist.com/best.txt",
     "https://raw.githubusercontent.com/ngosang/trackerslist/master/trackers_all.txt",
-    "https://raw.githubusercontent.com/DeSireFire/animeTrackerList/master/AT_all.txt"
+    "https://raw.githubusercontent.com/DeSireFire/animeTrackerList/master/AT_all.txt",
+    "https://torrends.to/torrent-tracker-list/?download=latest"
 ]
 tumtorrenttrackerstringi = ""
 sonstringtrckr = ""
