@@ -1,5 +1,5 @@
-FROM ubuntu:20.04
-
+# FROM ubuntu:20.04
+FROM lzzy12/mega-sdk-python:latest
 
 RUN mkdir ./CendrawasihLeech
 RUN chmod 777 ./CendrawasihLeech
@@ -9,11 +9,11 @@ ENV DEBIAN_FRONTEND=noninteractive
 ENV TZ=Asia/Jakarta
 
 RUN apt -qq update && \
-    apt install -y software-properties-common && \
+    apt-get install -y software-properties-common && \
     rm -rf /var/lib/apt/lists/* && \
-    apt add-repository non-free && \
-    apt -qq update --fix-missing && \
-    apt -qq install -y git aria2 wget curl busybox unzip \
+    apt-add-repository non-free && \
+    apt-get -qq update --fix-missing && \
+    apt-get -qq install -y git aria2 wget curl busybox unzip \
     python3 ffmpeg python3-pip p7zip-full p7zip-rar \
     locales \
     apt-get purge -y software-properties-common    
