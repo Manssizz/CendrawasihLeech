@@ -8,11 +8,11 @@ WORKDIR /app
 ENV DEBIAN_FRONTEND=noninteractive
 ENV TZ=Asia/Jakarta
 
-RUN apt -qq update --fix-missing && \
+RUN apt -qq update && \
     apt-get install -y software-properties-common && \
     rm -rf /var/lib/apt/lists/* && \
     apt-add-repository non-free && \
-    apt-get -qq update && \
+    apt-get -qq update --fix-missing && \
     apt -qq install -y git aria2 wget curl busybox unzip \
     python3 ffmpeg python3-pip p7zip-full p7zip-rar \
     locales \
@@ -21,10 +21,10 @@ RUN apt -qq update --fix-missing && \
 RUN wget https://rclone.org/install.sh
 RUN bash install.sh
 
-RUN mkdir /app/gautam
-RUN wget -O /app/gautam/gclone.gz https://git.io/JJMSG
-RUN gzip -d /app/gautam/gclone.gz
-RUN chmod 0775 /app/gautam/gclone
+RUN mkdir /app/CendrawasihLeech
+RUN wget -O /app/CendrawasihLeech/gclone.gz https://git.io/JJMSG
+RUN gzip -d /app/CendrawasihLeech/gclone.gz
+RUN chmod 0775 /app/CendrawasihLeech/gclone
 
 COPY requirements.txt .
 RUN pip3 install --no-cache-dir -r requirements.txt
