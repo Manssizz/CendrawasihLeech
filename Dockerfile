@@ -14,12 +14,11 @@ RUN apt -qq update --fix-missing && \
     apt -qq install -y software-properties-common && \
     rm -rf /var/lib/apt/lists/* && \
     # apt add-repository non-free && \
-    apt-add-repository 'https://packages.medibuntu.org free non-free' \
     apt -qq update && \
     apt -qq install -y git aria2 wget curl busybox unzip \
     python3 ffmpeg python3-pip p7zip-full p7zip-rar \
     locales \
-    apt purge -y software-properties-common    
+    apt remove -y software-properties-common    
 
 RUN wget https://rclone.org/install.sh
 RUN bash install.sh
