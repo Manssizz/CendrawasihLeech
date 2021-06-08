@@ -47,7 +47,7 @@ def Virgullustring(string):
     return string
 
 tracker_urlsss = [
-    "https://newtrackon.com/api/all",
+    "https://newtrackon.com/api/stable",
     "https://trackerslist.com/all.txt",
     # "https://trackerslist.com/best.txt",
     "https://raw.githubusercontent.com/ngosang/trackerslist/master/trackers_all.txt",
