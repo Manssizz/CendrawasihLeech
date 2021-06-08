@@ -9,9 +9,10 @@ ENV DEBIAN_FRONTEND=noninteractive
 ENV TZ=Asia/Jakarta
 
 RUN apt -qq update && \
-    apt-get install -y software-properties-common && \
+    apt install -y software-properties-common && \
     rm -rf /var/lib/apt/lists/* && \
-    apt-get -qq update --fix-missing && \
+    apt add-repository non-free && \
+    apt -qq update --fix-missing && \
     apt -qq install -y git aria2 wget curl busybox unzip \
     python3 ffmpeg python3-pip p7zip-full p7zip-rar \
     locales \
