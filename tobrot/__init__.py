@@ -11,8 +11,8 @@ from sys import exit
 
 import dotenv
 
-if os.path.exists("TorrentLeech-Gdrive.txt"):
-    with open("Torrentleech-Gdrive.txt", "r+") as f_d:
+if os.path.exists("CendrawasihLeech.txt"):
+    with open("CendrawasihLeech.txt", "r+") as f_d:
         f_d.truncate(0)
 
 # the logging things
@@ -22,7 +22,7 @@ logging.basicConfig(
     datefmt="%d-%b-%y %H:%M:%S",
     handlers=[
         RotatingFileHandler(
-            "Torrentleech-Gdrive.txt", maxBytes=50000000, backupCount=10
+            "CendrawasihLeech.txt", maxBytes=50000000, backupCount=10
         ),
         logging.StreamHandler(),
     ],
