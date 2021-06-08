@@ -9,20 +9,14 @@ ENV DEBIAN_FRONTEND=noninteractive
 ENV TZ=Asia/Jakarta
 
 RUN apt -qq update --fix-missing && \
-    apt -qq install -y git \
-    aria2 \
-    wget \
-    curl \
-    busybox \
-    unzip \
-    unrar \
-    tar \
-    python3 \
-    ffmpeg \
-    python3-pip \
-    p7zip-full \
-    p7zip-rar \
-    apt-utils
+    apt-get install -y software-properties-common && \
+    rm -rf /var/lib/apt/lists/* && \
+    apt-add-repository non-free && \
+    apt-get -qq update && \
+    apt -qq install -y git aria2 wget curl busybox unzip \
+    python3 ffmpeg python3-pip p7zip-full p7zip-rar \
+    locales \
+    apt-get purge -y software-properties-common    
 
 RUN wget https://rclone.org/install.sh
 RUN bash install.sh
@@ -31,10 +25,16 @@ RUN mkdir /app/gautam
 RUN wget -O /app/gautam/gclone.gz https://git.io/JJMSG
 RUN gzip -d /app/gautam/gclone.gz
 RUN chmod 0775 /app/gautam/gclone
-RUN dpkg-reconfigure tzdata
 
 COPY requirements.txt .
 RUN pip3 install --no-cache-dir -r requirements.txt
+COPY extract /usr/local/bin
+RUN chmod +x /usr/local/bin/extract
+COPY .netrc /root/.netrc
+RUN sed -i '/en_US.UTF-8/s/^# //g' /etc/locale.gen && locale-gen
+ENV LANG en_US.UTF-8
+ENV LANGUAGE en_US:en
+ENV LC_ALL en_US.UTF-8
 COPY . .
-RUN chmod +x extract
+
 CMD ["bash","start.sh"]
