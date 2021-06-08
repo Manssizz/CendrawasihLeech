@@ -11,7 +11,14 @@ This repo based [GautamKumar](https://github.com/gautamajay52/TorrentLeech-Gdriv
 - Master branch is development version
 - Stable branch is stable version
 
-### Command
+### Thumbnail supports
+```
+"MKV", "MP4", "WEBM", "AVI", "MOV", 
+"MPEG", "WMV", "M4V", "3GP"
+```
+> Note: Even thumbnail support, telegram only support mp4 and mkv for stream directly in app.
+
+### Command List
 ```
 leech - Leech torrent file or direct link file and upload to Telegram.
 clone - Clone Drive file or folder to your Drive.
@@ -37,13 +44,6 @@ ytpl - This download youtube playlist and upload to your Drive.
 rclone - This will change your drive config on fly.(First one will be default)
 rename - To rename the telegram files.
 ```
-
-### Thumbnail supports
-```
-"MKV", "MP4", "WEBM", "AVI", "MOV", 
-"MPEG", "WMV", "M4V", "3GP"
-```
-> Note: Even thumbnail support, telegram only support mp4 and mkv for stream directly in app.
 
 ### Archive supports
 ```
