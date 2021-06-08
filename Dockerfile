@@ -1,9 +1,11 @@
 # FROM ubuntu:20.04
 FROM lzzy12/mega-sdk-python:latest
 
+WORKDIR /usr/src/app
+RUN chmod 777 /usr/src/app
 RUN mkdir ./CendrawasihLeech
 RUN chmod 777 ./CendrawasihLeech
-WORKDIR /CendrawasihLeech
+# WORKDIR /CendrawasihLeech
 
 # ENV DEBIAN_FRONTEND=noninteractive
 ENV TZ=Asia/Jakarta
