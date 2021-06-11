@@ -84,7 +84,6 @@ async def aria_start():
     aria2_daemon_start_cmd.append("--min-split-size=10M")
     aria2_daemon_start_cmd.append("--follow-torrent=mem")
     aria2_daemon_start_cmd.append("--split=10")
-    aria2_daemon_start_cmd.append("--daemon=true")
     aria2_daemon_start_cmd.append("--allow-overwrite=true")
     aria2_daemon_start_cmd.append("--max-overall-upload-limit=1K")
     aria2_daemon_start_cmd.append("--peer-id-prefix=-qB4341-")
@@ -298,6 +297,7 @@ async def call_apropriate_function(
                 message_to_send = ""
                 for key_f_res_se in final_response:
                     local_file_name = key_f_res_se
+                    downloading_dir_name = str(file.name)
                     message_id = final_response[key_f_res_se]
                     channel_id = str(sent_message_to_update_tg_p.chat.id)[4:]
                     private_link = f"https://t.me/c/{channel_id}/{message_id}"
@@ -309,7 +309,7 @@ async def call_apropriate_function(
                     message_to_send += "\n"
                 if message_to_send != "":
                     mention_req_user = (
-                        f"<a href='tg://user?id={user_id}'>Done!</a>\n"
+                        f"`{downloading_dir_name}` <a href='tg://user?id={user_id}'>Done!</a>\n"
                     )
                     message_to_send = mention_req_user + message_to_send
                     message_to_send = message_to_send + "\n" + "#Uploaded"
