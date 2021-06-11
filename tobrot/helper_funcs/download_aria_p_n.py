@@ -309,7 +309,7 @@ async def call_apropriate_function(
                     message_to_send += "\n"
                 if message_to_send != "":
                     mention_req_user = (
-                        f"`{downloading_dir_name}` <a href='tg://user?id={user_id}'>Done!</a>\n"
+                        f"`<a href='tg://user?id={user_id}'>Done!</a> List file in {downloading_dir_name}`:\n"
                     )
                     message_to_send = mention_req_user + message_to_send
                     message_to_send = message_to_send + "\n" + "#Uploaded"
@@ -354,16 +354,7 @@ async def check_progress_for_dl(aria2, gid, event, previous_message):
                 msg = f"\n<b>• File:</b> `{downloading_dir_name}`"
                 msg += f"\n<b>• Speed:</b> <code>{file.download_speed_string()}</code>  <b>ETA:</b> <i>{file.eta_string()}</i> "
                 msg += f"\n<b>• Status:</b> <code>{file.progress_string()}</code> <b>of</b> <code>{file.total_length_string()}</code> \n{msgg}"
-                # msg += f"\nSize: {file.total_length_string()}"
 
-                # if is_file is None :
-                # msg += f"\n<b>Conn:</b> {file.connections}, GID: <code>{gid}</code>"
-                # else :
-                # msg += f"\n<b>Info:</b>[ P : {file.connections} | S : {file.num_seeders} ], GID: <code>{gid}</code>"
-
-                # msg += f"\nStatus: {file.status}"
-                # msg += f"\nETA: {file.eta_string()}"
-                # msg += f"\nGID: <code>{gid}</code>"
                 inline_keyboard = []
                 ikeyboard = []
                 ikeyboard.append(
