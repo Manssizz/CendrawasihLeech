@@ -34,6 +34,9 @@ async def extract_link(message, type_o_request):
     elif message.text is not None:
         if message.text.lower().startswith("magnet:"):
             url = message.text.strip()
+        elif message.text is not None:
+            if message.text.lower().endswith(".torrent"):
+                url = message.text.strip()
 
         elif "|" in message.text:
             url_parts = message.text.split("|")
