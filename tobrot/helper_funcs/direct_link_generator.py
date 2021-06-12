@@ -8,16 +8,21 @@ from https://github.com/AvinashReddy3108/PaperplaneExtended . I hereby take no c
 than the modifications. See https://github.com/AvinashReddy3108/PaperplaneExtended/commits/master/userbot/modules/direct_links.py
 for original authorship. """
 
+import logging
 import json
+import math
 import re
 import urllib.parse
 from os import popen
 from random import choice
-from js2py import EvalJs
-import requests
-from bs4 import BeautifulSoup
+from urllib.parse import urlparse
 
 import lk21
+import requests
+from bs4 import BeautifulSoup
+from js2py import EvalJs
+from lk21.extractors.bypasser import Bypass
+from base64 import standard_b64encode
 
 from tobrot.helper_funcs.exceptions import DirectDownloadLinkException
 
@@ -60,7 +65,7 @@ def letsupload(url: str) -> str:
     except IndexError:
         raise DirectDownloadLinkException("`No Letsupload links found`\n")
     bypasser = lk21.Bypass()
-    dl_url=bypasser.bypass_url(link)
+    dl_url=bypasser.bypass_url(text_url)
     return dl_url
 
 def hxfile(url: str) -> str:
@@ -70,7 +75,7 @@ def hxfile(url: str) -> str:
     except IndexError:
         raise DirectDownloadLinkException("`No HXFile links found`\n")
     bypasser = lk21.Bypass()
-    dl_url=bypasser.bypass_url(link)
+    dl_url=bypasser.bypass_url(text_url)
     return dl_url
 
 def fembed720(url: str) -> str:
@@ -80,7 +85,7 @@ def fembed720(url: str) -> str:
     except IndexError:
         raise DirectDownloadLinkException("`No Fembed links found`\n")
     bypasser = lk21.Bypass()
-    dl_url=bypasser.bypass_url(link)
+    dl_url=bypasser.bypass_url(text_url)
     return dl_url["720p/mp4"]
 
 def fembed480(url: str) -> str:
@@ -90,7 +95,7 @@ def fembed480(url: str) -> str:
     except IndexError:
         raise DirectDownloadLinkException("`No Fembed links found`\n")
     bypasser = lk21.Bypass()
-    dl_url=bypasser.bypass_url(link)
+    dl_url=bypasser.bypass_url(text_url)
     return dl_url["480p/mp4"]
 
 def anon(url: str) -> str:
@@ -100,7 +105,7 @@ def anon(url: str) -> str:
     except IndexError:
         raise DirectDownloadLinkException("`No anonfiles links found`\n")
     bypasser = lk21.Bypass()
-    dl_url=bypasser.bypass_url(link)
+    dl_url=bypasser.bypass_url(text_url)
     return dl_url
         
 def zippy_share(url: str) -> str:
