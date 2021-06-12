@@ -295,6 +295,7 @@ async def call_apropriate_function(
                 return True, None
             try:
                 message_to_send = ""
+                list_of_file = ""
                 for key_f_res_se in final_response:
                     local_file_name = key_f_res_se
                     downloading_dir_name = str(file.name)
@@ -307,12 +308,13 @@ async def call_apropriate_function(
                     message_to_send += local_file_name
                     message_to_send += "</a>"
                     message_to_send += "\n"
+                    list_of_file += f"List file in `{downloading_dir_name}`:\n"
                 if message_to_send != "":
                     mention_req_user = (
-                        f"<a href='tg://user?id={user_id}'>Done!</a>` List file in {downloading_dir_name}`:\n"
+                        f"<a href='tg://user?id={user_id}'>Done!</a>"
                     )
-                    message_to_send = mention_req_user + message_to_send
-                    message_to_send = message_to_send + "\n" + "#Uploaded"
+                    message_to_send = list_of_file + message_to_send
+                    message_to_send = message_to_send + "\n" + "#Uploaded" + mention_req_user
                 else:
                     message_to_send = "<i>FAILED</i> Failed uploading files."
                 await user_message.reply_text(
