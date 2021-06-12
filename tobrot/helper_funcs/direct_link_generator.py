@@ -17,6 +17,8 @@ from js2py import EvalJs
 import requests
 from bs4 import BeautifulSoup
 
+import lk21
+
 from tobrot.helper_funcs.exceptions import DirectDownloadLinkException
 
 
