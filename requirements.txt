@@ -13,5 +13,4 @@ lxml
 requests
 js2py
 lk21
-math
-logging
+pybase64
