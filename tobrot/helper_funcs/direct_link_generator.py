@@ -61,7 +61,7 @@ def direct_link_generator(text_url: str):
 def letsupload(url: str) -> str:
     dl_url = ''
     try:
-        link = re.findall(r'\bhttps?://.*letsupload\.io\S+', url)[0]
+        text_url = re.findall(r'\bhttps?://.*letsupload\.io\S+', url)[0]
     except IndexError:
         raise DirectDownloadLinkException("`No Letsupload links found`\n")
     bypasser = lk21.Bypass()
@@ -71,7 +71,7 @@ def letsupload(url: str) -> str:
 def hxfile(url: str) -> str:
     dl_url = ''
     try:
-        link = re.findall(r'\bhttps?://.*hxfile\.co\S+', url)[0]
+        text_url = re.findall(r'\bhttps?://.*hxfile\.co\S+', url)[0]
     except IndexError:
         raise DirectDownloadLinkException("`No HXFile links found`\n")
     bypasser = lk21.Bypass()
@@ -81,7 +81,7 @@ def hxfile(url: str) -> str:
 def fembed720(url: str) -> str:
     dl_url = ''
     try:
-        link = re.findall(r'\bhttps?://.*layarkacaxxi\.icu\S+', url)[0]
+        text_url = re.findall(r'\bhttps?://.*layarkacaxxi\.icu\S+', url)[0]
     except IndexError:
         raise DirectDownloadLinkException("`No Fembed links found`\n")
     bypasser = lk21.Bypass()
@@ -91,7 +91,7 @@ def fembed720(url: str) -> str:
 def fembed480(url: str) -> str:
     dl_url = ''
     try:
-        link = re.findall(r'\bhttps?://.*femax20\.com\S+', url)[0]
+        text_url = re.findall(r'\bhttps?://.*femax20\.com\S+', url)[0]
     except IndexError:
         raise DirectDownloadLinkException("`No Fembed links found`\n")
     bypasser = lk21.Bypass()
@@ -101,7 +101,7 @@ def fembed480(url: str) -> str:
 def anon(url: str) -> str:
     dl_url = ''
     try:
-        link = re.findall(r'\bhttps?://.*anonfiles\.com\S+', url)[0]
+        text_url = re.findall(r'\bhttps?://.*anonfiles\.com\S+', url)[0]
     except IndexError:
         raise DirectDownloadLinkException("`No anonfiles links found`\n")
     bypasser = lk21.Bypass()
