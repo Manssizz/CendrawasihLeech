@@ -297,10 +297,9 @@ async def call_apropriate_function(
                 return True, None
             try:
                 message_to_send = ""
-                list_of_file = ""
+                downloading_dir_name = str(file.name)
                 for key_f_res_se in final_response:
                     local_file_name = key_f_res_se
-                    downloading_dir_name = str(file.name)
                     message_id = final_response[key_f_res_se]
                     channel_id = str(sent_message_to_update_tg_p.chat.id)[4:]
                     private_link = f"https://t.me/c/{channel_id}/{message_id}"
@@ -310,13 +309,12 @@ async def call_apropriate_function(
                     message_to_send += local_file_name
                     message_to_send += "</a>"
                     message_to_send += "\n"
-                    list_of_file += f"List file in `{downloading_dir_name}`:\n"
                 if message_to_send != "":
                     mention_req_user = (
                         f"<a href='tg://user?id={user_id}'>Done!</a>"
                     )
-                    message_to_send = list_of_file + message_to_send
-                    message_to_send = message_to_send + "\n" + "#Uploaded" + mention_req_user
+                    message_to_send = f"<b>List file in</b> `{downloading_dir_name}`:\n" + message_to_send
+                    message_to_send = message_to_send + "\n" + "#Uploading " + mention_req_user
                 else:
                     message_to_send = "<i>FAILED</i> Failed uploading files."
                 await user_message.reply_text(
