@@ -50,9 +50,15 @@ def direct_link_generator(text_url: str):
     elif 'hxfile.co' in text_url:
         return hxfile(text_url)
     elif 'layarkacaxxi.icu' in text_url:
-        return fembed720(text_url)
+        return fembed(text_url)
+    elif 'naniplay.nanime.in' in text_url:
+        return fembed(text_url)
+    elif 'naniplay.nanime.biz' in text_url:
+        return fembed(text_url)
+    elif 'naniplay.com' in text_url:
+        return fembed(text_url)
     elif 'femax20.com' in text_url:
-        return fembed480(text_url)
+        return fembed(text_url)
     elif 'anonfiles.com' in text_url:
         return anon(text_url)
     elif 'sbembed.com' in text_url:
@@ -61,6 +67,8 @@ def direct_link_generator(text_url: str):
         return sbembed(text_url)
     elif 'fembed.com' in text_url:
         return fembed(text_url)
+    elif '1drv.ms' in text_url:
+        return onedrive(text_url)
     else:
         raise DirectDownloadLinkException(f'No Direct link function found for {text_url}')
 
@@ -84,25 +92,25 @@ def hxfile(url: str) -> str:
     dl_url=bypasser.bypass_url(text_url)
     return dl_url
 
-def fembed720(url: str) -> str:
-    dl_url = ''
-    try:
-        text_url = re.findall(r'\bhttps?://.*layarkacaxxi\.icu\S+', url)[0]
-    except IndexError:
-        raise DirectDownloadLinkException("`No Fembed links found`\n")
-    bypasser = lk21.Bypass()
-    dl_url=bypasser.bypass_url(text_url)
-    return dl_url["720p/mp4"]
+# def fembed720(url: str) -> str:
+#     dl_url = ''
+#     try:
+#         text_url = re.findall(r'\bhttps?://.*layarkacaxxi\.icu\S+', url)[0]
+#     except IndexError:
+#         raise DirectDownloadLinkException("`No Fembed links found`\n")
+#     bypasser = lk21.Bypass()
+#     dl_url=bypasser.bypass_url(text_url)
+#     return dl_url["720p/mp4"]
 
-def fembed480(url: str) -> str:
-    dl_url = ''
-    try:
-        text_url = re.findall(r'\bhttps?://.*femax20\.com\S+', url)[0]
-    except IndexError:
-        raise DirectDownloadLinkException("`No Fembed links found`\n")
-    bypasser = lk21.Bypass()
-    dl_url=bypasser.bypass_url(text_url)
-    return dl_url["480p/mp4"]
+# def fembed480(url: str) -> str:
+#     dl_url = ''
+#     try:
+#         text_url = re.findall(r'\bhttps?://.*femax20\.com\S+', url)[0]
+#     except IndexError:
+#         raise DirectDownloadLinkException("`No Fembed links found`\n")
+#     bypasser = lk21.Bypass()
+#     dl_url=bypasser.bypass_url(text_url)
+#     return dl_url["480p/mp4"]
 
 def anon(url: str) -> str:
     dl_url = ''
@@ -138,6 +146,25 @@ def fembed(url: str) -> str:
     bypasser = lk21.Bypass()
     dl_url=bypasser.bypass_url(text_url)
     return dl_url
+
+def onedrive(url: str) -> str:
+    """ Onedrive direct link generator
+    Based on https://github.com/UsergeTeam/Userge """
+    dl_url = ''
+    try:
+        text_url = re.findall(r'\bhttps?://.*1drv\.ms\S+', url)[0]
+    except IndexError:
+        raise DirectDownloadLinkException("`No OneDrive links found`\n")
+    link_without_query = urlparse(text_url)._replace(query=None).geturl()
+    direct_link_encoded = str(standard_b64encode(bytes(link_without_query, "utf-8")), "utf-8")
+    direct_link1 = f"https://api.onedrive.com/v1.0/shares/u!{direct_link_encoded}/root/content"
+    resp = requests.head(direct_link1)
+    if resp.status_code != 302:
+        return "`Error: Unauthorized link, the link may be private`"
+    dl_link = resp.next.url
+    file_name = dl_link.rsplit("/", 1)[1]
+    resp2 = requests.head(dl_link)
+    return dl_link
 
 ########
 
