@@ -1,18 +1,13 @@
 FROM breakdowns/mega-sdk-python:latest
 
-# WORKDIR /usr/src/app
-# RUN chmod 777 /usr/src/app
 RUN mkdir ./CendrawasihLeech
 RUN chmod 777 ./CendrawasihLeech
 WORKDIR /CendrawasihLeech
 
-# ENV DEBIAN_FRONTEND=noninteractive
-# ENV TZ=Asia/Jakarta
+ENV TZ=Asia/Jakarta
 
 RUN apt -qq update --fix-missing && \
-    # apt -qq install -y software-properties-common && \
     rm -rf /var/lib/apt/lists/* && \
-    # apt add-repository non-free && \
     apt -qq update && \
     apt -qq install -y git aria2 wget curl busybox ffmpeg
 
@@ -33,9 +28,5 @@ COPY . .
 COPY extract /usr/local/bin
 COPY .netrc /root/.netrc
 RUN chmod +x /usr/local/bin/extract && chmod 600 /root/.netrc
-# RUN sed -i '/en_US.UTF-8/s/^# //g' /etc/locale.gen && locale-gen
-# ENV LANG en_US.UTF-8
-# ENV LANGUAGE en_US:en
-# ENV LC_ALL en_US.UTF-8
 
 CMD ["bash","start.sh"]
