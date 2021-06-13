@@ -55,6 +55,12 @@ def direct_link_generator(text_url: str):
         return fembed480(text_url)
     elif 'anonfiles.com' in text_url:
         return anon(text_url)
+    elif 'sbembed.com' in text_url:
+        return sbembed(text_url)
+    elif 'streamsb.net' in text_url:
+        return sbembed(text_url)
+    elif 'fembed.com' in text_url:
+        return fembed(text_url)
     else:
         raise DirectDownloadLinkException(f'No Direct link function found for {text_url}')
 
@@ -107,7 +113,34 @@ def anon(url: str) -> str:
     bypasser = lk21.Bypass()
     dl_url=bypasser.bypass_url(text_url)
     return dl_url
-        
+
+### Dev ##
+def sbembed(url: str) -> str:
+    dl_url = ''
+    try:
+        text_url = re.findall(r'\bhttps?://.*sbembed\.com\S+', url)[0]
+    except IndexError:
+        raise DirectDownloadLinkException("`No sbembed links found`\n")
+    bypasser = lk21.Bypass()
+    dl_url=bypasser.bypass_sbembed(text_url)
+    lst_link = []
+    count = len(dl_url)
+    for i in dl_url:
+        lst_link.append(dl_url[i])
+    return lst_link[count-1]    
+
+def fembed(url: str) -> str:
+    dl_url = ''
+    try:
+        text_url = re.findall(r'\bhttps?://.*fembed\.com\S+', url)[0]
+    except IndexError:
+        raise DirectDownloadLinkException("`No Fembed links found`\n")
+    bypasser = lk21.Bypass()
+    dl_url=bypasser.bypass_url(text_url)
+    return dl_url
+
+########
+
 def zippy_share(url: str) -> str:
     link = re.findall("https:/.(.*?).zippyshare", url)[0]
     response_content = (requests.get(url)).content
@@ -212,19 +245,6 @@ def github(url: str) -> str:
     except KeyError:
         raise DirectDownloadLinkException("`Error: Can't extract the link`\n")
 
-
-def useragent():
-    """
-    useragent random setter
-    """
-    useragents = BeautifulSoup(
-        requests.get(
-            'https://developers.whatismybrowser.com/'
-            'useragents/explore/operating_system_name/android/').content,
-        'lxml').findAll('td', {'class': 'useragent'})
-    user_agent = choice(useragents)
-    return user_agent.text
-
 def racaty(url: str) -> str:
     dl_url = ''
     try:
@@ -239,3 +259,15 @@ def racaty(url: str) -> str:
     bss2=BeautifulSoup(rep.text,'html.parser')
     dl_url=bss2.find('a',{'id':'uniqueExpirylink'})['href']
     return dl_url
+
+def useragent():
+    """
+    useragent random setter
+    """
+    useragents = BeautifulSoup(
+        requests.get(
+            'https://developers.whatismybrowser.com/'
+            'useragents/explore/operating_system_name/android/').content,
+        'lxml').findAll('td', {'class': 'useragent'})
+    user_agent = choice(useragents)
+    return user_agent.text
