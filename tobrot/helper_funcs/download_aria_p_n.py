@@ -184,7 +184,9 @@ def add_url(aria_instance, text_url, c_file_name):
         or "hxfile.co" in text_url  \
         or "layarkacaxxi.icu" in text_url  \
         or "femax20.com" in text_url  \
-        or "anonfiles.com" in text_url  \
+        or "sbembed.com" in text_url  \
+        or "fembed.com" in text_url  \
+        or "1drv.ms" in text_url  \
         or "racaty.net" in text_url:
             try:
                 urisitring = direct_link_generator(text_url)
