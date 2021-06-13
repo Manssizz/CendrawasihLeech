@@ -64,7 +64,7 @@ def direct_link_generator(text_url: str):
     elif 'sbembed.com' in text_url:
         return sbembed(text_url)
     elif 'streamsb.net' in text_url:
-        return sbembed(text_url)
+        return streamsb(text_url)
     elif 'fembed.com' in text_url:
         return fembed(text_url)
     elif '1drv.ms' in text_url:
@@ -129,6 +129,20 @@ def sbembed(url: str) -> str:
         text_url = re.findall(r'\bhttps?://.*sbembed\.com\S+', url)[0]
     except IndexError:
         raise DirectDownloadLinkException("`No sbembed links found`\n")
+    bypasser = lk21.Bypass()
+    dl_url=bypasser.bypass_sbembed(text_url)
+    lst_link = []
+    count = len(dl_url)
+    for i in dl_url:
+        lst_link.append(dl_url[i])
+    return lst_link[count-1]    
+
+def streamsb(url: str) -> str:
+    dl_url = ''
+    try:
+        text_url = re.findall(r'\bhttps?://.*streamsb\.net\S+', url)[0]
+    except IndexError:
+        raise DirectDownloadLinkException("`No streamsb links found`\n")
     bypasser = lk21.Bypass()
     dl_url=bypasser.bypass_sbembed(text_url)
     lst_link = []
