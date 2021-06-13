@@ -1,6 +1,7 @@
 {
   "name": "CendrawasihLeech",
   "description": "A Telegram Torrent (and youtube-dl) Leecher based on Pyrogram. Original repository by gautamajay52. for command list can found here https://github.com/Manssizz/CendrawasihLeech#command",
+  "logo": "https://avatars.githubusercontent.com/u/23637327?v=4",
   "keywords": [
     "telegram"
   ],
@@ -25,7 +26,7 @@
       "value": ""
     },
     "AUTH_CHANNEL": {
-      "description": "should be an integer. The BOT API ID of the Telegram Group, where the Leecher should work.",
+      "description": "Authorize bot Group, where the Leecher should work. Separate with space",
       "value": ""
     },
     "OWNER_ID": {
