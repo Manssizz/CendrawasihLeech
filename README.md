@@ -60,4 +60,3 @@ NTFS, RPM, SquashFS, UDF, VHD, XAR, Z.
 * [GautamKumar](https://github.com/gautamajay52/TorrentLeech-Gdrive) for original source
 * [yasirarism](https://github.com/yasirarism) for direct link support
 * [SlamMirror](https://github.com/breakdowns/slam-mirrorbot) I pick piece of this repos
-* [P3TERX](https://github.com/P3TERX/) for advance aria config
