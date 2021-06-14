@@ -37,8 +37,7 @@ async def extract_link(message, type_o_request):
     
     elif message.text is not None:
         if message.text.lower().endswith(".torrent"):
-            url = await message.download()
-            custom_file_name = message.caption
+            url = extract_url_from_entity(message.entities, message.text)
 
         elif "|" in message.text:
             url_parts = message.text.split("|")
