@@ -1,4 +1,4 @@
- 
+
 ## About Repo
 This repo based [GautamKumar](https://github.com/gautamajay52/TorrentLeech-Gdrive) TorrentLeech with some tweaks
 
@@ -14,7 +14,10 @@ This repo based [GautamKumar](https://github.com/gautamajay52/TorrentLeech-Gdriv
 
 ### Direct Links Supports
 ```
-'zippyshare.com', 'yadi.sk', 'cloud.mail.ru', 'mediafire.com', 'osdn.net', 'github.com', 'racaty.net', 'letsupload.io', 'hxfile.co', 'layarkacaxxi.icu', 'naniplay.nanime.in', 'naniplay.nanime.biz', 'naniplay.com', 'femax20.com', 'anonfiles.com', 'sbembed.com', 'streamsb.net', 'fembed.com', '1drv.ms aka OneDrive'
+'zippyshare.com', 'yadi.sk', 'cloud.mail.ru', 'mediafire.com', 'osdn.net', 
+'github.com', 'racaty.net', 'letsupload.io', 'hxfile.co', 'layarkacaxxi.icu',
+'naniplay.nanime.in', 'naniplay.nanime.biz', 'naniplay.com', 'femax20.com',
+'anonfiles.com', 'sbembed.com', 'streamsb.net', 'fembed.com', '1drv.ms aka OneDrive'
 ```
 ### Thumbnail supports
 ```
@@ -63,5 +66,4 @@ NTFS, RPM, SquashFS, UDF, VHD, XAR, Z.
 
 ### Credits
 * [GautamKumar](https://github.com/gautamajay52/TorrentLeech-Gdrive) for original source
-* [yasirarism](https://github.com/yasirarism) for direct link support
 * [SlamMirror](https://github.com/breakdowns/slam-mirrorbot) I pick piece of piece this repos
