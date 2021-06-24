@@ -26,6 +26,11 @@ This repo based [GautamKumar](https://github.com/gautamajay52/TorrentLeech-Gdriv
 ```
 > Note: Even stream format is support thumbnail, but telegram only support mp4 and mkv thumbnail for stream directly in app. You can still see thumbnail, but you must download the media file when you want to watch or open it.
 
+### Sample of rClone config
+<h1 align="center">
+  <a href="https://github.com/Manssizz/CendrawasihLeech"><img src="https://raw.githubusercontent.com/Manssizz/CendrawasihLeech/master/rclone.jpg" alt="rClone config"></a>
+</h1>
+
 ### Command List
 ```
 leech - Leech torrent file or direct link file and upload to Telegram.
