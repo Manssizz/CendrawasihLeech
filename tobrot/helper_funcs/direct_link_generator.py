@@ -186,15 +186,29 @@ def streamsb(url: str) -> str:
         lst_link.append(dl_url[i])
     return lst_link[count-1]    
 
+# def fembed(url: str) -> str:
+#     dl_url = ''
+#     try:
+#         text_url = re.findall(r'\bhttps?://.*fembed\.com\S+', url)[0]
+#     except IndexError:
+#         raise DirectDownloadLinkException("`No Fembed links found`\n")
+#     bypasser = lk21.Bypass()
+#     dl_url=bypasser.bypass_url(text_url)
+#     return dl_url
+
 def fembed(url: str) -> str:
     dl_url = ''
     try:
         text_url = re.findall(r'\bhttps?://.*fembed\.com\S+', url)[0]
     except IndexError:
-        raise DirectDownloadLinkException("`No Fembed links found`\n")
+        raise DirectDownloadLinkException("`No Fembed links found`\n")    
     bypasser = lk21.Bypass()
-    dl_url=bypasser.bypass_url(text_url)
-    return dl_url
+    dl_url=bypasser.bypass_fembed(text_url)
+    lst_link = []
+    count = len(dl_url)
+    for i in dl_url:
+        lst_link.append(dl_url[i])
+    return lst_link[count-1]
 
 def onedrive(url: str) -> str:
     """ Onedrive direct link generator
