@@ -19,6 +19,7 @@ This repo based [GautamKumar](https://github.com/gautamajay52/TorrentLeech-Gdriv
 'naniplay.nanime.in', 'naniplay.nanime.biz', 'naniplay.com', 'femax20.com',
 'anonfiles.com', 'sbembed.com', 'streamsb.net', 'fembed.com', '1drv.ms aka OneDrive'
 ```
+> Note: if you want to mirroring fembed links, use must add https:// in front of links. ex: /mirror https://fembed.com/f/jgndzfdj-n7zyg5
 ### Thumbnail supports
 ```
 "MKV", "MP4", "WEBM", "AVI", "MOV", 
