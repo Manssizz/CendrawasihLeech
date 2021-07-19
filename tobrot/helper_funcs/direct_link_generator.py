@@ -18,7 +18,7 @@ from random import choice
 from urllib.parse import urlparse
 
 import lk21
-import requests
+import requests, cfscrape
 from bs4 import BeautifulSoup
 from js2py import EvalJs
 # from lk21.extractors.bypasser import Bypass
