@@ -65,6 +65,10 @@ def direct_link_generator(text_url: str):
         return sbembed(text_url)
     elif 'streamsb.net' in text_url:
         return streamsb(text_url)
+    elif 'streatape.com' in text_url:
+        return streamtape(text_url)
+    elif 'antfiles.com' in text_url:
+        return antfiles(text_url)
     elif 'fembed.com' in text_url:
         return fembed(text_url)
     elif '1drv.ms' in text_url:
@@ -209,6 +213,27 @@ def fembed(url: str) -> str:
     for i in dl_url:
         lst_link.append(dl_url[i])
     return lst_link[count-1]
+
+def antfiles(url: str) -> str:
+    dl_url = ''
+    try:
+        text_url = re.findall(r'\bhttps?://.*antfiles\.com\S+', url)[0]
+    except IndexError:
+        raise DirectDownloadLinkException("`No Antfiles links found`\n")
+    bypasser = lk21.Bypass()
+    dl_url=bypasser.bypass_antfiles(text_url)
+    return dl_url
+
+
+def streamtape(url: str) -> str:
+    dl_url = ''
+    try:
+        text_url = re.findall(r'\bhttps?://.*streamtape\.com\S+', url)[0]
+    except IndexError:
+        raise DirectDownloadLinkException("`No Streamtape links found`\n")
+    bypasser = lk21.Bypass()
+    dl_url=bypasser.bypass_streamtape(text_url)
+    return dl_url
 
 def onedrive(url: str) -> str:
     """ Onedrive direct link generator
