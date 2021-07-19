@@ -341,8 +341,8 @@ def racaty(url: str) -> str:
         text_url = re.findall(r'\bhttps?://.*racaty\.net\S+', url)[0]
     except IndexError:
         raise DirectDownloadLinkException("`No Racaty links found`\n")
-    scrapper = cfscrape.create_scraper()
-    r = scrapper.get(url)
+    scraper = cfscrape.create_scraper()
+    r = scraper.get(url)
     soup = BeautifulSoup(r.text, "lxml")
     op = soup.find("input", {"name": "op"})["value"]
     ids = soup.find("input", {"name": "id"})["value"]
