@@ -190,6 +190,8 @@ def add_url(aria_instance, text_url, c_file_name):
         or "sbembed.com" in text_url  \
         or "streamsb.net" in text_url  \
         or "fembed.com" in text_url  \
+        or "antfiles.com" in text_url  \
+        or "streamtape.com" in text_url  \
         or "1drv.ms" in text_url  \
         or "racaty.net" in text_url:
             try:
