@@ -65,7 +65,7 @@ def direct_link_generator(text_url: str):
         return sbembed(text_url)
     elif 'streamsb.net' in text_url:
         return streamsb(text_url)
-    elif 'streatape.com' in text_url:
+    elif 'streamtape.com' in text_url:
         return streamtape(text_url)
     elif 'antfiles.com' in text_url:
         return antfiles(text_url)
