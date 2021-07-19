@@ -21,7 +21,7 @@ import lk21
 import requests, cfscrape
 from bs4 import BeautifulSoup
 from js2py import EvalJs
-# from lk21.extractors.bypasser import Bypass
+from lk21.extractors.bypasser import Bypass
 from base64 import standard_b64encode
 
 from tobrot.helper_funcs.exceptions import DirectDownloadLinkException
