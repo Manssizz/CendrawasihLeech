@@ -38,7 +38,7 @@ async def extract_link(message, type_o_request):
         #     url = message.text.strip()
 
     elif message.text is not None:
-        if message.text.lower().endswith(".torrent"):
+        if message.text.lower().startswith("https:") and message.text.lower().endswith(".torrent"):
             url = extract_url_from_entity(message.text)
 
         elif "|" in message.text:
