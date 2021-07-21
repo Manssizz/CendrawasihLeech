@@ -1,16 +1,16 @@
-aiohttp
+# aiohttp
 # aria2p
 hachoir
 Pillow
-pyrogram
-tgcrypto
-youtube_dl
+# pyrogram
+# tgcrypto
+# youtube_dl
 hurry.filesize
-python-dotenv
-beautifulsoup4
-bs4
-lxml
-requests
-js2py
-lk21
-pybase64
+# python-dotenv
+# beautifulsoup4
+# bs4
+# lxml
+# requests
+# js2py
+# lk21
+# pybase64
