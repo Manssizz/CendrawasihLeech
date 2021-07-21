@@ -170,10 +170,10 @@ def add_torrent(aria_instance, torrent_file_path):
 
 def add_url(aria_instance, text_url, c_file_name):
     options = None
-    # if c_file_name is not None:
-    #     options = {
-    #         "dir": c_file_name
-    #     }
+    if c_file_name is not None:
+        options = {
+            "dir": c_file_name
+        }
     if "zippyshare.com" in text_url \
         or "osdn.net" in text_url \
         or "mediafire.com" in text_url \
@@ -228,7 +228,7 @@ async def call_apropriate_function(
     if incoming_link.lower().startswith("magnet:"):
         sagtus, err_message = add_magnet(aria_instance, incoming_link, c_file_name)
     elif incoming_link.lower().endswith(".torrent"):
-        sagtus, err_message = add_torrent(aria_instance, incoming_link)
+        sagtus, err_message = add_torrent(aria_instance, incoming_link, c_file_name)
     else:
         sagtus, err_message = add_url(aria_instance, incoming_link, c_file_name)
     if not sagtus:
@@ -239,6 +239,22 @@ async def call_apropriate_function(
         aria_instance, err_message, sent_message_to_update_tg_p, None
     )
     if incoming_link.startswith("magnet:"):
+        #
+        err_message = await check_metadata(aria_instance, err_message)
+        #
+        await asyncio.sleep(1)
+        if err_message is not None:
+            await check_progress_for_dl(
+                aria_instance, err_message, sent_message_to_update_tg_p, None
+            )
+        else:
+            return False, "Can't getting metadata \n\n#MetaDataError"
+    await asyncio.sleep(1)
+    file = aria_instance.get_download(err_message)
+    to_upload_file = file.name
+    com_g = file.is_complete
+
+    if incoming_link.lower().endswith(".torrent"):
         #
         err_message = await check_metadata(aria_instance, err_message)
         #
