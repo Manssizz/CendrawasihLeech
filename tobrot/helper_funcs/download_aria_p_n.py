@@ -216,7 +216,7 @@ def add_url(aria_instance, text_url, c_file_name):
 async def call_apropriate_function(
     aria_instance,
     incoming_link,
-    # c_file_name,
+    c_file_name,
     sent_message_to_update_tg_p,
     is_zip,
     cstom_file_name,
@@ -226,11 +226,11 @@ async def call_apropriate_function(
     client,
 ):
     if incoming_link.lower().startswith("magnet:"):
-        # sagtus, err_message = add_magnet(aria_instance, incoming_link, c_file_name)
-        sagtus, err_message = add_magnet(aria_instance, incoming_link)
+        sagtus, err_message = add_magnet(aria_instance, incoming_link, c_file_name)
+        # sagtus, err_message = add_magnet(aria_instance, incoming_link)
     elif incoming_link.lower().endswith(".torrent"):
-        # sagtus, err_message = add_torrent(aria_instance, incoming_link, c_file_name)
-        sagtus, err_message = add_torrent(aria_instance, incoming_link)
+        sagtus, err_message = add_torrent(aria_instance, incoming_link, c_file_name)
+        # sagtus, err_message = add_torrent(aria_instance, incoming_link)
     else:
         # sagtus, err_message = add_url(aria_instance, incoming_link, c_file_name)
         sagtus, err_message = add_url(aria_instance, incoming_link)
