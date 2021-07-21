@@ -232,8 +232,8 @@ async def call_apropriate_function(
         sagtus, err_message = add_torrent(aria_instance, incoming_link, c_file_name)
         # sagtus, err_message = add_torrent(aria_instance, incoming_link)
     else:
-        # sagtus, err_message = add_url(aria_instance, incoming_link, c_file_name)
-        sagtus, err_message = add_url(aria_instance, incoming_link)
+        sagtus, err_message = add_url(aria_instance, incoming_link, c_file_name)
+        # sagtus, err_message = add_url(aria_instance, incoming_link)
     if not sagtus:
         return sagtus, err_message
     LOGGER.info(err_message)
