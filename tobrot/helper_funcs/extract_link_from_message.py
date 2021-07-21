@@ -39,7 +39,7 @@ async def extract_link(message, type_o_request):
 
     elif message.text is not None:
         if message.text.lower().startswith("https:") and message.text.lower().endswith(".torrent"):
-            url = extract_url_from_entity(message.text)
+            url = message.text.strip()
 
         elif "|" in message.text:
             url_parts = message.text.split("|")
