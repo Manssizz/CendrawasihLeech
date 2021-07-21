@@ -1,5 +1,5 @@
 aiohttp
-aria2p==0.9.1
+aria2p
 hachoir
 Pillow
 pyrogram
