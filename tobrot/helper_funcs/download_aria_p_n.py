@@ -250,8 +250,8 @@ async def call_apropriate_function(
         if regexp.search(incoming_link):
             var = incoming_link.encode('utf-8')
             file = hashlib.md5(var).hexdigest()
-            subprocess.run(f"wget -O /app/{file}.torrent '{incoming_link}'", shell=True)
-            sagtus, err_message = add_torrent(aria_instance, f"/app/{file}.torrent")
+            subprocess.run(f"wget -O /CendrawasihLeech/{file}.torrent '{incoming_link}'", shell=True)
+            sagtus, err_message = add_torrent(aria_instance, f"/CendrawasihLeech/{file}.torrent")
         else:
             sagtus, err_message = add_url(aria_instance, incoming_link, c_file_name)
     if not sagtus:
