@@ -59,6 +59,8 @@ def direct_link_generator(text_url: str):
         return nani(text_url)
     elif 'femax20.com' in text_url:
         return fembed(text_url)
+    elif 'mxplayer.in' in text_url:
+        return mxplayer(text_url)
     elif 'anonfiles.com' in text_url:
         return anon(text_url)
     elif 'sbembed.com' in text_url:
@@ -190,15 +192,16 @@ def streamsb(url: str) -> str:
         lst_link.append(dl_url[i])
     return lst_link[count-1]    
 
-# def fembed(url: str) -> str:
-#     dl_url = ''
-#     try:
-#         text_url = re.findall(r'\bhttps?://.*fembed\.com\S+', url)[0]
-#     except IndexError:
-#         raise DirectDownloadLinkException("`No Fembed links found`\n")
-#     bypasser = lk21.Bypass()
-#     dl_url=bypasser.bypass_url(text_url)
-#     return dl_url
+def mxplayer(url: str) -> str:
+    """ mxplayer direct links generator """
+    try:
+        text_url = re.findall(r'\bhttps?://.*mxplayer\.in\S+', url)[0]
+    except IndexError:
+        raise DirectDownloadLinkException("`No mxplayer links found`\n")
+    page = BeautifulSoup(requests.get(text_url).content, 'lxml')
+    info = page.find('a', {'aria-label': 'Download file'})
+    dl_url = info.get('href')
+    return dl_url
 
 def fembed(url: str) -> str:
     dl_url = ''

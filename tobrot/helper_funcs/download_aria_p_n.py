@@ -191,6 +191,7 @@ def add_url(aria_instance, text_url, c_file_name):
         or "naniplay.nanime.biz" in text_url  \
         or "naniplay.com" in text_url  \
         or "femax20.com" in text_url  \
+        or "mxplayer.in" in text_url  \
         or "sbembed.com" in text_url  \
         or "streamsb.net" in text_url  \
         or "fembed.com" in text_url  \
