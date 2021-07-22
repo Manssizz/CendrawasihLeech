@@ -9,6 +9,10 @@ import sys
 import time
 import requests
 import aria2p
+import re
+from re import search
+import subprocess
+import hashlib
 
 from pyrogram.errors import FloodWait, MessageNotModified
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message
@@ -225,18 +229,34 @@ async def call_apropriate_function(
     user_message,
     client,
 ):
+    # if incoming_link.lower().startswith("magnet:"):
+    #     sagtus, err_message = add_magnet(aria_instance, incoming_link, c_file_name)
+    #     # sagtus, err_message = add_magnet(aria_instance, incoming_link)
+    # elif incoming_link.lower().endswith(".torrent"):
+    #     sagtus, err_message = add_torrent(aria_instance, incoming_link, c_file_name)
+    #     # sagtus, err_message = add_torrent(aria_instance, incoming_link)
+    # else:
+    #     sagtus, err_message = add_url(aria_instance, incoming_link, c_file_name)
+    #     # sagtus, err_message = add_url(aria_instance, incoming_link)
+    # if not sagtus:
+    #     return sagtus, err_message
+    # LOGGER.info(err_message)
+    regexp = re.compile(r'^https?:\/\/.*(\.torrent|\/torrent|\/jav.php|nanobytes\.org).*')
     if incoming_link.lower().startswith("magnet:"):
         sagtus, err_message = add_magnet(aria_instance, incoming_link, c_file_name)
-        # sagtus, err_message = add_magnet(aria_instance, incoming_link)
-    elif incoming_link.lower().endswith(".torrent"):
-        sagtus, err_message = add_torrent(aria_instance, incoming_link, c_file_name)
-        # sagtus, err_message = add_torrent(aria_instance, incoming_link)
+    elif incoming_link.lower().endswith(".torrent") and not incoming_link.lower().startswith("http"):
+        sagtus, err_message = add_torrent(aria_instance, incoming_link)
     else:
-        sagtus, err_message = add_url(aria_instance, incoming_link, c_file_name)
-        # sagtus, err_message = add_url(aria_instance, incoming_link)
+        if regexp.search(incoming_link):
+            var = incoming_link.encode('utf-8')
+            file = hashlib.md5(var).hexdigest()
+            subprocess.run(f"wget -O /app/{file}.torrent '{incoming_link}'", shell=True)
+            sagtus, err_message = add_torrent(aria_instance, f"/app/{file}.torrent")
+        else:
+            sagtus, err_message = add_url(aria_instance, incoming_link, c_file_name)
     if not sagtus:
         return sagtus, err_message
-    LOGGER.info(err_message)
+    LOGGER.info(err_message)    
     # https://stackoverflow.com/a/58213653/4723940
     await check_progress_for_dl(
         aria_instance, err_message, sent_message_to_update_tg_p, None
