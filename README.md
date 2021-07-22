@@ -18,7 +18,7 @@ This repo based [GautamKumar](https://github.com/gautamajay52/TorrentLeech-Gdriv
 'github.com', 'racaty.net', 'letsupload.io', 'hxfile.co', 'layarkacaxxi.icu',
 'naniplay.nanime.in', 'naniplay.nanime.biz', 'naniplay.com', 'femax20.com',
 'anonfiles.com', 'sbembed.com', 'streamsb.net', 'fembed.com', 'antfiles.com',
-'streamtape.com', '1drv.ms aka OneDrive'
+'streamtape.com', '1drv.ms aka OneDrive', 'mxplayer.in'
 ```
 > Note: if you want to mirroring fembed links, use must add https:// in front of links. ex: /mirror https://fembed.com/f/jgndzfdj-n7zyg5
 ### Thumbnail supports
