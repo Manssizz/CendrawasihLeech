@@ -3,11 +3,10 @@
 python-dotenv
 hachoir
 Pillow
-# pyrogram
-# tgcrypto
+pyrogram
+tgcrypto
 # youtube_dl
 hurry.filesize
-# python-dotenv
 # beautifulsoup4
 # bs4
 # lxml
