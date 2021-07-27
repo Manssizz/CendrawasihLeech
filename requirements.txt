@@ -14,3 +14,4 @@ requests
 js2py
 lk21
 pybase64
+cfscrape
