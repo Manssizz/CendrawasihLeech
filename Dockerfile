@@ -26,7 +26,8 @@ COPY requirements.txt .
 RUN pip3 install --no-cache-dir -r requirements.txt
 COPY . .
 COPY extract /usr/local/bin
-COPY .netrc /root/.netrc
-RUN chmod +x /usr/local/bin/extract && chmod 600 /root/.netrc
+COPY .netrc $HOME/.netrc
+# RUN chmod +x /usr/local/bin/extract && chmod 600 /root/.netrc
+RUN touch $HOME/.netrc && chmod a-rwx,u+rw $HOME/.netrc
 
 CMD ["bash","start.sh"]
