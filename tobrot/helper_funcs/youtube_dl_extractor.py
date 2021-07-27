@@ -21,6 +21,7 @@ async def extract_youtube_dl_formats(
         "--youtube-skip-dash-manifest",
         "--no-check-certificate",
         "-j",
+        "--netrc",
         url,
     ]
     if "hotstar" in url:
