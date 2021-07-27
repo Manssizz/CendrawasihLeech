@@ -133,3 +133,6 @@ dmypy.json
 
 # rClone conf
 rclone.conf
+
+# netrc
+.netrc
