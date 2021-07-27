@@ -75,7 +75,7 @@ async def aria_start():
     aria2_daemon_start_cmd.append("--allow-overwrite=true")
     aria2_daemon_start_cmd.append("--daemon=true")
     aria2_daemon_start_cmd.append("--enable-rpc=true")
-    aria2_daemon_start_cmd.append("--netrc-path=/root/.netrc")
+    aria2_daemon_start_cmd.append("--netrc-path=$HOME/.netrc")
     aria2_daemon_start_cmd.append(f"--rpc-listen-port={ARIA_TWO_STARTED_PORT}")
     aria2_daemon_start_cmd.append("--rpc-listen-all=false")
     aria2_daemon_start_cmd.append("--check-certificate=false")
