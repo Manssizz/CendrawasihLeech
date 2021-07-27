@@ -1,5 +1,6 @@
 # aiohttp
 # aria2p
+dotenv
 hachoir
 Pillow
 # pyrogram
