@@ -194,6 +194,7 @@ def streamsb(url: str) -> str:
 
 def mxplayer(url: str) -> str:
     """ mxplayer direct links generator """
+    dl_url = ''
     try:
         text_url = re.findall(r'\bhttps?://.*mxplayer\.in\S+', url)[0]
     except IndexError:
