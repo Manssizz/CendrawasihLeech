@@ -21,8 +21,8 @@ async def extract_youtube_dl_formats(
         "--youtube-skip-dash-manifest",
         "--no-check-certificate",
         "-j",
-        "--netrc",
         url,
+        "-n",
     ]
     if "hotstar" in url:
         command_to_exec.append("--geo-bypass-country")
