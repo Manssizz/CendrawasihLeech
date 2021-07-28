@@ -101,11 +101,12 @@
       "required": false
     },
     "RCLONE_CONFIG": {
-      "description": "Enter your copied text from rclone config. Compulsory for /gleech as well as /tgsync command ",
+      "description": "Enter your copied text from rclone config.",
       "required": false
     },
     "DESTINATION_FOLDER": {
       "description": "Enter your Cloud folder NAME(not ID😅) in which you want to upload/store your files.",
+      "value":"CendrawasihLeech",
       "required": false
     },
     "CUSTOM_FILE_NAME": {
