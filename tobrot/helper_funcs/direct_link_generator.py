@@ -18,7 +18,8 @@ from random import choice
 from urllib.parse import urlparse
 
 import lk21
-import requests, cfscrape
+import requests
+import cfscrape
 from bs4 import BeautifulSoup
 from js2py import EvalJs
 from lk21.extractors.bypasser import Bypass
@@ -67,6 +68,8 @@ def direct_link_generator(text_url: str):
         return sbembed(text_url)
     elif 'streamsb.net' in text_url:
         return streamsb(text_url)
+    elif 'sbcloud1.com' in text_url:
+        return streamsb(text_url)
     elif 'streamtape.com' in text_url:
         return streamtape(text_url)
     elif 'antfiles.com' in text_url:
@@ -76,7 +79,9 @@ def direct_link_generator(text_url: str):
     elif '1drv.ms' in text_url:
         return onedrive(text_url)
     else:
-        raise DirectDownloadLinkException(f'No Direct link function found for {text_url}')
+        raise DirectDownloadLinkException(
+            f'No Direct link function found for {text_url}')
+
 
 def letsupload(url: str) -> str:
     dl_url = ''
@@ -85,8 +90,9 @@ def letsupload(url: str) -> str:
     except IndexError:
         raise DirectDownloadLinkException("`No Letsupload links found`\n")
     bypasser = lk21.Bypass()
-    dl_url=bypasser.bypass_url(text_url)
+    dl_url = bypasser.bypass_url(text_url)
     return dl_url
+
 
 def hxfile(url: str) -> str:
     dl_url = ''
@@ -95,8 +101,9 @@ def hxfile(url: str) -> str:
     except IndexError:
         raise DirectDownloadLinkException("`No HXFile links found`\n")
     bypasser = lk21.Bypass()
-    dl_url=bypasser.bypass_url(text_url)
+    dl_url = bypasser.bypass_url(text_url)
     return dl_url
+
 
 def anon(url: str) -> str:
     dl_url = ''
@@ -105,11 +112,13 @@ def anon(url: str) -> str:
     except IndexError:
         raise DirectDownloadLinkException("`No anonfiles links found`\n")
     bypasser = lk21.Bypass()
-    dl_url=bypasser.bypass_url(text_url)
+    dl_url = bypasser.bypass_url(text_url)
     return dl_url
 
     ### Update by manssizz@CendrawasihLeech ###
 ### https://github.com/Manssizz/CendrawasihLeech/ ###
+
+
 def fembed720(url: str) -> str:
     dl_url = ''
     try:
@@ -117,8 +126,9 @@ def fembed720(url: str) -> str:
     except IndexError:
         raise DirectDownloadLinkException("`No Fembed links found`\n")
     bypasser = lk21.Bypass()
-    dl_url=bypasser.bypass_url(text_url)
+    dl_url = bypasser.bypass_url(text_url)
     return dl_url["720p/mp4"]
+
 
 def nani(url: str) -> str:
     dl_url = ''
@@ -127,8 +137,9 @@ def nani(url: str) -> str:
     except IndexError:
         raise DirectDownloadLinkException("`No Fembed links found`\n")
     bypasser = lk21.Bypass()
-    dl_url=bypasser.bypass_url(text_url)
+    dl_url = bypasser.bypass_url(text_url)
     return dl_url
+
 
 def naniplay(url: str) -> str:
     dl_url = ''
@@ -137,8 +148,9 @@ def naniplay(url: str) -> str:
     except IndexError:
         raise DirectDownloadLinkException("`No Fembed links found`\n")
     bypasser = lk21.Bypass()
-    dl_url=bypasser.bypass_url(text_url)
+    dl_url = bypasser.bypass_url(text_url)
     return dl_url
+
 
 def nanibiz(url: str) -> str:
     dl_url = ''
@@ -147,22 +159,25 @@ def nanibiz(url: str) -> str:
     except IndexError:
         raise DirectDownloadLinkException("`No Fembed links found`\n")
     bypasser = lk21.Bypass()
-    dl_url=bypasser.bypass_url(text_url)
+    dl_url = bypasser.bypass_url(text_url)
     return dl_url
 
+
 def streamsb(url: str) -> str:
-    dl_url = ''
-    try:
-        text_url = re.findall(r'\bhttps?://.*streamsb\.net\S+', url)[0]
-    except IndexError:
-        raise DirectDownloadLinkException("`No streamsb links found`\n")
+    # dl_url = ''
+    # try:
+    #     text_url = re.findall(r'\bhttps?://.*streamsb\.net\S+', url)[0]
+    # except IndexError:
+    #     raise DirectDownloadLinkException("`No streamsb links found`\n")
     bypasser = lk21.Bypass()
-    dl_url=bypasser.bypass_sbembed(text_url)
+    # dl_url=bypasser.bypass_sbembed(text_url)
+    dl_url = bypasser.bypass_sbembed(url)
     lst_link = []
     count = len(dl_url)
     for i in dl_url:
         lst_link.append(dl_url[i])
-    return lst_link[count-1]    
+    return lst_link[count-1]
+
 
 def sbembed(url: str) -> str:
     dl_url = ''
@@ -171,12 +186,13 @@ def sbembed(url: str) -> str:
     except IndexError:
         raise DirectDownloadLinkException("`No sbembed links found`\n")
     bypasser = lk21.Bypass()
-    dl_url=bypasser.bypass_sbembed(text_url)
+    dl_url = bypasser.bypass_sbembed(text_url)
     lst_link = []
     count = len(dl_url)
     for i in dl_url:
         lst_link.append(dl_url[i])
-    return lst_link[count-1]    
+    return lst_link[count-1]
+
 
 def streamsb(url: str) -> str:
     dl_url = ''
@@ -185,12 +201,13 @@ def streamsb(url: str) -> str:
     except IndexError:
         raise DirectDownloadLinkException("`No streamsb links found`\n")
     bypasser = lk21.Bypass()
-    dl_url=bypasser.bypass_sbembed(text_url)
+    dl_url = bypasser.bypass_sbembed(text_url)
     lst_link = []
     count = len(dl_url)
     for i in dl_url:
         lst_link.append(dl_url[i])
-    return lst_link[count-1]    
+    return lst_link[count-1]
+
 
 def mxplayer(url: str) -> str:
     """ mxplayer direct links generator """
@@ -204,19 +221,21 @@ def mxplayer(url: str) -> str:
     dl_url = info.get('href')
     return dl_url
 
+
 def fembed(url: str) -> str:
     dl_url = ''
     try:
         text_url = re.findall(r'\bhttps?://.*fembed\.com\S+', url)[0]
     except IndexError:
-        raise DirectDownloadLinkException("`No Fembed links found`\n")    
+        raise DirectDownloadLinkException("`No Fembed links found`\n")
     bypasser = lk21.Bypass()
-    dl_url=bypasser.bypass_fembed(text_url)
+    dl_url = bypasser.bypass_fembed(text_url)
     lst_link = []
     count = len(dl_url)
     for i in dl_url:
         lst_link.append(dl_url[i])
     return lst_link[count-1]
+
 
 def antfiles(url: str) -> str:
     dl_url = ''
@@ -225,7 +244,7 @@ def antfiles(url: str) -> str:
     except IndexError:
         raise DirectDownloadLinkException("`No Antfiles links found`\n")
     bypasser = lk21.Bypass()
-    dl_url=bypasser.bypass_antfiles(text_url)
+    dl_url = bypasser.bypass_antfiles(text_url)
     return dl_url
 
 
@@ -236,8 +255,9 @@ def streamtape(url: str) -> str:
     except IndexError:
         raise DirectDownloadLinkException("`No Streamtape links found`\n")
     bypasser = lk21.Bypass()
-    dl_url=bypasser.bypass_streamtape(text_url)
+    dl_url = bypasser.bypass_streamtape(text_url)
     return dl_url
+
 
 def onedrive(url: str) -> str:
     """ Onedrive direct link generator
@@ -248,7 +268,8 @@ def onedrive(url: str) -> str:
     except IndexError:
         raise DirectDownloadLinkException("`No OneDrive links found`\n")
     link_without_query = urlparse(text_url)._replace(query=None).geturl()
-    direct_link_encoded = str(standard_b64encode(bytes(link_without_query, "utf-8")), "utf-8")
+    direct_link_encoded = str(standard_b64encode(
+        bytes(link_without_query, "utf-8")), "utf-8")
     direct_link1 = f"https://api.onedrive.com/v1.0/shares/u!{direct_link_encoded}/root/content"
     resp = requests.head(direct_link1)
     if resp.status_code != 302:
@@ -260,17 +281,18 @@ def onedrive(url: str) -> str:
 
 ######## [END] ########
 
+
 def zippy_share(url: str) -> str:
     link = re.findall("https:/.(.*?).zippyshare", url)[0]
     response_content = (requests.get(url)).content
     bs_obj = BeautifulSoup(response_content, "lxml")
 
     try:
-        js_script = bs_obj.find("div", {"class": "center",}).find_all(
+        js_script = bs_obj.find("div", {"class": "center", }).find_all(
             "script"
         )[1]
     except:
-        js_script = bs_obj.find("div", {"class": "right",}).find_all(
+        js_script = bs_obj.find("div", {"class": "right", }).find_all(
             "script"
         )[0]
 
@@ -298,7 +320,8 @@ def yandex_disk(url: str) -> str:
         dl_url = requests.get(api.format(text_url)).json()['href']
         return dl_url
     except KeyError:
-        raise DirectDownloadLinkException("`Error: File not found / Download limit reached`\n")
+        raise DirectDownloadLinkException(
+            "`Error: File not found / Download limit reached`\n")
 
 
 def cm_ru(url: str) -> str:
@@ -364,6 +387,7 @@ def github(url: str) -> str:
     except KeyError:
         raise DirectDownloadLinkException("`Error: Can't extract the link`\n")
 
+
 def racaty(url: str) -> str:
     dl_url = ''
     try:
@@ -375,10 +399,12 @@ def racaty(url: str) -> str:
     soup = BeautifulSoup(r.text, "lxml")
     op = soup.find("input", {"name": "op"})["value"]
     ids = soup.find("input", {"name": "id"})["value"]
-    rpost = scraper.post(url, data = {"op": op, "id": ids})
+    rpost = scraper.post(url, data={"op": op, "id": ids})
     rsoup = BeautifulSoup(rpost.text, "lxml")
-    dl_url = rsoup.find("a", {"id": "uniqueExpirylink"})["href"].replace(" ", "%20")
+    dl_url = rsoup.find("a", {"id": "uniqueExpirylink"})[
+        "href"].replace(" ", "%20")
     return dl_url
+
 
 def useragent():
     """

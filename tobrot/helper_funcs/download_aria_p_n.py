@@ -37,10 +37,12 @@ from tobrot.helper_funcs.exceptions import DirectDownloadLinkException
 
 sys.setrecursionlimit(10 ** 4)
 
+
 def KopyasizListe(string):
     kopyasiz = list(string.split(","))
     kopyasiz = list(dict.fromkeys(kopyasiz))
     return kopyasiz
+
 
 def Virgullustring(string):
     string = string.replace("\n\n", ",")
@@ -49,6 +51,7 @@ def Virgullustring(string):
     string = string.rstrip(',')
     string = string.lstrip(',')
     return string
+
 
 tracker_urlsss = [
     "https://newtrackon.com/api/stable",
@@ -67,6 +70,7 @@ for i in range(len(tracker_urlsss)):
     tumtorrenttrackerstringi += response.text
 trackerlistemiz = KopyasizListe(Virgullustring(tumtorrenttrackerstringi))
 sonstringtrckr = ','.join(trackerlistemiz)
+
 
 async def aria_start():
     aria2_daemon_start_cmd = []
@@ -123,7 +127,8 @@ async def aria_start():
     LOGGER.info(stdout)
     LOGGER.info(stderr)
     aria2 = aria2p.API(
-        aria2p.Client(host="http://localhost", port=ARIA_TWO_STARTED_PORT, secret="")
+        aria2p.Client(host="http://localhost",
+                      port=ARIA_TWO_STARTED_PORT, secret="")
     )
     return aria2
 
@@ -179,31 +184,32 @@ def add_url(aria_instance, text_url, c_file_name):
     #         "dir": c_file_name
     #     }
     if "zippyshare.com" in text_url \
-        or "osdn.net" in text_url \
-        or "mediafire.com" in text_url \
-        or "cloud.mail.ru" in text_url \
-        or "github.com" in text_url \
-        or "yadi.sk" in text_url  \
-        or "letsupload.io" in text_url  \
-        or "hxfile.co" in text_url  \
-        or "layarkacaxxi.icu" in text_url  \
-        or "naniplay.nanime.in" in text_url  \
-        or "naniplay.nanime.biz" in text_url  \
-        or "naniplay.com" in text_url  \
-        or "femax20.com" in text_url  \
-        or "mxplayer.in" in text_url  \
-        or "sbembed.com" in text_url  \
-        or "streamsb.net" in text_url  \
-        or "fembed.com" in text_url  \
-        or "antfiles.com" in text_url  \
-        or "streamtape.com" in text_url  \
-        or "1drv.ms" in text_url  \
-        or "racaty.net" in text_url:
-            try:
-                urisitring = direct_link_generator(text_url)
-                uris = [urisitring]
-            except DirectDownloadLinkException as e:
-                LOGGER.info(f'{text_url}: {e}')
+            or "osdn.net" in text_url \
+            or "mediafire.com" in text_url \
+            or "cloud.mail.ru" in text_url \
+            or "github.com" in text_url \
+            or "yadi.sk" in text_url  \
+            or "letsupload.io" in text_url  \
+            or "hxfile.co" in text_url  \
+            or "layarkacaxxi.icu" in text_url  \
+            or "naniplay.nanime.in" in text_url  \
+            or "naniplay.nanime.biz" in text_url  \
+            or "naniplay.com" in text_url  \
+            or "femax20.com" in text_url  \
+            or "mxplayer.in" in text_url  \
+            or "sbembed.com" in text_url  \
+            or "sbcloud1.com" in text_url  \
+            or "streamsb.net" in text_url  \
+            or "fembed.com" in text_url  \
+            or "antfiles.com" in text_url  \
+            or "streamtape.com" in text_url  \
+            or "1drv.ms" in text_url  \
+            or "racaty.net" in text_url:
+        try:
+            urisitring = direct_link_generator(text_url)
+            uris = [urisitring]
+        except DirectDownloadLinkException as e:
+            LOGGER.info(f'{text_url}: {e}')
     else:
         uris = [text_url]
     # Add URL Into Queue
@@ -242,22 +248,27 @@ async def call_apropriate_function(
     # if not sagtus:
     #     return sagtus, err_message
     # LOGGER.info(err_message)
-    regexp = re.compile(r'^https?:\/\/.*(\.torrent|\/torrent|\/jav.php|nanobytes\.org).*')
+    regexp = re.compile(
+        r'^https?:\/\/.*(\.torrent|\/torrent|\/jav.php|nanobytes\.org).*')
     if incoming_link.lower().startswith("magnet:"):
-        sagtus, err_message = add_magnet(aria_instance, incoming_link, c_file_name)
+        sagtus, err_message = add_magnet(
+            aria_instance, incoming_link, c_file_name)
     elif incoming_link.lower().endswith(".torrent") and not incoming_link.lower().startswith("http"):
         sagtus, err_message = add_torrent(aria_instance, incoming_link)
     else:
         if regexp.search(incoming_link):
             var = incoming_link.encode('utf-8')
             file = hashlib.md5(var).hexdigest()
-            subprocess.run(f"wget -O /CendrawasihLeech/{file}.torrent '{incoming_link}'", shell=True)
-            sagtus, err_message = add_torrent(aria_instance, f"/CendrawasihLeech/{file}.torrent")
+            subprocess.run(
+                f"wget -O /CendrawasihLeech/{file}.torrent '{incoming_link}'", shell=True)
+            sagtus, err_message = add_torrent(
+                aria_instance, f"/CendrawasihLeech/{file}.torrent")
         else:
-            sagtus, err_message = add_url(aria_instance, incoming_link, c_file_name)
+            sagtus, err_message = add_url(
+                aria_instance, incoming_link, c_file_name)
     if not sagtus:
         return sagtus, err_message
-    LOGGER.info(err_message)    
+    LOGGER.info(err_message)
     # https://stackoverflow.com/a/58213653/4723940
     await check_progress_for_dl(
         aria_instance, err_message, sent_message_to_update_tg_p, None
@@ -314,7 +325,8 @@ async def call_apropriate_function(
     if to_upload_file:
         if CUSTOM_FILE_NAME:
             if os.path.isfile(to_upload_file):
-                os.rename(to_upload_file, f"{CUSTOM_FILE_NAME}{to_upload_file}")
+                os.rename(to_upload_file,
+                          f"{CUSTOM_FILE_NAME}{to_upload_file}")
                 to_upload_file = f"{CUSTOM_FILE_NAME}{to_upload_file}"
             else:
                 for root, _, files in os.walk(to_upload_file):
@@ -361,7 +373,8 @@ async def call_apropriate_function(
                     mention_req_user = (
                         f"<a href='tg://user?id={user_id}'>Done!</a>"
                     )
-                    message_to_send = f"<b>List file in</b> `{downloading_dir_name}`:\n" + message_to_send
+                    message_to_send = f"<b>List file in</b> `{downloading_dir_name}`:\n" + \
+                        message_to_send
                     message_to_send = message_to_send + "\n" + "#Uploading " + mention_req_user
                 else:
                     message_to_send = "<i>FAILED</i> Failed uploading files."
