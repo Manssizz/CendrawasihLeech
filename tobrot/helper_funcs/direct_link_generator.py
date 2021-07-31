@@ -163,14 +163,13 @@ def nanibiz(url: str) -> str:
     return dl_url
 
 
-def streamsb(text_url: str) -> str:
-    # dl_url = ''
-    # try:
-    #     text_url = re.findall(r'\bhttps?://.*streamsb\.net\S+', url)[0]
-    # except IndexError:
-    #     raise DirectDownloadLinkException("`No streamsb links found`\n")
+def streamsb(url: str) -> str:
+    dl_url = ''
+    try:
+        text_url = re.findall(r'\bhttps?://.*streamsb\.net\S+', url)[0]
+    except IndexError:
+        raise DirectDownloadLinkException("`No streamsb links found`\n")
     bypasser = lk21.Bypass()
-    # dl_url=bypasser.bypass_sbembed(text_url)
     dl_url = bypasser.bypass_sbembed(text_url)
     lst_link = []
     count = len(dl_url)
