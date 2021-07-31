@@ -12,6 +12,6 @@ bs4
 lxml
 requests
 js2py
-lk21
+lk21==1.6
 pybase64
 cfscrape
