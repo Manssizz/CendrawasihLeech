@@ -69,7 +69,7 @@ def direct_link_generator(text_url: str):
     elif 'streamsb.net' in text_url:
         return streamsb(text_url)
     elif 'sbcloud1.com' in text_url:
-        return streamsb(text_url)
+        return sbcloud(text_url)
     elif 'streamtape.com' in text_url:
         return streamtape(text_url)
     elif 'antfiles.com' in text_url:
@@ -163,10 +163,10 @@ def nanibiz(url: str) -> str:
     return dl_url
 
 
-def streamsb(url: str) -> str:
+def sbcloud(url: str) -> str:
     dl_url = ''
     try:
-        text_url = re.findall(r'\bhttps?://.*streamsb\.net\S+', url)[0]
+        text_url = re.findall(r'\bhttps?://.*sbcloud1\.com\S+', url)[0]
     except IndexError:
         raise DirectDownloadLinkException("`No streamsb links found`\n")
     bypasser = lk21.Bypass()
