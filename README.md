@@ -42,7 +42,7 @@ i.e:
 machine vk login tai@babi.com password tai@kuda
 machine facebook login tai@babi.com password tai@kuda
 ```
-> `Important:` **Because personal data login is a very confidential thing, i exlude my .netrc file in gitignore. if you want add, remove netrc in gitignore and  make you repo private before you push .netrc file** 
+> `Important:` **Because personal data login is a very confidential thing, i exclude my .netrc file in gitignore. if you want add, remove netrc in gitignore and  make you repo private before you push .netrc file** 
 ### Sample of rClone config
 <h1 align="center">
   <a href="https://github.com/Manssizz/CendrawasihLeech"><img src="https://raw.githubusercontent.com/Manssizz/CendrawasihLeech/master/rclone.jpg" alt="rClone config"></a>
