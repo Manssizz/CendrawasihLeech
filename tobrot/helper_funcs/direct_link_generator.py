@@ -195,7 +195,7 @@ def sbcloud(url: str) -> str:
     return lst_link[count-1]
 
 
-def sbembed(url: str) -> str:
+def sbembed(text_url: str) -> str:
     # dl_url = ''
     # try:
     #     text_url = re.findall(r'\bhttps?://.*sbembed\.com\S+', url)[0]
