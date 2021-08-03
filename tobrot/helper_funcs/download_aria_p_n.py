@@ -193,6 +193,7 @@ def add_url(aria_instance, text_url, c_file_name):
             or "yadi.sk" in text_url  \
             or "letsupload.io" in text_url  \
             or "hxfile.co" in text_url  \
+            or "fembed.com" in text_url  \
             or "layarkacaxxi.icu" in text_url  \
             or "naniplay.nanime.in" in text_url  \
             or "naniplay.nanime.biz" in text_url  \
@@ -210,11 +211,11 @@ def add_url(aria_instance, text_url, c_file_name):
             or "sbplay.org" in text_url  \
             or "sbcloud1.com" in text_url  \
             or "streamsb.net" in text_url  \
-            or "fembed.com" in text_url  \
             or "antfiles.com" in text_url  \
             or "streamtape.com" in text_url  \
             or "1drv.ms" in text_url  \
             or "solidfiles.com" in text_url  \
+            or "pixeldrain.com" in text_url  \
             or "racaty.net" in text_url:
         try:
             urisitring = direct_link_generator(text_url)
@@ -247,18 +248,6 @@ async def call_apropriate_function(
     user_message,
     client,
 ):
-    # if incoming_link.lower().startswith("magnet:"):
-    #     sagtus, err_message = add_magnet(aria_instance, incoming_link, c_file_name)
-    #     # sagtus, err_message = add_magnet(aria_instance, incoming_link)
-    # elif incoming_link.lower().endswith(".torrent"):
-    #     sagtus, err_message = add_torrent(aria_instance, incoming_link, c_file_name)
-    #     # sagtus, err_message = add_torrent(aria_instance, incoming_link)
-    # else:
-    #     sagtus, err_message = add_url(aria_instance, incoming_link, c_file_name)
-    #     # sagtus, err_message = add_url(aria_instance, incoming_link)
-    # if not sagtus:
-    #     return sagtus, err_message
-    # LOGGER.info(err_message)
     regexp = re.compile(
         r'^https?:\/\/.*(\.torrent|\/torrent|\/jav.php|nanobytes\.org).*')
     if incoming_link.lower().startswith("magnet:"):
@@ -305,22 +294,6 @@ async def call_apropriate_function(
     to_upload_file = file.name
     com_g = file.is_complete
 
-    # if incoming_link.lower().endswith(".torrent"):
-    #     #
-    #     err_message = await check_metadata(aria_instance, err_message)
-    #     #
-    #     await asyncio.sleep(1)
-    #     if err_message is not None:
-    #         await check_progress_for_dl(
-    #             aria_instance, err_message, sent_message_to_update_tg_p, None
-    #         )
-    #     else:
-    #         return False, "Can't getting metadata \n\n#MetaDataError"
-    # await asyncio.sleep(1)
-    # file = aria_instance.get_download(err_message)
-    # to_upload_file = file.name
-    # com_g = file.is_complete
-    #
     if is_zip:
         check_if_file = await create_archive(to_upload_file)
         if check_if_file is not None:
