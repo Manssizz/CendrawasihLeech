@@ -296,9 +296,9 @@ async def call_apropriate_function(
     #     else:
     #         return False, "Can't getting metadata \n\n#MetaDataError"
     # await asyncio.sleep(1)
-    # file = aria_instance.get_download(err_message)
-    # to_upload_file = file.name
-    # com_g = file.is_complete
+    file = aria_instance.get_download(err_message)
+    to_upload_file = file.name
+    com_g = file.is_complete
 
     # if incoming_link.lower().endswith(".torrent"):
     #     #
