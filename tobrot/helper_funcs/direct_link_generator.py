@@ -78,6 +78,8 @@ def direct_link_generator(text_url: str):
         return fembed(text_url)
     elif '1drv.ms' in text_url:
         return onedrive(text_url)
+    elif 'solidfiles.com' in text_url:
+        return solidfiles(text_url)
     else:
         raise DirectDownloadLinkException(
             f'No Direct link function found for {text_url}')
@@ -279,6 +281,25 @@ def onedrive(url: str) -> str:
     return dl_link
 
 ######## [END] ########
+
+
+def solidfiles(url: str) -> str:
+    dl_url = ''
+    try:
+        text_url = re.findall(r'\bhttps?://.*solidfiles\.com\S+', url)[0]
+    except IndexError:
+        raise DirectDownloadLinkException("`No OneDrive links found`\n")
+    """ Solidfiles direct links generator
+    Based on https://github.com/Xonshiz/SolidFiles-Downloader
+    By https://github.com/Jusidama18 """
+    headers = {
+        'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/36.0.1985.125 Safari/537.36'
+    }
+    pageSource = requests.get(text_url, headers=headers).text
+    mainOptions = str(
+        re.search(r'viewerOptions\'\,\ (.*?)\)\;', pageSource).group(1))
+    dl_url = json.loads(mainOptions)["downloadUrl"]
+    return dl_url
 
 
 def zippy_share(url: str) -> str:
