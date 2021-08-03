@@ -6,7 +6,7 @@ This repo based [GautamKumar](https://github.com/gautamajay52/TorrentLeech-Gdriv
 - Add aria2 advance configuration
 - Support hxfile, anonfiles, letsupload, etc. based [zevtyardt](https://github.com/zevtyardt/lk21) module
 - Simply status messages
-- Support download private file. [Read this!](https://github.com/Manssizz/CendrawasihLeech/#.netrc) 
+- Support download private file. [Read this!](https://github.com/Manssizz/CendrawasihLeech/#netrc) 
 
 ### Branch
 - Master branch is development version
