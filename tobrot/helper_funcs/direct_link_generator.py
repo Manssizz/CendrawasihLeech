@@ -60,16 +60,34 @@ def direct_link_generator(text_url: str):
         return nani(text_url)
     elif 'femax20.com' in text_url:
         return fembed(text_url)
+    elif 'fcdn.stream' in text_url:
+        return fembed(text_url)
+    elif 'feurl.com' in text_url:
+        return fembed(text_url)
     elif 'mxplayer.in' in text_url:
         return mxplayer(text_url)
     elif 'anonfiles.com' in text_url:
-        return anon(text_url)
+        return anonfiles(text_url)
+    elif 'bayfiles.com' in text_url:
+        return anonfiles(text_url)
     elif 'sbembed.com' in text_url:
         return sbembed(text_url)
+    elif 'sbembed1.com' in text_url:
+        return sbembed(text_url)
+    elif 'sbembed2.com' in text_url:
+        return sbembed(text_url)
+    elif 'sbembed3.com' in text_url:
+        return sbembed(text_url)
+    elif 'sbembed4.com' in text_url:
+        return sbembed(text_url)
+    elif 'sbplay.org' in text_url:
+        return sbembed(text_url)
+    elif 'sbplay.one' in text_url:
+        return sbembed(text_url)
     elif 'streamsb.net' in text_url:
-        return streamsb(text_url)
+        return sbembed(text_url)
     elif 'sbcloud1.com' in text_url:
-        return sbcloud(text_url)
+        return sbembed(text_url)
     elif 'streamtape.com' in text_url:
         return streamtape(text_url)
     elif 'antfiles.com' in text_url:
@@ -78,8 +96,6 @@ def direct_link_generator(text_url: str):
         return fembed(text_url)
     elif '1drv.ms' in text_url:
         return onedrive(text_url)
-    elif 'bayfiles.com' in text_url:
-        return bayfiles(text_url)
     elif 'solidfiles.com' in text_url:
         return solidfiles(text_url)
     else:
@@ -109,16 +125,13 @@ def hxfile(url: str) -> str:
     return dl_url
 
 
-def anon(url: str) -> str:
-    dl_url = ''
-    try:
-        text_url = re.findall(r'\bhttps?://.*anonfiles\.com\S+', url)[0]
-    except IndexError:
-        raise DirectDownloadLinkException("`No anonfiles links found`\n")
+def anonfiles(url: str) -> str:
+    """ Anonfiles direct link generator
+    Based on https://github.com/zevtyardt/lk21
+             https://github.com/breakdowns/slam-aria-mirror-bot """
     bypasser = lk21.Bypass()
-    dl_url = bypasser.bypass_url(text_url)
+    dl_url = bypasser.bypass_anonfiles(url)
     return dl_url
-
     ### Update by manssizz@CendrawasihLeech ###
 ### https://github.com/Manssizz/CendrawasihLeech/ ###
 
@@ -142,15 +155,6 @@ def nani(url: str) -> str:
         raise DirectDownloadLinkException("`No Fembed links found`\n")
     bypasser = lk21.Bypass()
     dl_url = bypasser.bypass_url(text_url)
-    return dl_url
-
-
-def bayfiles(url: str) -> str:
-    """ Anonfiles direct link generator
-    Based on https://github.com/zevtyardt/lk21
-             https://github.com/breakdowns/slam-aria-mirror-bot """
-    bypasser = lk21.Bypass()
-    dl_url = bypasser.bypass_anonfiles(url)
     return dl_url
 
 
@@ -192,26 +196,11 @@ def sbcloud(url: str) -> str:
 
 
 def sbembed(url: str) -> str:
-    dl_url = ''
-    try:
-        text_url = re.findall(r'\bhttps?://.*sbembed\.com\S+', url)[0]
-    except IndexError:
-        raise DirectDownloadLinkException("`No sbembed links found`\n")
-    bypasser = lk21.Bypass()
-    dl_url = bypasser.bypass_sbembed(text_url)
-    lst_link = []
-    count = len(dl_url)
-    for i in dl_url:
-        lst_link.append(dl_url[i])
-    return lst_link[count-1]
-
-
-def streamsb(url: str) -> str:
-    dl_url = ''
-    try:
-        text_url = re.findall(r'\bhttps?://.*streamsb\.net\S+', url)[0]
-    except IndexError:
-        raise DirectDownloadLinkException("`No streamsb links found`\n")
+    # dl_url = ''
+    # try:
+    #     text_url = re.findall(r'\bhttps?://.*sbembed\.com\S+', url)[0]
+    # except IndexError:
+    #     raise DirectDownloadLinkException("`No sbembed links found`\n")
     bypasser = lk21.Bypass()
     dl_url = bypasser.bypass_sbembed(text_url)
     lst_link = []
@@ -235,11 +224,11 @@ def mxplayer(url: str) -> str:
 
 
 def fembed(url: str) -> str:
-    dl_url = ''
-    try:
-        text_url = re.findall(r'\bhttps?://.*fembed\.com\S+', url)[0]
-    except IndexError:
-        raise DirectDownloadLinkException("`No Fembed links found`\n")
+    # dl_url = ''
+    # try:
+    #     text_url = re.findall(r'\bhttps?://.*fembed\.com\S+', url)[0]
+    # except IndexError:
+    #     raise DirectDownloadLinkException("`No Fembed links found`\n")
     bypasser = lk21.Bypass()
     dl_url = bypasser.bypass_fembed(text_url)
     lst_link = []

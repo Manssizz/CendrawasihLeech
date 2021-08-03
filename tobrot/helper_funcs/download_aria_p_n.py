@@ -198,8 +198,16 @@ def add_url(aria_instance, text_url, c_file_name):
             or "naniplay.nanime.biz" in text_url  \
             or "naniplay.com" in text_url  \
             or "femax20.com" in text_url  \
+            or "fcdn.stream" in text_url  \
+            or "feurl.com" in text_url  \
             or "mxplayer.in" in text_url  \
             or "sbembed.com" in text_url  \
+            or "sbembed1.com" in text_url  \
+            or "sbembed2.com" in text_url  \
+            or "sbembed3.com" in text_url  \
+            or "sbembed4.com" in text_url  \
+            or "sbplay.one" in text_url  \
+            or "sbplay.org" in text_url  \
             or "sbcloud1.com" in text_url  \
             or "streamsb.net" in text_url  \
             or "fembed.com" in text_url  \
