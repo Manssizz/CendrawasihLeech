@@ -284,18 +284,22 @@ async def call_apropriate_function(
     await check_progress_for_dl(
         aria_instance, err_message, sent_message_to_update_tg_p, None
     )
+    await asyncio.sleep(1)
+    file = aria_instance.get_download(err_message)
+    to_upload_file = file.name
+    com_g = file.is_complete
 
-    # if incoming_link.startswith("magnet:"):
-    #     #
-    #     err_message = await check_metadata(aria_instance, err_message)
-    #     #
-    #     await asyncio.sleep(1)
-    #     if err_message is not None:
-    #         await check_progress_for_dl(
-    #             aria_instance, err_message, sent_message_to_update_tg_p, None
-    #         )
-    # else:
-    #     return False, "Can't getting metadata \n\n#MetaDataError"
+    if incoming_link.startswith("magnet:"):
+        #
+        err_message = await check_metadata(aria_instance, err_message)
+        #
+        await asyncio.sleep(1)
+        if err_message is not None:
+            await check_progress_for_dl(
+                aria_instance, err_message, sent_message_to_update_tg_p, None
+            )
+    else:
+        return False, "Can't getting metadata \n\n#MetaDataError"
     await asyncio.sleep(1)
     file = aria_instance.get_download(err_message)
     to_upload_file = file.name

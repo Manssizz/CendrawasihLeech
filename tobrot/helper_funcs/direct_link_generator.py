@@ -51,13 +51,13 @@ def direct_link_generator(text_url: str):
     elif 'hxfile.co' in text_url:
         return hxfile(text_url)
     elif 'layarkacaxxi.icu' in text_url:
-        return fembed720(text_url)
+        return fembed(text_url)
     elif 'naniplay.nanime.in' in text_url:
-        return naniplay(text_url)
+        return fembed(text_url)
     elif 'naniplay.nanime.biz' in text_url:
-        return nanibiz(text_url)
+        return fembed(text_url)
     elif 'naniplay.com' in text_url:
-        return nani(text_url)
+        return fembed(text_url)
     elif 'femax20.com' in text_url:
         return fembed(text_url)
     elif 'fcdn.stream' in text_url:
@@ -68,6 +68,8 @@ def direct_link_generator(text_url: str):
         return mxplayer(text_url)
     elif 'anonfiles.com' in text_url:
         return anonfiles(text_url)
+    elif 'pixeldrain.com' in text_url:
+        return pixeldrain(text_url)
     elif 'bayfiles.com' in text_url:
         return anonfiles(text_url)
     elif 'sbembed.com' in text_url:
@@ -132,67 +134,10 @@ def anonfiles(url: str) -> str:
     bypasser = lk21.Bypass()
     dl_url = bypasser.bypass_anonfiles(url)
     return dl_url
+
+    # Based Slam mirror bot
     ### Update by manssizz@CendrawasihLeech ###
 ### https://github.com/Manssizz/CendrawasihLeech/ ###
-
-
-def fembed720(url: str) -> str:
-    dl_url = ''
-    try:
-        text_url = re.findall(r'\bhttps?://.*layarkacaxxi\.icu\S+', url)[0]
-    except IndexError:
-        raise DirectDownloadLinkException("`No Fembed links found`\n")
-    bypasser = lk21.Bypass()
-    dl_url = bypasser.bypass_url(text_url)
-    return dl_url["720p/mp4"]
-
-
-def nani(url: str) -> str:
-    dl_url = ''
-    try:
-        text_url = re.findall(r'\bhttps?://.*naniplay\.com\S+', url)[0]
-    except IndexError:
-        raise DirectDownloadLinkException("`No Fembed links found`\n")
-    bypasser = lk21.Bypass()
-    dl_url = bypasser.bypass_url(text_url)
-    return dl_url
-
-
-def naniplay(url: str) -> str:
-    dl_url = ''
-    try:
-        text_url = re.findall(r'\bhttps?://.*naniplay\.in\S+', url)[0]
-    except IndexError:
-        raise DirectDownloadLinkException("`No Fembed links found`\n")
-    bypasser = lk21.Bypass()
-    dl_url = bypasser.bypass_url(text_url)
-    return dl_url
-
-
-def nanibiz(url: str) -> str:
-    dl_url = ''
-    try:
-        text_url = re.findall(r'\bhttps?://.*naniplay\.biz\S+', url)[0]
-    except IndexError:
-        raise DirectDownloadLinkException("`No Fembed links found`\n")
-    bypasser = lk21.Bypass()
-    dl_url = bypasser.bypass_url(text_url)
-    return dl_url
-
-
-def sbcloud(url: str) -> str:
-    dl_url = ''
-    try:
-        text_url = re.findall(r'\bhttps?://.*sbcloud1\.com\S+', url)[0]
-    except IndexError:
-        raise DirectDownloadLinkException("`No streamsb links found`\n")
-    bypasser = lk21.Bypass()
-    dl_url = bypasser.bypass_sbembed(text_url)
-    lst_link = []
-    count = len(dl_url)
-    for i in dl_url:
-        lst_link.append(dl_url[i])
-    return lst_link[count-1]
 
 
 def sbembed(text_url: str) -> str:
@@ -224,11 +169,6 @@ def mxplayer(url: str) -> str:
 
 
 def fembed(text_url: str) -> str:
-    # dl_url = ''
-    # try:
-    #     text_url = re.findall(r'\bhttps?://.*fembed\.com\S+', url)[0]
-    # except IndexError:
-    #     raise DirectDownloadLinkException("`No Fembed links found`\n")
     bypasser = lk21.Bypass()
     dl_url = bypasser.bypass_fembed(text_url)
     lst_link = []
@@ -279,6 +219,20 @@ def onedrive(url: str) -> str:
     file_name = dl_link.rsplit("/", 1)[1]
     resp2 = requests.head(dl_link)
     return dl_link
+
+
+def pixeldrain(url: str) -> str:
+    """ Based on https://github.com/yash-dk/TorToolkit-Telegram """
+    url = url.strip("/ ")
+    file_id = url.split("/")[-1]
+    info_link = f"https://pixeldrain.com/api/file/{file_id}/info"
+    dl_link = f"https://pixeldrain.com/api/file/{file_id}"
+    resp = requests.get(info_link).json()
+    if resp["success"]:
+        return dl_link
+    else:
+        raise DirectDownloadLinkException(
+            "ERROR: Cant't download due {}.".format(resp.text["value"]))
 
 ######## [END] ########
 
