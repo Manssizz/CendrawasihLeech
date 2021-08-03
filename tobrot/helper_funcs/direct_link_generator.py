@@ -78,6 +78,8 @@ def direct_link_generator(text_url: str):
         return fembed(text_url)
     elif '1drv.ms' in text_url:
         return onedrive(text_url)
+    elif 'bayfiles.com' in text_url:
+        return bayfiles(text_url)
     elif 'solidfiles.com' in text_url:
         return solidfiles(text_url)
     else:
@@ -140,6 +142,15 @@ def nani(url: str) -> str:
         raise DirectDownloadLinkException("`No Fembed links found`\n")
     bypasser = lk21.Bypass()
     dl_url = bypasser.bypass_url(text_url)
+    return dl_url
+
+
+def bayfiles(url: str) -> str:
+    """ Anonfiles direct link generator
+    Based on https://github.com/zevtyardt/lk21
+             https://github.com/breakdowns/slam-aria-mirror-bot """
+    bypasser = lk21.Bypass()
+    dl_url = bypasser.bypass_anonfiles(url)
     return dl_url
 
 

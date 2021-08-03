@@ -184,6 +184,8 @@ def add_url(aria_instance, text_url, c_file_name):
     #         "dir": c_file_name
     #     }
     if "zippyshare.com" in text_url \
+            or "anonfiles.com" in text_url \
+            or "bayfiles.com" in text_url \
             or "osdn.net" in text_url \
             or "mediafire.com" in text_url \
             or "cloud.mail.ru" in text_url \
