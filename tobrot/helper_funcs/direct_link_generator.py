@@ -223,7 +223,7 @@ def mxplayer(url: str) -> str:
     return dl_url
 
 
-def fembed(url: str) -> str:
+def fembed(text_url: str) -> str:
     # dl_url = ''
     # try:
     #     text_url = re.findall(r'\bhttps?://.*fembed\.com\S+', url)[0]
