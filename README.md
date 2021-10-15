@@ -50,26 +50,26 @@ machine facebook login tai@babi.com password tai@kuda
 
 ### Command List
 ```
-leech - Leech torrent file or direct link file and upload to Telegram.
-clone - Clone Drive file or folder to your Drive.
+leech - Leech and upload to Telegram.
+clone - Clone Drive file or folder.
 sync - Leech torrent/direct link to Drive.
-tgsync - This will mirror the telegram files to ur Drive.
-archive - Leech torrent file or direct link file and upload to Telegram and upload as archive file.
-extract - This will unarchive file and upload to telegram.
-log - This will send you a txt file of the logs.
+tgsync - Mirror telegram files to ur Drive.
+log - Check logs.
 status - Get download/upload process status. 
 stop - Stop single process command 
-tarsync - This command will compress the folder/file and will upload to Drive.
-untarsync - This will unarchive file and upload to Drive.
-tguntar - This will unarchive telegram file and upload to cloud.
-ytdl - Single video Youtube downloader to Telegram.
-ytdlsync - Single video Youtube downloader to Drive.
-pytleech - Youtube downloader and send video/music to telegram.
-pytdlsync - Youtube downloader and send video/music to Drive.
+archive - Leech and upload to Telegram and upload as archive file.
+tarsync - Compress folder/file and upload to Drive.
+extract - Extract file and upload to telegram.
+untarsync - Extract file and upload to Drive.
+tguntar - Extract telegram file and upload to cloud.
+ytdl - Download Youtube video and upload to Telegram.
+ytdlsync - Download Youtube video and upload to Drive.
 getsize - Get size folder in Drive.
 renewme - Cancel all download process.
+pytleech - Youtube downloader and send video/music to telegram.
+pytdlsync - Youtube downloader and send video/music to Drive.
 upload - Hmmm... wait
-rclone - This will change your drive config on fly.(First one will be default)
+rclone - [Admin Only] This will change your drive config on fly.(First one will be default)
 rename - To rename the telegram files.
 ```
 
