@@ -46,7 +46,7 @@ async def help_message_f(client, message):
         /pytleech - Youtube downloader and send video/music to telegram.
         /pytdlsync - Youtube downloader and send video/music to Drive.
         /upload - Hmmm... wait
-        /rclone - [Admin Only] This will change your drive config on fly.(First one will be default)
+        /rclone - [Admin Only] Change or edit rClone config.
         /rename - To rename the telegram files.
         """,
         disable_web_page_preview=True)
