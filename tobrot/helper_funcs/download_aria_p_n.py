@@ -95,9 +95,9 @@ async def aria_start():
     aria2_daemon_start_cmd.append("--split=10")
     aria2_daemon_start_cmd.append("--allow-overwrite=true")
     aria2_daemon_start_cmd.append("--max-overall-upload-limit=1K")
-    aria2_daemon_start_cmd.append("--peer-id-prefix=-qB4350-")
-    aria2_daemon_start_cmd.append("--user-agent=qBittorrent/4.3.5")
-    aria2_daemon_start_cmd.append("--peer-agent=qBittorrent/4.3.5")
+    aria2_daemon_start_cmd.append("--peer-id-prefix=-qB4380-")
+    aria2_daemon_start_cmd.append("--user-agent=qBittorrent/4.3.8")
+    aria2_daemon_start_cmd.append("--peer-agent=qBittorrent/4.3.8")
     aria2_daemon_start_cmd.append("--disk-cache=64M")
     aria2_daemon_start_cmd.append("--file-allocation=prealloc")
     aria2_daemon_start_cmd.append("--continue=true")
@@ -360,11 +360,11 @@ async def call_apropriate_function(
                     message_to_send += "\n"
                 if message_to_send != "":
                     mention_req_user = (
-                        f"<a href='tg://user?id={user_id}'>Done!</a>"
+                        f"<a href='tg://user?id={user_id}'>Uploaded Successfully!</a>"
                     )
                     message_to_send = f"<b>List file in</b> `{downloading_dir_name}`:\n" + \
                         message_to_send
-                    message_to_send = message_to_send + "\n" + "#Uploading " + mention_req_user
+                    message_to_send = message_to_send + "\n" + "<a href='https://github.com/Manssizz/CendrawasihLeech'>© CendrawasihLeech</a> " + mention_req_user
                 else:
                     message_to_send = "<i>FAILED</i> Failed uploading files."
                 await user_message.reply_text(
