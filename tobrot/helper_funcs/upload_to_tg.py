@@ -146,7 +146,7 @@ async def upload_to_tg(
 async def upload_to_gdrive(file_upload, message, messa_ge, g_id):
     await asyncio.sleep(EDIT_SLEEP_TIME_OUT)
     del_it = await message.edit_text(
-        f"<a href='tg://user?id={g_id}'>🔊</a> Now Uploading to ☁️ Cloud!!!"
+        f"<a href='tg://user?id={g_id}'>Uploading to Cloud...</a>"
     )
     if not os.path.exists("rclone.conf"):
         with open("rclone.conf", "w+", newline="\n", encoding="utf-8") as fole:
@@ -204,7 +204,7 @@ async def upload_to_gdrive(file_upload, message, messa_ge, g_id):
         button = []
         button.append(
             [pyrogram.InlineKeyboardButton(
-                text="☁️ CloudUrl ☁️", url=f"{gauti}")]
+                text="CloudUrl", url=f"{gauti}")]
         )
         if INDEX_LINK:
             indexurl = f"{INDEX_LINK}/{os.path.basename(file_upload)}"
@@ -213,14 +213,14 @@ async def upload_to_gdrive(file_upload, message, messa_ge, g_id):
             button.append(
                 [
                     pyrogram.InlineKeyboardButton(
-                        text="ℹ️ IndexUrl ℹ️", url=f"{tam_link}"
+                        text="IndexUrl", url=f"{tam_link}"
                     )
                 ]
             )
         button_markup = pyrogram.InlineKeyboardMarkup(button)
         await asyncio.sleep(EDIT_SLEEP_TIME_OUT)
         await messa_ge.reply_text(
-            f"Uploaded successfully `{os.path.basename(file_upload)}` <a href='tg://user?id={g_id}'>Done!</a>\nSize: {gjay}",
+            f"<a href='tg://user?id={g_id}'>Uploaded successfully</a>\n`{os.path.basename(file_upload)}`\nSize: {gjay}\n<a href='https://github.com/Manssizz/CendrawasihLeech'>© CendrawasihLeech</a>",
             reply_markup=button_markup,
         )
         os.remove(file_upload)
@@ -273,7 +273,7 @@ async def upload_to_gdrive(file_upload, message, messa_ge, g_id):
         button = []
         button.append(
             [pyrogram.InlineKeyboardButton(
-                text="☁️ CloudUrl ☁️", url=f"{gautii}")]
+                text="CloudUrl", url=f"{gautii}")]
         )
         if INDEX_LINK:
             indexurl = f"{INDEX_LINK}/{os.path.basename(file_upload)}/"
@@ -282,14 +282,14 @@ async def upload_to_gdrive(file_upload, message, messa_ge, g_id):
             button.append(
                 [
                     pyrogram.InlineKeyboardButton(
-                        text="ℹ️ IndexUrl ℹ️", url=f"{tam_link}"
+                        text="IndexUrl", url=f"{tam_link}"
                     )
                 ]
             )
         button_markup = pyrogram.InlineKeyboardMarkup(button)
         await asyncio.sleep(EDIT_SLEEP_TIME_OUT)
         await messa_ge.reply_text(
-            f"Uploaded successfully `{os.path.basename(file_upload)}` <a href='tg://user?id={g_id}'>Done!</a>\nSize: {gjay}",
+            f"<a href='tg://user?id={g_id}'>Uploaded successfully</a>\n`{os.path.basename(file_upload)}`\nSize: {gjay}\n<a href='https://github.com/Manssizz/CendrawasihLeech'>© CendrawasihLeech</a>",
             reply_markup=button_markup,
         )
         shutil.rmtree(file_upload)
