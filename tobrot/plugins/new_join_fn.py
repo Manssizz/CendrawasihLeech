@@ -24,29 +24,29 @@ async def help_message_f(client, message):
     # message_id = 99
     # display the /help
 
-await message.reply_text(
-    """
-    CendrawasihLeech Commands:
-    /leech - Leech and upload to Telegram.
-    /clone - Clone Drive file or folder.
-    /sync - Leech torrent/direct link to Drive.
-    /tgsync - Mirror telegram files to ur Drive.
-    /log - Check logs.
-    /status - Get download/upload process status. 
-    /stop - Stop single process command 
-    /archive - Leech and upload to Telegram and upload as archive file.
-    /tarsync - Compress folder/file and upload to Drive.
-    /extract - Extract file and upload to telegram.
-    /untarsync - Extract file and upload to Drive.
-    /tguntar - Extract telegram file and upload to cloud.
-    /ytdl - Download Youtube video and upload to Telegram.
-    /ytdlsync - Download Youtube video and upload to Drive.
-    /getsize - Get size folder in Drive.
-    /renewme - Cancel all download process.
-    /pytleech - Youtube downloader and send video/music to telegram.
-    /pytdlsync - Youtube downloader and send video/music to Drive.
-    /upload - Hmmm... wait
-    /rclone - [Admin Only] This will change your drive config on fly.(First one will be default)
-    /rename - To rename the telegram files.
-    """,
-    disable_web_page_preview=True)
+    await message.reply_text(
+        """
+        CendrawasihLeech Commands:
+        /leech - Leech and upload to Telegram.
+        /clone - Clone Drive file or folder.
+        /sync - Leech torrent/direct link to Drive.
+        /tgsync - Mirror telegram files to ur Drive.
+        /log - Check logs.
+        /status - Get download/upload process status. 
+        /stop - Stop single process command 
+        /archive - Leech and upload to Telegram and upload as archive file.
+        /tarsync - Compress folder/file and upload to Drive.
+        /extract - Extract file and upload to telegram.
+        /untarsync - Extract file and upload to Drive.
+        /tguntar - Extract telegram file and upload to cloud.
+        /ytdl - Download Youtube video and upload to Telegram.
+        /ytdlsync - Download Youtube video and upload to Drive.
+        /getsize - Get size folder in Drive.
+        /renewme - Cancel all download process.
+        /pytleech - Youtube downloader and send video/music to telegram.
+        /pytdlsync - Youtube downloader and send video/music to Drive.
+        /upload - Hmmm... wait
+        /rclone - [Admin Only] This will change your drive config on fly.(First one will be default)
+        /rename - To rename the telegram files.
+        """,
+        disable_web_page_preview=True)
