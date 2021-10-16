@@ -8,7 +8,7 @@ WORKDIR /CendrawasihLeech
 ENV TZ=Asia/Jakarta
 
 RUN apt-get -qq update && \
-	    DEBIAN_FRONTEND="noninteractive" apt-get -qq install -y tzdata aria2 git python3 python3-pip \
+	    DEBIAN_FRONTEND="noninteractive" apt-get -qq install -y wget tzdata aria2 git python3 python3-pip \
 	    locales python3-lxml \
 	    curl pv jq ffmpeg \
 	    p7zip-full p7zip-rar \
@@ -17,7 +17,7 @@ RUN apt-get -qq update && \
 	    libsqlite3-dev libsodium-dev && \
 	    curl -L https://github.com/jaskaranSM/megasdkrest/releases/download/v0.1/megasdkrest -o /usr/local/bin/megasdkrest && \
 	    chmod +x /usr/local/bin/megasdkrest
-        
+
 # RUN apt -qq update --fix-missing && \
 #     rm -rf /var/lib/apt/lists/* && \
 #     apt -qq update
