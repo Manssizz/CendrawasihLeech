@@ -26,7 +26,7 @@ async def help_message_f(client, message):
 
     await message.reply_text(
         """
-    CendrawasihLeech Commands:
+    <b>CendrawasihLeech Commands:</b>
     /leech - Leech and upload to Telegram.
     /clone - Clone Drive file or folder.
     /sync - Leech torrent/direct link to Drive.
@@ -34,7 +34,7 @@ async def help_message_f(client, message):
     /log - Check logs.
     /status - Get download/upload process status. 
     /stop - Stop single process command 
-    /archive - Leech and upload to Telegram and upload as archive file.
+    /archive - Leech and upload as archive file on Telegram.
     /tarsync - Compress folder/file and upload to Drive.
     /extract - Extract file and upload to telegram.
     /untarsync - Extract file and upload to Drive.
@@ -43,10 +43,10 @@ async def help_message_f(client, message):
     /ytdlsync - Download Youtube video and upload to Drive.
     /getsize - Get size folder in Drive.
     /renewme - Cancel all download process.
-    /pytleech - Youtube downloader and send video/music to telegram.
-    /pytdlsync - Youtube downloader and send video/music to Drive.
+    /pytleech - Youtube playlist downloader and send to telegram.
+    /pytdlsync - Youtube playlist downloader and send to Drive.
     /upload - Hmmm... wait
     /rclone - [Admin Only] Change or edit rClone config.
     /rename - To rename the telegram files.
-        """,
+    """,
         disable_web_page_preview=True)
