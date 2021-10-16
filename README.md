@@ -42,6 +42,8 @@ i.e:
 machine vk login tai@babi.com password tai@kuda
 machine facebook login tai@babi.com password tai@kuda
 ```
+For Index Link with only password without username, even http auth will not work, so this is the solution.
+```machine taikuda.workers.dev <password> index_password```
 > `Important:` **Because personal data login is a very confidential thing, i exclude my .netrc file in gitignore. if you want add, remove netrc in gitignore and  make you repo private before you push .netrc file** 
 ### Sample of rClone config
 <h1 align="center">
@@ -85,5 +87,6 @@ NTFS, RPM, SquashFS, UDF, VHD, XAR, Z.
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/Manssizz/CendrawasihLeech/tree/stable)
 
 ### Credits
-* [GautamKumar](https://github.com/gautamajay52/TorrentLeech-Gdrive) for original source
-* [SlamMirror](https://github.com/breakdowns/slam-mirrorbot) I pick piece of piece this repos
+* [GautamKumar](https://github.com/gautamajay52/TorrentLeech-Gdrive) for original source.
+* [SlamMirror](https://github.com/breakdowns/slam-mirrorbot) I pick piece of piece this repos.
+* [zevtyardt](https://github.com/zevtyardt/lk21) for direct links module.
