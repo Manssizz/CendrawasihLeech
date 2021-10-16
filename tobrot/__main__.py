@@ -96,7 +96,8 @@ if __name__ == "__main__":
     #
     incoming_telegram_download_handler = MessageHandler(
         down_load_media_f,
-        filters=filters.command([TELEGRAM_LEECH_COMMAND, TELEGRAM_LEECH_UNZIP_COMMAND])
+        filters=filters.command(
+            [TELEGRAM_LEECH_COMMAND, TELEGRAM_LEECH_UNZIP_COMMAND])
         & filters.chat(chats=AUTH_CHANNEL),
     )
     app.add_handler(incoming_telegram_download_handler)
@@ -116,7 +117,8 @@ if __name__ == "__main__":
     #
     incoming_size_checker_handler = MessageHandler(
         check_size_g,
-        filters=filters.command([f"{GET_SIZE_G}"]) & filters.chat(chats=AUTH_CHANNEL),
+        filters=filters.command(
+            [f"{GET_SIZE_G}"]) & filters.chat(chats=AUTH_CHANNEL),
     )
     app.add_handler(incoming_size_checker_handler)
     #
@@ -182,7 +184,8 @@ if __name__ == "__main__":
     #
     upload_log_handler = MessageHandler(
         upload_log_file,
-        filters=filters.command([f"{LOG_COMMAND}"]) & filters.chat(chats=AUTH_CHANNEL),
+        filters=filters.command(
+            [f"{LOG_COMMAND}"]) & filters.chat(chats=AUTH_CHANNEL),
     )
     app.add_handler(upload_log_handler)
     #
@@ -225,4 +228,5 @@ if __name__ == "__main__":
     )
     app.add_handler(rclone_config_handler)
     #
+    logging.info("CendrawasihLeech Ready!")
     app.run()
