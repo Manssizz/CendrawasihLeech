@@ -1,4 +1,5 @@
-FROM breakdowns/mega-sdk-python:latest
+# FROM breakdowns/mega-sdk-python:latest
+FROM ubuntu:20.04
 
 RUN mkdir ./CendrawasihLeech
 RUN chmod 777 ./CendrawasihLeech
