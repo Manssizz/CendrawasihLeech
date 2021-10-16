@@ -1,5 +1,4 @@
-FROM priiiiyo/mega-sdk-python:latest
-# FROM ubuntu:20.04
+FROM hsj51/mega-sdk-python:latest
 
 RUN mkdir ./CendrawasihLeech
 RUN chmod 777 ./CendrawasihLeech
@@ -8,8 +7,8 @@ WORKDIR /CendrawasihLeech
 ENV TZ=Asia/Jakarta
 
 RUN apt -qq update --fix-missing && \
-    rm -rf /var/lib/apt/lists/* && \
     apt -qq install -y git aria2 wget curl busybox ffmpeg \
+    rm -rf /var/lib/apt/lists/* && \
     apt -qq update
 
 RUN wget https://rclone.org/install.sh
