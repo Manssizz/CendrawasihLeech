@@ -364,7 +364,8 @@ async def call_apropriate_function(
                     )
                     message_to_send = f"<b>List file in</b> `{downloading_dir_name}`:\n" + \
                         message_to_send
-                    message_to_send = message_to_send + "\n" + "<a href='https://github.com/Manssizz/CendrawasihLeech'>© CendrawasihLeech</a>"+ mention_req_user, disable_web_page_preview=True 
+                    message_to_send = message_to_send + "\n" + \
+                        "#CendrawasihLeech" + mention_req_user
                 else:
                     message_to_send = "<i>FAILED</i> Failed uploading files."
                 await user_message.reply_text(

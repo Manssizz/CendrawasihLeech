@@ -220,7 +220,7 @@ async def upload_to_gdrive(file_upload, message, messa_ge, g_id):
         button_markup = pyrogram.InlineKeyboardMarkup(button)
         await asyncio.sleep(EDIT_SLEEP_TIME_OUT)
         await messa_ge.reply_text(
-            f"<a href='tg://user?id={g_id}'>Uploaded successfully</a>\n`{os.path.basename(file_upload)}`\nSize: {gjay}\n<a href='https://github.com/Manssizz/CendrawasihLeech'>© CendrawasihLeech</a>",
+            f"<a href='tg://user?id={g_id}'>Uploaded successfully</a>\n`{os.path.basename(file_upload)}`\nSize: {gjay}\n#CendrawasihLeech",
             reply_markup=button_markup, disable_web_page_preview=True
         )
         os.remove(file_upload)
@@ -289,7 +289,7 @@ async def upload_to_gdrive(file_upload, message, messa_ge, g_id):
         button_markup = pyrogram.InlineKeyboardMarkup(button)
         await asyncio.sleep(EDIT_SLEEP_TIME_OUT)
         await messa_ge.reply_text(
-            f"<a href='tg://user?id={g_id}'>Uploaded successfully</a>\n`{os.path.basename(file_upload)}`\nSize: {gjay}\n<a href='https://github.com/Manssizz/CendrawasihLeech'>© CendrawasihLeech</a>",
+            f"<a href='tg://user?id={g_id}'>Uploaded successfully</a>\n`{os.path.basename(file_upload)}`\nSize: {gjay}\n#CendrawasihLeech",
             reply_markup=button_markup, disable_web_page_preview=True
         )
         shutil.rmtree(file_upload)
