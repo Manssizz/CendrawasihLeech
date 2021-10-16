@@ -11,7 +11,8 @@ RUN apt -qq update --fix-missing && \
     rm -rf /var/lib/apt/lists/* && \
     apt -qq update
 
-RUN wget https://rclone.org/install.sh
+# RUN wget https://rclone.org/install.sh
+RUN wget https://raw.githubusercontent.com/rclone/rclone/master/docs/content/install.sh
 RUN bash install.sh
 
 RUN mkdir /CendrawasihLeech/Leech
