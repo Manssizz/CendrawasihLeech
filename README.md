@@ -59,7 +59,7 @@ tgsync - Mirror telegram files to ur Drive.
 log - Check logs.
 status - Get download/upload process status. 
 stop - Stop single process command 
-archive - Leech and upload to Telegram and upload as archive file.
+archive - Leech and upload as archive file on Telegram.
 tarsync - Compress folder/file and upload to Drive.
 extract - Extract file and upload to telegram.
 untarsync - Extract file and upload to Drive.
@@ -68,10 +68,10 @@ ytdl - Download Youtube video and upload to Telegram.
 ytdlsync - Download Youtube video and upload to Drive.
 getsize - Get size folder in Drive.
 renewme - Cancel all download process.
-pytleech - Youtube downloader and send video/music to telegram.
-pytdlsync - Youtube downloader and send video/music to Drive.
+pytleech - Youtube playlist downloader and send to telegram.
+pytdlsync - Youtube playlist downloader and send to Drive.
 upload - Hmmm... wait
-rclone - [Admin Only] This will change your drive config on fly.(First one will be default)
+rclone - [Admin Only] Change or edit rClone config.
 rename - To rename the telegram files.
 ```
 
