@@ -1,4 +1,5 @@
-FROM hsj51/mega-sdk-python:latest
+# FROM hsj51/mega-sdk-python:latest
+FROM ghcr.io/breakdowns/mega-sdk-python:latest
 
 RUN mkdir ./CendrawasihLeech
 RUN chmod 777 ./CendrawasihLeech
