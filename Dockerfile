@@ -9,8 +9,8 @@ ENV TZ=Asia/Jakarta
 
 RUN apt -qq update --fix-missing && \
     rm -rf /var/lib/apt/lists/* && \
+    apt -qq install -y git aria2 wget curl busybox ffmpeg \
     apt -qq update
-    # apt -qq install -y git aria2 wget curl busybox ffmpeg
 
 RUN wget https://rclone.org/install.sh
 RUN bash install.sh
