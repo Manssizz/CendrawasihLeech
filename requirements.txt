@@ -6,7 +6,7 @@
 # pyrogram
 # tgcrypto
 # yt-dlp
-# hurry.filesize
+hurry.filesize
 # beautifulsoup4
 # bs4
 # lxml
