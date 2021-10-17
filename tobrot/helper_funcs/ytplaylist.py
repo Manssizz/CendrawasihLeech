@@ -26,7 +26,6 @@ async def yt_playlist_downg(message, i_m_sefg, client, G_DRIVE):
     except:
         pass
     cmd = [
-        # "youtube-dl",
         "yt-dlp",
         "-i",
         "-f",
@@ -43,7 +42,7 @@ async def yt_playlist_downg(message, i_m_sefg, client, G_DRIVE):
     LOGGER.info(tam.decode("utf-8"))
     e_response = tam.decode().strip()
     # ad_string_to_replace = "please report this issue on https://yt-dl.org/bug . Make sure you are using the latest version; see  https://yt-dl.org/update  on how to update. Be sure to call youtube-dl with the --verbose flag and include its complete output."
-    ad_string_to_replace = "Unknow error. Please check the logs."
+    ad_string_to_replace = "<i>Unknow error. Please check the logs.</i>"
     if e_response and ad_string_to_replace in e_response:
         error_message = e_response.replace(ad_string_to_replace, "")
         await i_m_sefg.edit_text(error_message)
