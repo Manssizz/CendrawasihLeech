@@ -78,7 +78,6 @@ pytdlsync - Youtube playlist downloader and send to Drive.
 upload - Hmmm... wait
 tshelp - Torrent search helper.
 speedtest - Check server connection speed.
-mediainfo - Check media information.
 rclone - [Admin Only] Change or edit rClone config.
 rename - To rename the telegram files.
 ```

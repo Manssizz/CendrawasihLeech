@@ -42,8 +42,7 @@ from tobrot import (
     GYTDL_COMMAND,
     GPYTDL_COMMAND,
     SPEEDTEST,
-    TSEARCH_COMMAND,
-    MEDIAINFO_CMD
+    TSEARCH_COMMAND
 )
 from tobrot.helper_funcs.download import down_load_media_f
 from tobrot.plugins.call_back_button_handler import button
@@ -64,7 +63,6 @@ from tobrot.plugins.incoming_message_fn import (
 )
 from tobrot.plugins.new_join_fn import help_message_f, new_join_f
 from tobrot.plugins.speedtest import get_speed
-from tobrot.plugins.mediainfo import mediainfo
 from tobrot.plugins.rclone_size import check_size_g, g_clearme
 from tobrot.plugins.status_message_fn import (
     cancel_message_f,
@@ -244,7 +242,7 @@ if __name__ == "__main__":
             [f"{SPEEDTEST}", f"{SPEEDTEST}@{bot.username}"])
         & filters.chat(chats=AUTH_CHANNEL),
     )
-    app.add_handler(searchhelp_handler)
+    app.add_handler(get_speed_handler)
     #
     searchhelp_handler = MessageHandler(
         searchhelp,
@@ -253,14 +251,6 @@ if __name__ == "__main__":
         & filters.chat(chats=AUTH_CHANNEL),
     )
     app.add_handler(searchhelp_handler)
-    #
-    mediainfo_handler = MessageHandler(
-        mediainfo,
-        filters=filters.command(
-            [f"{MEDIAINFO_CMD}", f"{MEDIAINFO_CMD}@{bot.username}"])
-        & filters.chat(chats=AUTH_CHANNEL),
-    )
-    app.add_handler(mediainfo_handler)
     #
     logging.info("CendrawasihLeech Ready!")
     app.run()

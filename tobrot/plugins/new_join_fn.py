@@ -48,7 +48,6 @@ async def help_message_f(client, message):
 /upload - Hmmm... wait.
 /tshelp - Torrent search helper.
 /speedtest - Check server connection speed.
-/mediainfo - Check media information.
 /rclone - [Admin Only] Change or edit rClone config.
 /rename - To rename the telegram files.
     """,
