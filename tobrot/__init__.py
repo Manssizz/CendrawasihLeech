@@ -2,14 +2,18 @@
 # -*- coding: utf-8 -*-
 # (c) Shrimadhav U K | gautamajay52
 
+import asyncio
 import logging
 import os
 import time
-from logging.handlers import RotatingFileHandler
 from collections import defaultdict
+from logging.handlers import RotatingFileHandler
 from sys import exit
-
+import urllib.request
 import dotenv
+import telegram.ext as tg
+
+from pyrogram import Client
 
 if os.path.exists("CendrawasihLeech.txt"):
     with open("CendrawasihLeech.txt", "r+") as f_d:
@@ -67,7 +71,7 @@ AUTH_CHANNEL.append(OWNER_ID)
 CHUNK_SIZE = int(os.environ.get("CHUNK_SIZE", "64"))
 # default thumbnail to be used in the videos
 DEF_THUMB_NAIL_VID_S = os.environ.get(
-    "DEF_THUMB_NAIL_VID_S", "https://via.placeholder.com/90.jpg"
+    "DEF_THUMB_NAIL_VID_S", "https://avatars.githubusercontent.com/u/23637327?v=4"
 )
 # maximum message length in Telegram
 MAX_MESSAGE_LENGTH = 4096
@@ -115,11 +119,24 @@ LOG_COMMAND = os.environ.get("LOG_COMMAND", "log")
 CLONE_COMMAND_G = os.environ.get("CLONE_COMMAND_G", "clone")
 UPLOAD_COMMAND = os.environ.get("UPLOAD_COMMAND", "upload")
 RENEWME_COMMAND = os.environ.get("RENEWME_COMMAND", "renewme")
+SPEEDTEST = os.environ.get("SPEEDTEST", "speedtest")
+TSEARCH_COMMAND = os.environ.get("TSEARCH_COMMAND", "tshelp")
+MEDIAINFO_CMD = os.environ.get("MEDIAINFO_CMD", "mediainfo")
 BOT_START_TIME = time.time()
 # dict to control uploading and downloading
 gDict = defaultdict(lambda: [])
 # user settings dict #ToDo
 user_settings = defaultdict(lambda: {})
+gid_dict = defaultdict(lambda: [])
+_lock = asyncio.Lock()
+try:
+    RCLONE_CONF_URL = os.environ.get('RCLONE_CONF_URL', "")
+    if len(RCLONE_CONF_URL) == 0:
+        RCLONE_CONF_URL = None
+    else:
+        urllib.request.urlretrieve(RCLONE_CONF_URL, '/app/rclone.conf')
+except KeyError:
+    RCLONE_CONF_URL = None
 
 
 def multi_rclone_init():
@@ -137,3 +154,8 @@ def multi_rclone_init():
 
 
 multi_rclone_init()
+app = Client("CendrawasihLeech", bot_token=TG_BOT_TOKEN,
+             api_id=APP_ID, api_hash=API_HASH, workers=343)
+updater = tg.Updater(token=TG_BOT_TOKEN)
+bot = updater.bot
+dispatcher = updater.dispatcher
