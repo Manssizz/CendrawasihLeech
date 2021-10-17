@@ -180,6 +180,7 @@ async def g_yt_playlist(client, message):
     """ /pytdl command """
     user_command = message.command[0]
     usr_id = message.from_user.id
+    usr_mention = message.from_user.mention
     is_cloud = False
     url = None
     if message.reply_to_message:
@@ -195,7 +196,7 @@ async def g_yt_playlist(client, message):
         return
     if "youtube.com/playlist" in url:
         i_m_sefg = await message.reply_text(
-            f"<b>{u_men} \n Your Request has been ADDED</b>\n\n <code> Please wait until Upload</code>",
+            f"<b>{usr_mention} \n Your Request has been ADDED</b>\n\n <code> Please wait until Upload</code>",
             parse_mode="html",
         )
         await yt_playlist_downg(message, i_m_sefg, client, is_cloud)
