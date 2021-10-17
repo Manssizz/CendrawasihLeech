@@ -28,6 +28,11 @@ sbembed.com, sbembed1.com, sbembed2.com, sbembed3.com, sbembed4.com
 sbplay.org, sbplay.one, streamsb.net, sbcloud1.com
 ```
 > Note: if you want to mirroring fembed links, use must add https:// in front of links. ex: /mirror https://fembed.com/f/jgndzfdj-n7zyg5
+### Torrent search supports list
+```
+nyaa.si, sukebei, 1337x, piratebay,
+tgx, yts, eztv, torlock, rarbg
+```
 ### Thumbnail supports
 ```
 "MKV", "MP4", "WEBM", "AVI", "MOV", 
@@ -71,6 +76,9 @@ renewme - Cancel all download process.
 pytleech - Youtube playlist downloader and send to telegram.
 pytdlsync - Youtube playlist downloader and send to Drive.
 upload - Hmmm... wait
+tshelp - Torrent search helper.
+speedtest - Check server connection speed.
+mediainfo - Check media information.
 rclone - [Admin Only] Change or edit rClone config.
 rename - To rename the telegram files.
 ```
