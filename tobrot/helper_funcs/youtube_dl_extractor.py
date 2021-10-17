@@ -16,7 +16,8 @@ async def extract_youtube_dl_formats(
     url, cf_name, yt_dl_user_name, yt_dl_pass_word, user_working_dir
 ):
     command_to_exec = [
-        "youtube-dl",
+        # "youtube-dl",
+        "yt-dlp",
         "--no-warnings",
         "--youtube-skip-dash-manifest",
         "--no-check-certificate",
@@ -26,7 +27,7 @@ async def extract_youtube_dl_formats(
     ]
     if "hotstar" in url:
         command_to_exec.append("--geo-bypass-country")
-        command_to_exec.append("IN")
+        command_to_exec.append("UK")
     #
     if yt_dl_user_name is not None:
         command_to_exec.append("--username")
@@ -52,7 +53,8 @@ async def extract_youtube_dl_formats(
     if e_response:
         # logger.warn("Status : FAIL", exc.returncode, exc.output)
         error_message = e_response.replace(
-            "please report this issue on https://yt-dl.org/bug . Make sure you are using the latest version; see  https://yt-dl.org/update  on how to update. Be sure to call youtube-dl with the --verbose flag and include its complete output.",
+            # "please report this issue on https://yt-dl.org/bug . Make sure you are using the latest version; see  https://yt-dl.org/update  on how to update. Be sure to call youtube-dl with the --verbose flag and include its complete output.",
+            "Unknow error. Please check the logs",
             "",
         )
         return None, error_message, None
@@ -66,7 +68,8 @@ async def extract_youtube_dl_formats(
         else:
             response_json.append(json.loads(x_reponse))
         # response_json = json.loads(x_reponse)
-        save_ytdl_json_path = user_working_dir + "/" + str("ytdleech") + ".json"
+        save_ytdl_json_path = user_working_dir + \
+            "/" + str("ytdleech") + ".json"
         with open(save_ytdl_json_path, "w", encoding="utf8") as outfile:
             json.dump(response_json, outfile, ensure_ascii=False)
         # logger.info(response_json)
@@ -101,14 +104,16 @@ async def extract_youtube_dl_formats(
                         + approx_file_size
                         + " "
                     )
-                    cb_string_video = "{}|{}|{}".format("video", format_id, format_ext)
+                    cb_string_video = "{}|{}|{}".format(
+                        "video", format_id, format_ext)
                     ikeyboard = []
                     if "drive.google.com" in url:
                         if format_id == "source":
                             ikeyboard = [
                                 pyrogram.InlineKeyboardButton(
                                     dipslay_str_uon,
-                                    callback_data=(cb_string_video).encode("UTF-8"),
+                                    callback_data=(
+                                        cb_string_video).encode("UTF-8"),
                                 )
                             ]
                     else:
@@ -119,15 +124,18 @@ async def extract_youtube_dl_formats(
                             ikeyboard = [
                                 pyrogram.InlineKeyboardButton(
                                     dipslay_str_uon,
-                                    callback_data=(cb_string_video).encode("UTF-8"),
+                                    callback_data=(
+                                        cb_string_video).encode("UTF-8"),
                                 )
                             ]
                         else:
                             # special weird case :\
                             ikeyboard = [
                                 pyrogram.InlineKeyboardButton(
-                                    "SVideo [" + "] ( " + approx_file_size + " )",
-                                    callback_data=(cb_string_video).encode("UTF-8"),
+                                    "SVideo [" + "] ( " +
+                                    approx_file_size + " )",
+                                    callback_data=(
+                                        cb_string_video).encode("UTF-8"),
                                 )
                             ]
                     inline_keyboard.append(ikeyboard)
@@ -158,7 +166,8 @@ async def extract_youtube_dl_formats(
             else:
                 format_id = current_r_json["format_id"]
                 format_ext = current_r_json["ext"]
-                cb_string_video = "{}|{}|{}".format("video", format_id, format_ext)
+                cb_string_video = "{}|{}|{}".format(
+                    "video", format_id, format_ext)
                 inline_keyboard.append(
                     [
                         pyrogram.InlineKeyboardButton(

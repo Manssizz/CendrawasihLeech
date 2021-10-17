@@ -79,7 +79,7 @@ async def youtube_dl_call_back(bot, update):
     # https://superuser.com/a/994060
     LOGGER.info(custom_file_name)
     #
-    await update.message.edit_caption(caption="𝙄𝙣 𝙋𝙧𝙤𝙜𝙧𝙚𝙨𝙨...Please Wait")
+    await update.message.edit_caption(caption="Downloading...")
 
     tmp_directory_for_each_user = os.path.join(
         DOWNLOAD_LOCATION, str(update.message.message_id)
@@ -88,7 +88,8 @@ async def youtube_dl_call_back(bot, update):
         os.makedirs(tmp_directory_for_each_user)
     download_directory = tmp_directory_for_each_user
     LOGGER.info(download_directory)
-    download_directory = os.path.join(tmp_directory_for_each_user, custom_file_name)
+    download_directory = os.path.join(
+        tmp_directory_for_each_user, custom_file_name)
     LOGGER.info(download_directory)
     command_to_exec = []
     # to keep default thumbnail of video which has its thumbnail
@@ -96,7 +97,8 @@ async def youtube_dl_call_back(bot, update):
     thumb_image = response_json.get("thumbnail", thumb_image)
     if tg_send_type == "audio":
         command_to_exec = [
-            "youtube-dl",
+            # "youtube-dl",
+            "yt-dlp",
             "-c",
             "--prefer-ffmpeg",
             "--extract-audio",
@@ -118,7 +120,8 @@ async def youtube_dl_call_back(bot, update):
                 break
 
         command_to_exec = [
-            "youtube-dl",
+            # "youtube-dl",
+            "yt-dlp",
             "-c",
             "--embed-subs",
             "-f",
@@ -136,7 +139,7 @@ async def youtube_dl_call_back(bot, update):
     #
     if "hotstar" in youtube_dl_url:
         command_to_exec.append("--geo-bypass-country")
-        command_to_exec.append("IN")
+        command_to_exec.append("UK")
     LOGGER.info(command_to_exec)
     process = await asyncio.create_subprocess_exec(
         *command_to_exec,
@@ -150,7 +153,8 @@ async def youtube_dl_call_back(bot, update):
     t_response = stdout.decode().strip()
     # LOGGER.info(e_response)
     # LOGGER.info(t_response)
-    ad_string_to_replace = "Please report this issue on https://yt-dl.org/bug . Make sure you are using the latest version; see  https://yt-dl.org/update  on how to update. Be sure to call youtube-dl with the --verbose flag and include its complete output."
+    # ad_string_to_replace = "Please report this issue on https://yt-dl.org/bug . Make sure you are using the latest version; see  https://yt-dl.org/update  on how to update. Be sure to call youtube-dl with the --verbose flag and include its complete output."
+    ad_string_to_replace = "Unknow error. Please check the logs"
     if e_response and ad_string_to_replace in e_response:
         error_message = e_response.replace(ad_string_to_replace, "")
         await update.message.edit_caption(caption=error_message)
