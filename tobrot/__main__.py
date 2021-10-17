@@ -63,6 +63,8 @@ from tobrot.plugins.incoming_message_fn import (
     rename_tg_file,
 )
 from tobrot.plugins.new_join_fn import help_message_f, new_join_f
+from tobrot.plugins.speedtest import get_speed
+from tobrot.plugins.mediainfo import mediainfo
 from tobrot.plugins.rclone_size import check_size_g, g_clearme
 from tobrot.plugins.status_message_fn import (
     cancel_message_f,
