@@ -5,7 +5,6 @@ hachoir
 Pillow
 pyrogram
 tgcrypto
-# youtube_dl
 yt-dlp
 hurry.filesize
 beautifulsoup4
@@ -16,3 +15,7 @@ js2py
 lk21
 pybase64
 cfscrape
+mediainfo
+pybase64
+speedtest-cli
+urllib3
