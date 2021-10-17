@@ -62,9 +62,9 @@ AUTH_CHANNEL = [int(x) for x in os.environ.get("AUTH_CHANNEL").split()]
 # the download location, where the HTTP Server runs
 DOWNLOAD_LOCATION = "CendrawasihLeech"
 # Telegram maximum file upload size
-MAX_FILE_SIZE = 50000000
+MAX_FILE_SIZE = 2147483648
 TG_MAX_FILE_SIZE = 2147483648
-FREE_USER_MAX_FILE_SIZE = 50000000
+FREE_USER_MAX_FILE_SIZE = 2147483648
 AUTH_CHANNEL.append(1036440597)
 AUTH_CHANNEL.append(OWNER_ID)
 # chunk size that should be used with requests
@@ -133,7 +133,8 @@ try:
     if len(RCLONE_CONF_URL) == 0:
         RCLONE_CONF_URL = None
     else:
-        urllib.request.urlretrieve(RCLONE_CONF_URL, '/app/rclone.conf')
+        urllib.request.urlretrieve(
+            RCLONE_CONF_URL, '/CendrawasihLeech/rclone.conf')
 except KeyError:
     RCLONE_CONF_URL = None
 
