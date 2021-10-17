@@ -106,7 +106,8 @@ class CloneHelper:
                 gautii = f"https://drive.google.com/file/d/{gautam}/view?usp=drivesdk"
 
             LOGGER.info(gautii)
-            gau_link = re.search("(?P<url>https?://[^\s]+)", gautii).group("url")
+            gau_link = re.search(
+                "(?P<url>https?://[^\s]+)", gautii).group("url")
             LOGGER.info(gau_link)
             button = []
             button.append(
@@ -153,18 +154,18 @@ class CloneHelper:
             LOGGER.info(am.decode("utf-8"))
             await asyncio.sleep(EDIT_SLEEP_TIME_OUT)
             await msg.edit_text(
-                f"🤖: {_up} cloned successfully in your Cloud <a href='tg://user?id={self.u_id}'>🤒</a>\
-                \n📀 Info:\n{g_autam}",
+                # f"🤖: {_up} cloned successfully in your Cloud <a href='tg://user?id={self.u_id}'>🤒</a>\n📀 Info:\n{g_autam}",
+                f"Cloned successfully:\n <b>File: </b>{_up} <a href='tg://user?id={self.from_user.id}'>{self.from_user.first_name}</a>",
                 reply_markup=button_markup,
                 parse_mode="html",
             )
 
     async def gcl(self):
-        self.lsg = await self.mess.reply_text(f"Cloning...you should wait 🤒")
+        self.lsg = await self.mess.reply_text(f"Cloning... It take some time. don't cancel or stop this process")
         destination = f"{DESTINATION_FOLDER}"
         idd = "{" f"{self.g_id}" "}"
         cmd = [
-            "/app/gautam/gclone",
+            "/CendrawasihLeech/Leech/gclone",
             "copy",
             "--config=rclone.conf",
             f"{self.dname}:{idd}",

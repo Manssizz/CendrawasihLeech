@@ -106,7 +106,7 @@ async def cancel_message_f(client, message):
             LOGGER.info(downloads.remove(force=True, files=True))
             await i_m_s_e_g.edit_text("Leech Canceled")
         except Exception as e:
-            await i_m_s_e_g.edit_text("<i>FAILED</i>\n\n" + str(e) + "\n#error")
+            await i_m_s_e_g.edit_text("<i>FAILED</i>" + str(e) + "\n#error")
     else:
         await message.delete()
 
