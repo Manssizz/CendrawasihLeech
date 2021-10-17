@@ -26,27 +26,30 @@ async def help_message_f(client, message):
 
     await message.reply_text(
         """
-    <b>CendrawasihLeech Commands:</b>
-    /leech - Leech and upload to Telegram.
-    /clone - Clone Drive file or folder.
-    /sync - Leech torrent/direct link to Drive.
-    /tgsync - Mirror telegram files to ur Drive.
-    /log - Check logs.
-    /status - Get download/upload process status. 
-    /stop - Stop single process command 
-    /archive - Leech and upload as archive file on Telegram.
-    /tarsync - Compress folder/file and upload to Drive.
-    /extract - Extract file and upload to telegram.
-    /untarsync - Extract file and upload to Drive.
-    /tguntar - Extract telegram file and upload to cloud.
-    /ytdl - Download Youtube video and upload to Telegram.
-    /ytdlsync - Download Youtube video and upload to Drive.
-    /getsize - Get size folder in Drive.
-    /renewme - Cancel all download process.
-    /pytleech - Youtube playlist downloader and send to telegram.
-    /pytdlsync - Youtube playlist downloader and send to Drive.
-    /upload - Hmmm... wait
-    /rclone - [Admin Only] Change or edit rClone config.
-    /rename - To rename the telegram files.
+<b>CendrawasihLeech Commands:</b>
+/leech - Leech and upload to Telegram.
+/clone - Clone Drive file or folder.
+/sync - Leech torrent/direct link to Drive.
+/tgsync - Mirror telegram files to ur Drive.
+/log - Check logs.
+/status - Get download/upload process status. 
+/stop - Stop single process command 
+/archive - Leech and upload as archive file on Telegram.
+/tarsync - Compress folder/file and upload to Drive.
+/extract - Extract file and upload to telegram.
+/untarsync - Extract file and upload to Drive.
+/tguntar - Extract telegram file and upload to cloud.
+/ytdl - Download Youtube video and upload to Telegram.
+/ytdlsync - Download Youtube video and upload to Drive.
+/getsize - Get size folder in Drive.
+/renewme - Cancel all download process.
+/pytleech - Youtube playlist downloader and send to telegram.
+/pytdlsync - Youtube playlist downloader and send to Drive.
+/upload - Hmmm... wait.
+/tshelp - Torrent search helper.
+/speedtest - Check server connection speed.
+/mediainfo - Check media information.
+/rclone - [Admin Only] Change or edit rClone config.
+/rename - To rename the telegram files.
     """,
         disable_web_page_preview=True)
