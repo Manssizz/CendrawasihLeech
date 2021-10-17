@@ -1,6 +1,6 @@
 from speedtest import Speedtest
 import logging
-from ..functions.Human_Format import human_readable_bytes
+from tobrot.helper_funcs.display_progress import humanbytes
 
 torlog = logging.getLogger(__name__)
 
