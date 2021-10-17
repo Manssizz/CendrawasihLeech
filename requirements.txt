@@ -5,7 +5,8 @@ hachoir
 Pillow
 pyrogram
 tgcrypto
-youtube_dl
+# youtube_dl
+yt-dlp
 hurry.filesize
 beautifulsoup4
 bs4
