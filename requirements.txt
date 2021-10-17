@@ -1,21 +1,55 @@
+# aiohttp
+# aria2p
+# python-dotenv
+# hachoir
+# Pillow
+# pyrogram
+# tgcrypto
+# yt-dlp
+# hurry.filesize
+# beautifulsoup4
+# bs4
+# lxml
+# requests
+# js2py
+# lk21
+# pybase64
+# cfscrape
+# mediainfo
+# pybase64
+# speedtest-cli
+# urllib3
 aiohttp
+anytree
 aria2p
-python-dotenv
-hachoir
-Pillow
-pyrogram
-tgcrypto
-yt-dlp
-hurry.filesize
+appdirs
+attrdict
 beautifulsoup4
-bs4
-lxml
-requests
+cloudscrape
+feedparser
+google-api-python-client
+google-auth-httplib2
+google-auth-oauthlib
+gunicorn
+hachoir
 js2py
 lk21
+lxml
+pillow
+psutil
+psycopg2-binary
 pybase64
-cfscrape
-mediainfo
-pybase64
+pyrogram
+pyshorteners
+python-dotenv
+python-magic
+python-telegram-bot
+qbittorrent-api
+requests
 speedtest-cli
+telegraph
+tenacity
+TgCrypto
+torrentool==1.1.0
 urllib3
+yt-dl
