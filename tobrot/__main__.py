@@ -8,9 +8,11 @@ import os
 import sys
 import traceback
 
-from pyrogram import Client, filters
+from pyrogram import Client, filters, idle
+from pyrogram.raw import functions, types
 from pyrogram.handlers import CallbackQueryHandler, MessageHandler
 
+from tobrot import app, bot, dispatcher
 from tobrot import (
     API_HASH,
     APP_ID,
@@ -39,11 +41,17 @@ from tobrot import (
     YTDL_COMMAND,
     GYTDL_COMMAND,
     GPYTDL_COMMAND,
+    SPEEDTEST,
+    TSEARCH_COMMAND,
+    MEDIAINFO_CMD
 )
 from tobrot.helper_funcs.download import down_load_media_f
 from tobrot.plugins.call_back_button_handler import button
+from tobrot.plugins import *
 
 # the logging things
+from tobrot.plugins.torrent_search import searchhelp, sendMessage
+from tobrot.helper_funcs.bot_commands import BotCommands
 from tobrot.plugins.choose_rclone_config import rclone_command_f
 from tobrot.plugins.custom_thumbnail import clear_thumb_nail, save_thumb_nail
 from tobrot.plugins.incoming_message_fn import (
@@ -71,7 +79,7 @@ if __name__ == "__main__":
         os.makedirs(DOWNLOAD_LOCATION)
     #
     app = Client(
-        "LeechBot",
+        "CendrawasihLeech",
         bot_token=TG_BOT_TOKEN,
         api_id=APP_ID,
         api_hash=API_HASH,
@@ -227,6 +235,27 @@ if __name__ == "__main__":
         rclone_command_f, filters=filters.command(["rclone"])
     )
     app.add_handler(rclone_config_handler)
+    #
+    get_speed_handler = MessageHandler(
+        get_speed,
+        filters=filters.command([f"{SPEEDTEST}", f"{SPEEDTEST}@{bot.username}"])
+        & filters.chat(chats=AUTH_CHANNEL),
+    )
+    app.add_handler(searchhelp_handler)
+    #
+    searchhelp_handler = MessageHandler(
+        searchhelp,
+        filters=filters.command([f"{TSEARCH_COMMAND}", f"{TSEARCH_COMMAND}@{bot.username}"])
+        & filters.chat(chats=AUTH_CHANNEL),
+    )
+    app.add_handler(searchhelp_handler)
+    #
+    mediainfo_handler = MessageHandler(
+        mediainfo,
+        filters=filters.command([f"{MEDIAINFO_CMD}", f"{MEDIAINFO_CMD}@{bot.username}"])
+        & filters.chat(chats=AUTH_CHANNEL),
+    )
+    app.add_handler(mediainfo_handler)
     #
     logging.info("CendrawasihLeech Ready!")
     app.run()
