@@ -32,7 +32,6 @@ from tobrot.helper_funcs.create_compressed_archive import (
 )
 from tobrot.helper_funcs.extract_link_from_message import extract_link
 from tobrot.helper_funcs.upload_to_tg import upload_to_gdrive, upload_to_tg
-from tobrot.helper_funcs.download import download_tg
 from tobrot.helper_funcs.direct_link_generator import direct_link_generator
 from tobrot.helper_funcs.exceptions import DirectDownloadLinkException
 
@@ -157,7 +156,7 @@ def add_torrent(aria_instance, torrent_file_path):
             False,
             "**ERROR** "
             + str(e)
-            + "\nFailed to geeting data <u>TORRENT</u> file",
+            + " \nFailed to geeting data <u>TORRENT</u> file",
         )
     if os.path.exists(torrent_file_path):
         # Add Torrent Into Queue
@@ -246,51 +245,55 @@ async def call_apropriate_function(
     cstom_file_name,
     is_cloud,
     is_unzip,
-    is_file,
     user_message,
     client,
 ):
-    if not is_file:
-        if incoming_link.lower().startswith("magnet:"):
-            sagtus, err_message = add_magnet(
-                aria_instance, incoming_link, c_file_name)
-        elif incoming_link.lower().endswith(".torrent"):
-            sagtus, err_message = add_torrent(aria_instance, incoming_link)
+    regexp = re.compile(
+        r'^https?:\/\/.*(\.torrent|\/torrent|\/jav.php|nanobytes\.org).*')
+    if incoming_link.lower().startswith("magnet:"):
+        sagtus, err_message = add_magnet(
+            aria_instance, incoming_link, c_file_name)
+    elif incoming_link.lower().endswith(".torrent") and not incoming_link.lower().startswith("http"):
+        sagtus, err_message = add_torrent(aria_instance, incoming_link)
+    else:
+        if regexp.search(incoming_link):
+            var = incoming_link.encode('utf-8')
+            file = hashlib.md5(var).hexdigest()
+            subprocess.run(
+                f"wget -O /CendrawasihLeech/{file}.torrent '{incoming_link}'", shell=True)
+            sagtus, err_message = add_torrent(
+                aria_instance, f"/CendrawasihLeech/{file}.torrent")
         else:
             sagtus, err_message = add_url(
                 aria_instance, incoming_link, c_file_name)
-        if not sagtus:
-            return sagtus, err_message
-        LOGGER.info(err_message)
-        # https://stackoverflow.com/a/58213653/4723940
-        await check_progress_for_dl(
-            aria_instance, err_message, sent_message_to_update_tg_p, None
-        )
-        if incoming_link.startswith("magnet:"):
-            #
-            err_message = await check_metadata(aria_instance, err_message)
-            #
-            await asyncio.sleep(1)
-            if err_message is not None:
-                await check_progress_for_dl(
-                    aria_instance, err_message, sent_message_to_update_tg_p, None
-                )
-            else:
-                return False, "can't get metadata\n#MetaDataError"
+    if not sagtus:
+        return sagtus, err_message
+    LOGGER.info(err_message)
+    # https://stackoverflow.com/a/58213653/4723940
+    await check_progress_for_dl(
+        aria_instance, err_message, sent_message_to_update_tg_p, None
+    )
+    await asyncio.sleep(1)
+    file = aria_instance.get_download(err_message)
+    to_upload_file = file.name
+    com_g = file.is_complete
+
+    if incoming_link.startswith("magnet:"):
+        #
+        err_message = await check_metadata(aria_instance, err_message)
+        #
         await asyncio.sleep(1)
-        try:
-            file = aria_instance.get_download(err_message)
-        except aria2p.client.ClientException as ee:
-            LOGGER.error(ee)
-            return True, None
-        to_upload_file = file.name
-        com_g = file.is_complete
+        if err_message is not None:
+            await check_progress_for_dl(
+                aria_instance, err_message, sent_message_to_update_tg_p, None
+            )
     else:
-        await sent_message_to_update_tg_p.delete()
-        to_upload_file, sent_message_to_update_tg_p = await download_tg(client=client, message=user_message)
-        if not to_upload_file:
-            return True, None
-        com_g = True
+        return False, "Can't getting metadata \n\n#MetaDataError"
+    await asyncio.sleep(1)
+    file = aria_instance.get_download(err_message)
+    to_upload_file = file.name
+    com_g = file.is_complete
+
     if is_zip:
         check_if_file = await create_archive(to_upload_file)
         if check_if_file is not None:
@@ -357,11 +360,11 @@ async def call_apropriate_function(
                     message_to_send += "\n"
                 if message_to_send != "":
                     mention_req_user = (
-                        f"<a href='tg://user?id={user_id}'>Uploaded Successfully!</a>"
+                        f"<a href='tg://user?id={user_id}'>Done!</a>"
                     )
                     message_to_send = f"<b>List file in</b> `{downloading_dir_name}`:\n" + \
                         message_to_send
-                    message_to_send = message_to_send + "\n" + "#CendrawasihLeech"
+                    message_to_send = message_to_send + "\n" + "#Uploading " + mention_req_user
                 else:
                     message_to_send = "<i>FAILED</i> Failed uploading files."
                 await user_message.reply_text(
