@@ -240,38 +240,36 @@ async def call_apropriate_function(
     is_unzip,
     user_message,
     client,
-    is_file,
 ):
-    if not is_file:
-        regexp = re.compile(
-            r'^https?:\/\/.*(\.torrent|\/torrent|\/jav.php|nanobytes\.org).*')
-        if incoming_link.lower().startswith("magnet:"):
-            sagtus, err_message = add_magnet(
-                aria_instance, incoming_link, c_file_name)
-        elif incoming_link.lower().endswith(".torrent") and not incoming_link.lower().startswith("http"):
-            sagtus, err_message = add_torrent(aria_instance, incoming_link)
+    regexp = re.compile(
+        r'^https?:\/\/.*(\.torrent|\/torrent|\/jav.php|nanobytes\.org).*')
+    if incoming_link.lower().startswith("magnet:"):
+        sagtus, err_message = add_magnet(
+            aria_instance, incoming_link, c_file_name)
+    elif incoming_link.lower().endswith(".torrent") and not incoming_link.lower().startswith("http"):
+        sagtus, err_message = add_torrent(aria_instance, incoming_link)
+    else:
+        if regexp.search(incoming_link):
+            var = incoming_link.encode('utf-8')
+            file = hashlib.md5(var).hexdigest()
+            subprocess.run(
+                f"wget -O /CendrawasihLeech/{file}.torrent '{incoming_link}'", shell=True)
+            sagtus, err_message = add_torrent(
+                aria_instance, f"/CendrawasihLeech/{file}.torrent")
         else:
-            if regexp.search(incoming_link):
-                var = incoming_link.encode('utf-8')
-                file = hashlib.md5(var).hexdigest()
-                subprocess.run(
-                    f"wget -O /CendrawasihLeech/{file}.torrent '{incoming_link}'", shell=True)
-                sagtus, err_message = add_torrent(
-                    aria_instance, f"/CendrawasihLeech/{file}.torrent")
-            else:
-                sagtus, err_message = add_url(
-                    aria_instance, incoming_link, c_file_name)
-        if not sagtus:
-            return sagtus, err_message
-        LOGGER.info(err_message)
-        # https://stackoverflow.com/a/58213653/4723940
-        await check_progress_for_dl(
-            aria_instance, err_message, sent_message_to_update_tg_p, None
-        )
-        await asyncio.sleep(1)
-        file = aria_instance.get_download(err_message)
-        to_upload_file = file.name
-        com_g = file.is_complete
+            sagtus, err_message = add_url(
+                aria_instance, incoming_link, c_file_name)
+    if not sagtus:
+        return sagtus, err_message
+    LOGGER.info(err_message)
+    # https://stackoverflow.com/a/58213653/4723940
+    await check_progress_for_dl(
+        aria_instance, err_message, sent_message_to_update_tg_p, None
+    )
+    await asyncio.sleep(1)
+    file = aria_instance.get_download(err_message)
+    to_upload_file = file.name
+    com_g = file.is_complete
 
     # if incoming_link.startswith("magnet:"):
     #     #
