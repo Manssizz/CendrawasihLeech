@@ -89,7 +89,7 @@ rename - To rename the telegram files.
 ZIP, RAR, TAR, 7z, ISO, WIM, CAB, GZIP, BZIP2, 
 APM, ARJ, CHM, CPIO, CramFS, DEB, DMG, FAT, 
 HFS, LZH, LZMA, LZMA2, MBR, MSI, MSLZ, NSIS, 
-NTFS, RPM, SquashFS, UDF, VHD, XAR, Z.
+NTFS, RPM, SquashFS, UDF, VHD, XAR, TAR.XZ, Z.
 ```
 
 ### Deploy
