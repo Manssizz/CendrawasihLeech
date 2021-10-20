@@ -28,7 +28,7 @@ sbembed.com, sbembed1.com, sbembed2.com, sbembed3.com, sbembed4.com
 sbplay.org, sbplay.one, streamsb.net, sbcloud1.com
 ```
 > Note: if you want to mirroring fembed links, use must add https:// in front of links. ex: /mirror https://fembed.com/f/jgndzfdj-n7zyg5
-### Torrent search supports list
+### Torrent search supports list (Under development)
 ```
 nyaa.si, sukebei, 1337x, piratebay,
 tgx, yts, eztv, torlock, rarbg
@@ -48,7 +48,9 @@ machine vk login tai@babi.com password tai@kuda
 machine facebook login tai@babi.com password tai@kuda
 ```
 For Index Link with only password without username, even http auth will not work, so this is the solution.
-```machine taikuda.workers.dev <password> index_password```
+```
+machine taikuda.workers.dev <password> index_password
+```
 > `Important:` **Because personal data login is a very confidential thing, i exclude my .netrc file in gitignore. if you want add, remove netrc in gitignore and  make you repo private before you push .netrc file** 
 ### Sample of rClone config
 <h1 align="center">
