@@ -34,7 +34,7 @@ from tobrot.helper_funcs.extract_link_from_message import extract_link
 from tobrot.helper_funcs.upload_to_tg import upload_to_gdrive, upload_to_tg
 from tobrot.helper_funcs.direct_link_generator import direct_link_generator
 from tobrot.helper_funcs.exceptions import DirectDownloadLinkException
-
+from tobrot.helper_funcs.direct_link_generator import useragent
 sys.setrecursionlimit(10 ** 4)
 
 
@@ -71,7 +71,6 @@ for i in range(len(tracker_urlsss)):
 trackerlistemiz = KopyasizListe(Virgullustring(tumtorrenttrackerstringi))
 sonstringtrckr = ','.join(trackerlistemiz)
 
-
 async def aria_start():
     aria2_daemon_start_cmd = []
     # start the daemon, aria2c command
@@ -96,8 +95,7 @@ async def aria_start():
     aria2_daemon_start_cmd.append("--allow-overwrite=true")
     aria2_daemon_start_cmd.append("--max-overall-upload-limit=1K")
     aria2_daemon_start_cmd.append("--peer-id-prefix=-qB4350-")
-    aria2_daemon_start_cmd.append(
-        "--user-agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.3538.77 Safari/537.36")
+    aria2_daemon_start_cmd.append("--user-agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 11_3) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.1 Safari/605.1.15")
     aria2_daemon_start_cmd.append("--peer-agent=qBittorrent/4.3.5")
     aria2_daemon_start_cmd.append("--disk-cache=64M")
     aria2_daemon_start_cmd.append("--file-allocation=prealloc")
@@ -210,10 +208,8 @@ def add_url(aria_instance, text_url, c_file_name):
             or "1drv.ms" in text_url  \
             or "solidfiles.com" in text_url  \
             or "pixeldrain.com" in text_url  \
-            or "reupload.org" in text_url  \
-            or "kotakanimeid.com" in text_url  \
-            or "uservideo.xyz" in text_url  \
-            or "mirrored.to" in text_url:
+            or "mega.nz" in text_url \
+            or "racaty.net" in text_url:
         try:
             urisitring = direct_link_generator(text_url)
             uris = [urisitring]

@@ -98,17 +98,10 @@ def direct_link_generator(text_url: str):
         return fembed(text_url)
     elif '1drv.ms' in text_url:
         return onedrive(text_url)
+    elif 'mega.nz' in text_url:
+        return mega(text_url)
     elif 'solidfiles.com' in text_url:
         return solidfiles(text_url)
-# Oct 22 Update
-    elif 'reupload.org' in text_url:
-        return reupload(text_url)
-    elif 'kotakanimeid.com' in text_url:
-        return kotakanimeid(text_url)
-    elif 'mirrored.to' in text_url:
-        return mirrored(text_url)
-    elif 'uservideo.xyz' in text_url:
-        return uservideo(text_url)
     else:
         raise DirectDownloadLinkException(
             f'No Direct link function found for {text_url}')
@@ -119,7 +112,7 @@ def letsupload(url: str) -> str:
     try:
         text_url = re.findall(r'\bhttps?://.*letsupload\.io\S+', url)[0]
     except IndexError:
-        raise DirectDownloadLinkException("`No Letsupload links found`")
+        raise DirectDownloadLinkException("`No Letsupload links found`\n")
     bypasser = lk21.Bypass()
     dl_url = bypasser.bypass_url(text_url)
     return dl_url
@@ -130,7 +123,7 @@ def hxfile(url: str) -> str:
     try:
         text_url = re.findall(r'\bhttps?://.*hxfile\.co\S+', url)[0]
     except IndexError:
-        raise DirectDownloadLinkException("`No HXFile links found`")
+        raise DirectDownloadLinkException("`No HXFile links found`\n")
     bypasser = lk21.Bypass()
     dl_url = bypasser.bypass_url(text_url)
     return dl_url
@@ -150,6 +143,12 @@ def anonfiles(url: str) -> str:
 
 
 def sbembed(text_url: str) -> str:
+    # dl_url = ''
+    # try:
+    #     text_url = re.findall(r'\bhttps?://.*sbembed\.com\S+', url)[0]
+    # except IndexError:
+    #     raise DirectDownloadLinkException("`No sbembed links found`\n")
+    bypasser = lk21.Bypass()
     dl_url = bypasser.bypass_sbembed(text_url)
     lst_link = []
     count = len(dl_url)
@@ -164,7 +163,7 @@ def mxplayer(url: str) -> str:
     try:
         text_url = re.findall(r'\bhttps?://.*mxplayer\.in\S+', url)[0]
     except IndexError:
-        raise DirectDownloadLinkException("`No mxplayer links found`")
+        raise DirectDownloadLinkException("`No mxplayer links found`\n")
     page = BeautifulSoup(requests.get(text_url).content, 'lxml')
     info = page.find('a', {'aria-label': 'Download file'})
     dl_url = info.get('href')
@@ -186,57 +185,10 @@ def antfiles(url: str) -> str:
     try:
         text_url = re.findall(r'\bhttps?://.*antfiles\.com\S+', url)[0]
     except IndexError:
-        raise DirectDownloadLinkException("`No Antfiles links found`")
+        raise DirectDownloadLinkException("`No Antfiles links found`\n")
     bypasser = lk21.Bypass()
     dl_url = bypasser.bypass_antfiles(text_url)
     return dl_url
-
-# Oct 22 Update
-
-
-def reupload(url: str) -> str:
-    dl_url = ''
-    try:
-        text_url = re.findall(r'\bhttps?://.*reupload\.org\S+', url)[0]
-    except IndexError:
-        raise DirectDownloadLinkException("`No Reupload links found`")
-    bypasser = lk21.Bypass()
-    dl_url = bypasser.bypass_reupload(text_url)
-    return dl_url
-
-
-def kotakanimeid(url: str) -> str:
-    dl_url = ''
-    try:
-        text_url = re.findall(r'\bhttps?://.*kotakanimeid\.com\S+', url)[0]
-    except IndexError:
-        raise DirectDownloadLinkException("`No Kotakanimeid links found`")
-    bypasser = lk21.Bypass()
-    dl_url = bypasser.bypass_kotakanimeid(text_url)
-    return dl_url
-
-
-def uservideo(url: str) -> str:
-    dl_url = ''
-    try:
-        text_url = re.findall(r'\bhttps?://.*uservideo\.xyz\S+', url)[0]
-    except IndexError:
-        raise DirectDownloadLinkException("`No Uservideo links found`")
-    bypasser = lk21.Bypass()
-    dl_url = bypasser.bypass_uservideo(text_url)
-    return dl_url
-
-
-def mirrored(url: str) -> str:
-    dl_url = ''
-    try:
-        text_url = re.findall(r'\bhttps?://.*mirrored\.com\S+', url)[0]
-    except IndexError:
-        raise DirectDownloadLinkException("`No Mirrored links found`")
-    bypasser = lk21.Bypass()
-    dl_url = bypasser.bypass_mirrored(text_url)
-    return dl_url
-##
 
 
 def streamtape(url: str) -> str:
@@ -244,11 +196,29 @@ def streamtape(url: str) -> str:
     try:
         text_url = re.findall(r'\bhttps?://.*streamtape\.com\S+', url)[0]
     except IndexError:
-        raise DirectDownloadLinkException("`No Streamtape links found`")
+        raise DirectDownloadLinkException("`No Streamtape links found`\n")
     bypasser = lk21.Bypass()
     dl_url = bypasser.bypass_streamtape(text_url)
     return dl_url
 
+def mega(url: str) -> str:
+    """ cloud.mail.ru direct links generator
+    Using https://github.com/JrMasterModelBuilder/cmrudl.py"""
+    reply = ''
+    try:
+        text_url = re.findall(r'\bhttps?://.*mega\.nz\S+', url)[0]
+    except IndexError:
+        raise DirectDownloadLinkException("`No Mega.nz links found`\n")
+    command = f'megadown {text_url}'
+    result = popen(command).read()
+    result = result.splitlines()[-1]
+    try:
+        data = json.loads(result)
+    except json.decoder.JSONDecodeError:
+    # except:
+        raise DirectDownloadLinkException("`Error: Can't extract the link`\n")
+    dl_url = data['download']
+    return dl_url
 
 def onedrive(url: str) -> str:
     """ Onedrive direct link generator
@@ -257,7 +227,7 @@ def onedrive(url: str) -> str:
     try:
         text_url = re.findall(r'\bhttps?://.*1drv\.ms\S+', url)[0]
     except IndexError:
-        raise DirectDownloadLinkException("`No OneDrive links found`")
+        raise DirectDownloadLinkException("`No OneDrive links found`\n")
     link_without_query = urlparse(text_url)._replace(query=None).geturl()
     direct_link_encoded = str(standard_b64encode(
         bytes(link_without_query, "utf-8")), "utf-8")
@@ -292,7 +262,7 @@ def solidfiles(url: str) -> str:
     try:
         text_url = re.findall(r'\bhttps?://.*solidfiles\.com\S+', url)[0]
     except IndexError:
-        raise DirectDownloadLinkException("`No OneDrive links found`")
+        raise DirectDownloadLinkException("`No OneDrive links found`\n")
     """ Solidfiles direct links generator
     Based on https://github.com/Xonshiz/SolidFiles-Downloader
     By https://github.com/Jusidama18 """
@@ -337,7 +307,7 @@ def yandex_disk(url: str) -> str:
     try:
         text_url = re.findall(r'\bhttps?://.*yadi\.sk\S+', url)[0]
     except IndexError:
-        reply = "`No Yandex.Disk links found`"
+        reply = "`No Yandex.Disk links found`\n"
         return reply
     api = 'https://cloud-api.yandex.net/v1/disk/public/resources/download?public_key={}'
     try:
@@ -345,33 +315,33 @@ def yandex_disk(url: str) -> str:
         return dl_url
     except KeyError:
         raise DirectDownloadLinkException(
-            "`Error: File not found / Download limit reached`")
+            "`Error: File not found / Download limit reached`\n")
 
 
 def cm_ru(url: str) -> str:
     """ cloud.mail.ru direct links generator
     Using https://github.com/JrMasterModelBuilder/cmrudl.py"""
+    reply = ''
     try:
         text_url = re.findall(r'\bhttps?://.*cloud\.mail\.ru\S+', url)[0]
     except IndexError:
-        raise DirectDownloadLinkException("`No cloud.mail.ru links found`")
-    command = f'plugins/cmrudl.py/cmrudl -s {text_url}'
+        raise DirectDownloadLinkException("`No cloud.mail.ru links found`\n")
+    command = f'vendor/cmrudl.py/cmrudl -s {text_url}'
     result = popen(command).read()
     result = result.splitlines()[-1]
     try:
         data = json.loads(result)
     except json.decoder.JSONDecodeError:
-        raise DirectDownloadLinkException("`Error: Can't extract the link`")
+        raise DirectDownloadLinkException("`Error: Can't extract the link`\n")
     dl_url = data['download']
     return dl_url
-
 
 def mediafire(url: str) -> str:
     """ MediaFire direct links generator """
     try:
         text_url = re.findall(r'\bhttps?://.*mediafire\.com\S+', url)[0]
     except IndexError:
-        raise DirectDownloadLinkException("`No MediaFire links found`")
+        raise DirectDownloadLinkException("`No MediaFire links found`\n")
     page = BeautifulSoup(requests.get(text_url).content, 'lxml')
     info = page.find('a', {'aria-label': 'Download file'})
     dl_url = info.get('href')
@@ -384,7 +354,7 @@ def osdn(url: str) -> str:
     try:
         text_url = re.findall(r'\bhttps?://.*osdn\.net\S+', url)[0]
     except IndexError:
-        raise DirectDownloadLinkException("`No OSDN links found`")
+        raise DirectDownloadLinkException("`No OSDN links found`\n")
     page = BeautifulSoup(
         requests.get(text_url, allow_redirects=True).content, 'lxml')
     info = page.find('a', {'class': 'mirror_link'})
@@ -402,13 +372,13 @@ def github(url: str) -> str:
     try:
         text_url = re.findall(r'\bhttps?://.*github\.com.*releases\S+', url)[0]
     except IndexError:
-        raise DirectDownloadLinkException("`No GitHub Releases links found`")
+        raise DirectDownloadLinkException("`No GitHub Releases links found`\n")
     download = requests.get(text_url, stream=True, allow_redirects=False)
     try:
         dl_url = download.headers["location"]
         return dl_url
     except KeyError:
-        raise DirectDownloadLinkException("`Error: Can't extract the link`")
+        raise DirectDownloadLinkException("`Error: Can't extract the link`\n")
 
 
 def racaty(url: str) -> str:
@@ -416,7 +386,7 @@ def racaty(url: str) -> str:
     try:
         text_url = re.findall(r'\bhttps?://.*racaty\.net\S+', url)[0]
     except IndexError:
-        raise DirectDownloadLinkException("`No Racaty links found`")
+        raise DirectDownloadLinkException("`No Racaty links found`\n")
     scraper = cfscrape.create_scraper()
     r = scraper.get(url)
     soup = BeautifulSoup(r.text, "lxml")
