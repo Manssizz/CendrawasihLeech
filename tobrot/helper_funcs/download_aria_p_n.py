@@ -96,7 +96,8 @@ async def aria_start():
     aria2_daemon_start_cmd.append("--allow-overwrite=true")
     aria2_daemon_start_cmd.append("--max-overall-upload-limit=1K")
     aria2_daemon_start_cmd.append("--peer-id-prefix=-qB4350-")
-    aria2_daemon_start_cmd.append("--user-agent=qBittorrent/4.3.5")
+    aria2_daemon_start_cmd.append(
+        "--user-agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.3538.77 Safari/537.36")
     aria2_daemon_start_cmd.append("--peer-agent=qBittorrent/4.3.5")
     aria2_daemon_start_cmd.append("--disk-cache=64M")
     aria2_daemon_start_cmd.append("--file-allocation=prealloc")
