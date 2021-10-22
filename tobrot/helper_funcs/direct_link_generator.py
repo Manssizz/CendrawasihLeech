@@ -351,7 +351,6 @@ def yandex_disk(url: str) -> str:
 def cm_ru(url: str) -> str:
     """ cloud.mail.ru direct links generator
     Using https://github.com/JrMasterModelBuilder/cmrudl.py"""
-    reply = ''
     try:
         text_url = re.findall(r'\bhttps?://.*cloud\.mail\.ru\S+', url)[0]
     except IndexError:
