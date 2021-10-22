@@ -27,8 +27,8 @@ RUN chmod 0775 /CendrawasihLeech/Leech/gclone
 # COPY requirements.txt .
 # RUN pip3 install --no-cache-dir -r requirements.txt
 COPY . .
-COPY mega /usr/local/bin
-RUN chmod a-rwx,u+rw /usr/local/bin/mega
+COPY mega $HOME/mega
+RUN chmod a-rwx,u+rw $HOME/mega
 COPY extract /usr/local/bin
 # RUN chmod a-rwx,u+rw /usr/local/extract
 COPY .netrc $HOME/.netrc
