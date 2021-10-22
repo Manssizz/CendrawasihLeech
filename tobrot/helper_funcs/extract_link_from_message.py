@@ -17,7 +17,7 @@ def extract_url_from_entity(entities: MessageEntity, text: str):
         elif entity.type == "url":
             o = entity.offset
             l = entity.length
-            url = text[o : o + l]
+            url = text[o: o + l]
     return url
 
 
@@ -34,12 +34,6 @@ async def extract_link(message, type_o_request):
     elif message.text is not None:
         if message.text.lower().startswith("magnet:"):
             url = message.text.strip()
-        # elif message.text.lower().endswith(".torrent"):
-            # url = await message.download()
-
-    # elif message.text is not None:
-    #     if message.text.lower().startswith("https:") and message.text.lower().endswith(".torrent"):
-    #         url = await message.download()
     elif message.text is not None:
         if message.text.lower().endswith(".torrent"):
             url = await message.download()
@@ -79,7 +73,8 @@ async def extract_link(message, type_o_request):
                 youtube_dl_password = url_parts[3]
 
         elif message.caption_entities is not None:
-            url = extract_url_from_entity(message.caption_entities, message.caption)
+            url = extract_url_from_entity(
+                message.caption_entities, message.caption)
 
         else:
             url = message.caption.strip()
