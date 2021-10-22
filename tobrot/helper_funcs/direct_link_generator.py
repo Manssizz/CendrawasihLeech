@@ -222,7 +222,7 @@ def kotakanimeid(url: str) -> str:
     return dl_url
 
 
-def mirrored(url: str) -> str:
+def uservideo(url: str) -> str:
     dl_url = ''
     try:
         text_url = re.findall(r'\bhttps?://.*uservideo\.xyz\S+', url)[0]
