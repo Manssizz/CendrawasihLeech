@@ -209,7 +209,7 @@ def mega(url: str) -> str:
         text_url = re.findall(r'\bhttps?://.*mega\.nz\S+', url)[0]
     except IndexError:
         raise DirectDownloadLinkException("`No Mega.nz links found`\n")
-    command = f'echo {text_url} > input.txt && mega -f input.txt -d /CendrawasihLeech/Leech'
+    command = f'echo {text_url} > input.txt && ./$HOME/mega -f input.txt -d /CendrawasihLeech/Leech'
     result = popen(command).read()
     result = result.splitlines()[-1]
     try:
