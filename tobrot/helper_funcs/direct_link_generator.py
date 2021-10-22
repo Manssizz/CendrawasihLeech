@@ -100,6 +100,15 @@ def direct_link_generator(text_url: str):
         return onedrive(text_url)
     elif 'solidfiles.com' in text_url:
         return solidfiles(text_url)
+# Oct 22 Update
+    elif 'reupload.org' in text_url:
+        return reupload(text_url)
+    elif 'kotakanimeid.com' in text_url:
+        return kotakanimeid(text_url)
+    elif 'mirrored.to' in text_url:
+        return mirrored(text_url)
+    elif 'uservideo.xyz' in text_url:
+        return uservideo(text_url)
     else:
         raise DirectDownloadLinkException(
             f'No Direct link function found for {text_url}')
@@ -187,6 +196,53 @@ def antfiles(url: str) -> str:
     bypasser = lk21.Bypass()
     dl_url = bypasser.bypass_antfiles(text_url)
     return dl_url
+
+# Oct 22 Update
+
+
+def reupload(url: str) -> str:
+    dl_url = ''
+    try:
+        text_url = re.findall(r'\bhttps?://.*reupload\.org\S+', url)[0]
+    except IndexError:
+        raise DirectDownloadLinkException("`No Reupload links found`\n")
+    bypasser = lk21.Bypass()
+    dl_url = bypasser.bypass_reupload(text_url)
+    return dl_url
+
+
+def kotakanimeid(url: str) -> str:
+    dl_url = ''
+    try:
+        text_url = re.findall(r'\bhttps?://.*kotakanimeid\.com\S+', url)[0]
+    except IndexError:
+        raise DirectDownloadLinkException("`No Kotakanimeid links found`\n")
+    bypasser = lk21.Bypass()
+    dl_url = bypasser.bypass_kotakanimeid(text_url)
+    return dl_url
+
+
+def mirrored(url: str) -> str:
+    dl_url = ''
+    try:
+        text_url = re.findall(r'\bhttps?://.*uservideo\.xyz\S+', url)[0]
+    except IndexError:
+        raise DirectDownloadLinkException("`No Uservideo links found`\n")
+    bypasser = lk21.Bypass()
+    dl_url = bypasser.bypass_uservideo(text_url)
+    return dl_url
+
+
+def mirrored(url: str) -> str:
+    dl_url = ''
+    try:
+        text_url = re.findall(r'\bhttps?://.*mirrored\.com\S+', url)[0]
+    except IndexError:
+        raise DirectDownloadLinkException("`No Mirrored links found`\n")
+    bypasser = lk21.Bypass()
+    dl_url = bypasser.bypass_mirrored(text_url)
+    return dl_url
+##
 
 
 def streamtape(url: str) -> str:
