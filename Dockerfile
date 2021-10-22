@@ -1,5 +1,4 @@
-# FROM breakdowns/mega-sdk-python:latest
-FROM ghcr.io/breakdowns/mega-sdk-python:latest
+FROM breakdowns/mega-sdk-python:latest
 
 RUN mkdir ./CendrawasihLeech
 RUN chmod 777 ./CendrawasihLeech
@@ -9,6 +8,7 @@ ENV TZ=Asia/Jakarta
 
 RUN apt -qq update --fix-missing && \
     # apt -qq install -y git aria2 wget curl busybox ffmpeg \
+    apt install jq pv OpenSSL \
     rm -rf /var/lib/apt/lists/* && \
     apt -qq update
 
@@ -18,6 +18,8 @@ RUN bash install.sh
 RUN mkdir /CendrawasihLeech/Leech
 RUN wget -O /CendrawasihLeech/Leech/gclone.gz https://git.io/JJMSG
 RUN gzip -d /CendrawasihLeech/Leech/gclone.gz
+RUN curl -O /usr/local/bin/megadown https://raw.githubusercontent.com/masterofthesith/megadown/master/megadown
+RUN chmod a+rx /usr/local/bin/megadown
 RUN wget -O /usr/share/fonts/Hack-Bold.ttf file.luxing.im/dirLIST_files/download.php?file=Li9zaGFyZS9IYWNrLUJvbGQudHRm
 RUN chmod 0775 /CendrawasihLeech/Leech/gclone
 
