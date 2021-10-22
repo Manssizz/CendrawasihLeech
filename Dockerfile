@@ -30,7 +30,7 @@ COPY . .
 COPY mega /usr/local/bin
 RUN chmod a-rwx,u+rw /usr/local/bin/mega
 COPY extract /usr/local/bin
-RUN chmod a-rwx,u+rw /usr/local/extract
+# RUN chmod a-rwx,u+rw /usr/local/extract
 COPY .netrc $HOME/.netrc
 RUN touch $HOME/.netrc && chmod a-rwx,u+rw $HOME/.netrc
 COPY .megarc $HOME/.megarc
