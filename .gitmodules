@@ -1,3 +1,0 @@
-[submodule "plugins/cmrudl.py"]
-	path = plugins/cmrudl.py
-	url = https://github.com/yshalsager/cmrudl.py.git
