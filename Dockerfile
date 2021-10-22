@@ -8,7 +8,7 @@ ENV TZ=Asia/Jakarta
 
 RUN apt -qq update --fix-missing && \
     # apt -qq install -y git aria2 wget curl busybox ffmpeg \
-    apt install jq pv OpenSSL \
+    apt install jq pv openssl \
     rm -rf /var/lib/apt/lists/* && \
     apt -qq update
 
