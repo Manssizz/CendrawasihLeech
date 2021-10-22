@@ -8,7 +8,7 @@ ENV TZ=Asia/Jakarta
 
 RUN apt -qq update --fix-missing && \
     # apt -qq install -y git aria2 wget curl busybox ffmpeg \
-    apt -qq install -y jq pv openssl tor megatools && \
+    apt -qq install -y tor megatools && \
     rm -rf /var/lib/apt/lists/* && \
     apt -qq update
 
@@ -24,11 +24,12 @@ RUN chmod 0775 /CendrawasihLeech/Leech/gclone
 # RUN wget -O /CendrawasihLeech/dht.dat https://raw.githubusercontent.com/P3TERX/aria2.conf/master/dht.dat
 # RUN wget -O /CendrawasihLeech/dht6.dat https://raw.githubusercontent.com/P3TERX/aria2.conf/master/dht6.dat
 
-COPY requirements.txt .
-RUN pip3 install --no-cache-dir -r requirements.txt
+# COPY requirements.txt .
+# RUN pip3 install --no-cache-dir -r requirements.txt
 COPY . .
 COPY mega /usr/local/bin
 COPY extract /usr/local/bin
+RUN chmod a-rwx,u+rw /usr/local/bin/mega && chmod chmod a-rwx,u+rw /usr/local/extract
 COPY .netrc $HOME/.netrc
 RUN touch $HOME/.netrc && chmod a-rwx,u+rw $HOME/.netrc
 COPY .megarc $HOME/.megarc
