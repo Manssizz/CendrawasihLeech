@@ -150,12 +150,6 @@ def anonfiles(url: str) -> str:
 
 
 def sbembed(text_url: str) -> str:
-    # dl_url = ''
-    # try:
-    #     text_url = re.findall(r'\bhttps?://.*sbembed\.com\S+', url)[0]
-    # except IndexError:
-    #     raise DirectDownloadLinkException("`No sbembed links found`")
-    bypasser = lk21.Bypass()
     dl_url = bypasser.bypass_sbembed(text_url)
     lst_link = []
     count = len(dl_url)
@@ -362,7 +356,7 @@ def cm_ru(url: str) -> str:
         text_url = re.findall(r'\bhttps?://.*cloud\.mail\.ru\S+', url)[0]
     except IndexError:
         raise DirectDownloadLinkException("`No cloud.mail.ru links found`")
-    command = f'vendor/cmrudl.py/cmrudl -s {text_url}'
+    command = f'plugins/cmrudl.py/cmrudl -s {text_url}'
     result = popen(command).read()
     result = result.splitlines()[-1]
     try:
