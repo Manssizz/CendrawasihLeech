@@ -98,9 +98,9 @@ def direct_link_generator(text_url: str):
         return solidfiles(text_url)
 # Oct 23
     elif 'racaty.net' in text_url:
-        return filesIm(text_url)
+        return racaty(text_url)
     elif 'racaty.com' in text_url:
-        return filesIm(text_url)
+        return racaty(text_url)
     elif 'hxfile.co' in text_url:
         return filesIm(text_url)
     elif 'files.im' in text_url:
@@ -374,22 +374,22 @@ def github(url: str) -> str:
         raise DirectDownloadLinkException("`Error: Can't extract the link`\n")
 
 
-# def racaty(url: str) -> str:
-#     dl_url = ''
-#     try:
-#         text_url = re.findall(r'\bhttps?://.*racaty\.net\S+', url)[0]
-#     except IndexError:
-#         raise DirectDownloadLinkException("`No Racaty links found`\n")
-#     scraper = cfscrape.create_scraper()
-#     r = scraper.get(url)
-#     soup = BeautifulSoup(r.text, "lxml")
-#     op = soup.find("input", {"name": "op"})["value"]
-#     ids = soup.find("input", {"name": "id"})["value"]
-#     rpost = scraper.post(url, data={"op": op, "id": ids})
-#     rsoup = BeautifulSoup(rpost.text, "lxml")
-#     dl_url = rsoup.find("a", {"id": "uniqueExpirylink"})[
-#         "href"].replace(" ", "%20")
-#     return dl_url
+def racaty(url: str) -> str:
+    dl_url = ''
+    # try:
+    #     text_url = re.findall(r'\bhttps?://.*racaty\.net\S+', url)[0]
+    # except IndexError:
+    #     raise DirectDownloadLinkException("`No Racaty links found`\n")
+    scraper = cfscrape.create_scraper()
+    r = scraper.get(url)
+    soup = BeautifulSoup(r.text, "lxml")
+    op = soup.find("input", {"name": "op"})["value"]
+    ids = soup.find("input", {"name": "id"})["value"]
+    rpost = scraper.post(url, data={"op": op, "id": ids})
+    rsoup = BeautifulSoup(rpost.text, "lxml")
+    dl_url = rsoup.find("a", {"id": "uniqueExpirylink"})[
+        "href"].replace(" ", "%20")
+    return dl_url
 
 
 def useragent():
