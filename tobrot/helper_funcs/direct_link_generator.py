@@ -157,6 +157,11 @@ def mirrored(url: str) -> str:
 
 
 def uservideo(url: str) -> str:
+    dl_url = ''
+    try:
+        text_url = re.findall(r'\bhttps?://.*uservideo\.xyz\S+', url)[0]
+    except IndexError:
+        raise DirectDownloadLinkException("`No Uservideo links found`\n")
     bypasser = lk21.Bypass()
     dl_url = bypasser.bypass_uservideo(url)
     return dl_url
