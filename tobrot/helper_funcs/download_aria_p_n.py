@@ -212,6 +212,9 @@ def add_url(aria_instance, text_url, c_file_name):
             or "hxfile.co" in text_url  \
             or "racaty.com" in text_url  \
             or "files.im" in text_url  \
+            or "mirrored.to" in text_url  \
+            or "uservideo.xyz" in text_url  \
+            or "reupload.org" in text_url  \
             or "racaty.net" in text_url:
         try:
             urisitring = direct_link_generator(text_url)

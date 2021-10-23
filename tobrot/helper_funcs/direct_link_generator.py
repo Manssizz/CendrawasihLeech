@@ -105,6 +105,12 @@ def direct_link_generator(text_url: str):
         return hxfile(text_url)
     elif 'files.im' in text_url:
         return filesIm(text_url)
+    elif 'mirrored.to' in text_url:
+        return mirrored(text_url)
+    elif 'uservideo.xyz' in text_url:
+        return uservideo(text_url)
+    elif 'reupload.org' in text_url:
+        return reupload(text_url)
 ####
     else:
         raise DirectDownloadLinkException(
@@ -141,16 +147,32 @@ def anonfiles(url: str) -> str:
     dl_url = bypasser.bypass_anonfiles(url)
     return dl_url
 
+# Oct 23
+
+
+def mirrored(url: str) -> str:
+    bypasser = lk21.Bypass()
+    dl_url = bypasser.bypass_mirrored(url)
+    return dl_url
+
+
+def uservideo(url: str) -> str:
+    bypasser = lk21.Bypass()
+    dl_url = bypasser.bypass_uservideo(url)
+    return dl_url
+
+
+def reupload(url: str) -> str:
+    bypasser = lk21.Bypass()
+    dl_url = bypasser.bypass_reupload(url)
+    return dl_url
+
 
 def filesIm(url: str) -> str:
-    dl_url = ''
-    try:
-        text_url = re.findall(r'\bhttps?://.*files\.im\S+', url)[0]
-    except IndexError:
-        raise DirectDownloadLinkException("`No files.im links found`\n")
     bypasser = lk21.Bypass()
     dl_url = bypasser.bypass_filesIm(url)
     return dl_url
+###
 
     # Based Slam mirror bot
     ### Update by manssizz@CendrawasihLeech ###
