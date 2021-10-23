@@ -71,6 +71,7 @@ for i in range(len(tracker_urlsss)):
 trackerlistemiz = KopyasizListe(Virgullustring(tumtorrenttrackerstringi))
 sonstringtrckr = ','.join(trackerlistemiz)
 
+
 async def aria_start():
     aria2_daemon_start_cmd = []
     # start the daemon, aria2c command
@@ -95,7 +96,8 @@ async def aria_start():
     aria2_daemon_start_cmd.append("--allow-overwrite=true")
     aria2_daemon_start_cmd.append("--max-overall-upload-limit=1K")
     aria2_daemon_start_cmd.append("--peer-id-prefix=-qB4350-")
-    aria2_daemon_start_cmd.append("--user-agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 11_3) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.1 Safari/605.1.15")
+    aria2_daemon_start_cmd.append(
+        "--user-agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 11_3) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.1 Safari/605.1.15")
     aria2_daemon_start_cmd.append("--peer-agent=qBittorrent/4.3.5")
     aria2_daemon_start_cmd.append("--disk-cache=64M")
     aria2_daemon_start_cmd.append("--file-allocation=prealloc")
@@ -184,7 +186,6 @@ def add_url(aria_instance, text_url, c_file_name):
             or "github.com" in text_url \
             or "yadi.sk" in text_url  \
             or "letsupload.io" in text_url  \
-            or "hxfile.co" in text_url  \
             or "fembed.com" in text_url  \
             or "layarkacaxxi.icu" in text_url  \
             or "naniplay.nanime.in" in text_url  \
@@ -208,7 +209,9 @@ def add_url(aria_instance, text_url, c_file_name):
             or "1drv.ms" in text_url  \
             or "solidfiles.com" in text_url  \
             or "pixeldrain.com" in text_url  \
-            or "mega.nz" in text_url \
+            or "hxfile.co" in text_url  \
+            or "racaty.com" in text_url  \
+            or "files.im" in text_url  \
             or "racaty.net" in text_url:
         try:
             urisitring = direct_link_generator(text_url)

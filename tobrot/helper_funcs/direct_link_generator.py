@@ -44,12 +44,8 @@ def direct_link_generator(text_url: str):
         return osdn(text_url)
     elif 'github.com' in text_url:
         return github(text_url)
-    elif 'racaty.net' in text_url:
-        return racaty(text_url)
     elif 'letsupload.io' in text_url:
         return letsupload(text_url)
-    elif 'hxfile.co' in text_url:
-        return hxfile(text_url)
     elif 'layarkacaxxi.icu' in text_url:
         return fembed(text_url)
     elif 'naniplay.nanime.in' in text_url:
@@ -98,10 +94,18 @@ def direct_link_generator(text_url: str):
         return fembed(text_url)
     elif '1drv.ms' in text_url:
         return onedrive(text_url)
-    elif 'mega.nz' in text_url:
-        return mega(text_url)
     elif 'solidfiles.com' in text_url:
         return solidfiles(text_url)
+# Oct 23
+    elif 'racaty.net' in text_url:
+        return filesIm(text_url)
+    elif 'racaty.com' in text_url:
+        return filesIm(text_url)
+    elif 'hxfile.co' in text_url:
+        return filesIm(text_url)
+    elif 'files.im' in text_url:
+        return filesIm(text_url)
+####
     else:
         raise DirectDownloadLinkException(
             f'No Direct link function found for {text_url}')
@@ -135,6 +139,12 @@ def anonfiles(url: str) -> str:
              https://github.com/breakdowns/slam-aria-mirror-bot """
     bypasser = lk21.Bypass()
     dl_url = bypasser.bypass_anonfiles(url)
+    return dl_url
+
+
+def filesIm(url: str) -> str:
+    bypasser = lk21.Bypass()
+    dl_url = bypasser.bypass_filesIm(url)
     return dl_url
 
     # Based Slam mirror bot
@@ -201,24 +211,6 @@ def streamtape(url: str) -> str:
     dl_url = bypasser.bypass_streamtape(text_url)
     return dl_url
 
-def mega(url: str) -> str:
-    """ cloud.mail.ru direct links generator
-    Using https://github.com/JrMasterModelBuilder/cmrudl.py"""
-    reply = ''
-    try:
-        text_url = re.findall(r'\bhttps?://.*mega\.nz\S+', url)[0]
-    except IndexError:
-        raise DirectDownloadLinkException("`No Mega.nz links found`\n")
-    command = f'echo {text_url} > input.txt && mega -f input.txt -d /CendrawasihLeech/Leech'
-    result = popen(command).read()
-    result = result.splitlines()[-1]
-    try:
-        data = json.loads(result)
-    except json.decoder.JSONDecodeError:
-    # except:
-        raise DirectDownloadLinkException("`Error: Can't extract the link`\n")
-    dl_url = data['download']
-    return dl_url
 
 def onedrive(url: str) -> str:
     """ Onedrive direct link generator
@@ -336,6 +328,7 @@ def cm_ru(url: str) -> str:
     dl_url = data['download']
     return dl_url
 
+
 def mediafire(url: str) -> str:
     """ MediaFire direct links generator """
     try:
@@ -381,22 +374,22 @@ def github(url: str) -> str:
         raise DirectDownloadLinkException("`Error: Can't extract the link`\n")
 
 
-def racaty(url: str) -> str:
-    dl_url = ''
-    try:
-        text_url = re.findall(r'\bhttps?://.*racaty\.net\S+', url)[0]
-    except IndexError:
-        raise DirectDownloadLinkException("`No Racaty links found`\n")
-    scraper = cfscrape.create_scraper()
-    r = scraper.get(url)
-    soup = BeautifulSoup(r.text, "lxml")
-    op = soup.find("input", {"name": "op"})["value"]
-    ids = soup.find("input", {"name": "id"})["value"]
-    rpost = scraper.post(url, data={"op": op, "id": ids})
-    rsoup = BeautifulSoup(rpost.text, "lxml")
-    dl_url = rsoup.find("a", {"id": "uniqueExpirylink"})[
-        "href"].replace(" ", "%20")
-    return dl_url
+# def racaty(url: str) -> str:
+#     dl_url = ''
+#     try:
+#         text_url = re.findall(r'\bhttps?://.*racaty\.net\S+', url)[0]
+#     except IndexError:
+#         raise DirectDownloadLinkException("`No Racaty links found`\n")
+#     scraper = cfscrape.create_scraper()
+#     r = scraper.get(url)
+#     soup = BeautifulSoup(r.text, "lxml")
+#     op = soup.find("input", {"name": "op"})["value"]
+#     ids = soup.find("input", {"name": "id"})["value"]
+#     rpost = scraper.post(url, data={"op": op, "id": ids})
+#     rsoup = BeautifulSoup(rpost.text, "lxml")
+#     dl_url = rsoup.find("a", {"id": "uniqueExpirylink"})[
+#         "href"].replace(" ", "%20")
+#     return dl_url
 
 
 def useragent():
