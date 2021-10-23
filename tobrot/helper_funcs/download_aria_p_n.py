@@ -71,7 +71,6 @@ for i in range(len(tracker_urlsss)):
 trackerlistemiz = KopyasizListe(Virgullustring(tumtorrenttrackerstringi))
 sonstringtrckr = ','.join(trackerlistemiz)
 
-
 async def aria_start():
     aria2_daemon_start_cmd = []
     # start the daemon, aria2c command
@@ -96,8 +95,12 @@ async def aria_start():
     aria2_daemon_start_cmd.append("--allow-overwrite=true")
     aria2_daemon_start_cmd.append("--max-overall-upload-limit=1K")
     aria2_daemon_start_cmd.append("--peer-id-prefix=-qB4350-")
+<<<<<<< HEAD
     aria2_daemon_start_cmd.append(
         "--user-agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 11_3) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.1 Safari/605.1.15")
+=======
+    aria2_daemon_start_cmd.append("--user-agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 11_3) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.1 Safari/605.1.15")
+>>>>>>> origin/stable
     aria2_daemon_start_cmd.append("--peer-agent=qBittorrent/4.3.5")
     aria2_daemon_start_cmd.append("--disk-cache=64M")
     aria2_daemon_start_cmd.append("--file-allocation=prealloc")
