@@ -102,7 +102,7 @@ def direct_link_generator(text_url: str):
     elif 'racaty.com' in text_url:
         return racaty(text_url)
     elif 'hxfile.co' in text_url:
-        return filesIm(text_url)
+        return hxfile(text_url)
     elif 'files.im' in text_url:
         return filesIm(text_url)
 ####
@@ -143,6 +143,11 @@ def anonfiles(url: str) -> str:
 
 
 def filesIm(url: str) -> str:
+    dl_url = ''
+    try:
+        text_url = re.findall(r'\bhttps?://.*files\.im\S+', url)[0]
+    except IndexError:
+        raise DirectDownloadLinkException("`No files.im links found`\n")
     bypasser = lk21.Bypass()
     dl_url = bypasser.bypass_filesIm(url)
     return dl_url
