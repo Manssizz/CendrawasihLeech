@@ -7,7 +7,6 @@ WORKDIR /CendrawasihLeech
 ENV TZ=Asia/Jakarta
 
 RUN apt -qq update --fix-missing && \
-    # apt -qq install -y git aria2 wget curl busybox ffmpeg \
     rm -rf /var/lib/apt/lists/* && \
     apt -qq update
 

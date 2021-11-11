@@ -14,10 +14,11 @@ This repo based [GautamKumar](https://github.com/gautamajay52/TorrentLeech-Gdriv
 
 ### Direct Links Supports
 ```
-zippyshare.com, yadi.sk, cloud.mail.ru, mediafire.com, osdn.net, 
+zippyshare.com, yadi.sk, mediafire.com, osdn.net, uservideo.xyz,
 github.com, racaty.net, letsupload.io, hxfile.co, anonfiles.com,
 bayfiles.com, antfiles.com, streamtape.com, 1drv.ms aka OneDrive,
-mxplayer.in, pixledrain.com, solidfiles.com, pixeldrain.com
+mxplayer.in, pixledrain.com, solidfiles.com, pixeldrain.com,
+files.im, reupload.org, mirrored.to
 
 - Fembed with mirror domain
 naniplay.nanime.in, naniplay.nanime.biz, naniplay.com, femax20.com,
@@ -27,6 +28,8 @@ feurl.com, fcdn.stream, layarkacaxxi.icu
 sbembed.com, sbembed1.com, sbembed2.com, sbembed3.com, sbembed4.com
 sbplay.org, sbplay.one, streamsb.net, sbcloud1.com
 ```
+**REMOVED**
+~~cloud.mail.ru~~
 > Note: if you want to mirroring fembed links, use must add https:// in front of links. ex: /mirror https://fembed.com/f/jgndzfdj-n7zyg5
 ### Torrent search supports list (Under development)
 ```

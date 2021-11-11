@@ -36,20 +36,16 @@ def direct_link_generator(text_url: str):
         return zippy_share(text_url)
     elif 'yadi.sk' in text_url:
         return yandex_disk(text_url)
-    elif 'cloud.mail.ru' in text_url:
-        return cm_ru(text_url)
+    # elif 'cloud.mail.ru' in text_url:
+    #     return cm_ru(text_url)
     elif 'mediafire.com' in text_url:
         return mediafire(text_url)
     elif 'osdn.net' in text_url:
         return osdn(text_url)
     elif 'github.com' in text_url:
         return github(text_url)
-    elif 'racaty.net' in text_url:
-        return racaty(text_url)
     elif 'letsupload.io' in text_url:
         return letsupload(text_url)
-    elif 'hxfile.co' in text_url:
-        return hxfile(text_url)
     elif 'layarkacaxxi.icu' in text_url:
         return fembed(text_url)
     elif 'naniplay.nanime.in' in text_url:
@@ -100,6 +96,22 @@ def direct_link_generator(text_url: str):
         return onedrive(text_url)
     elif 'solidfiles.com' in text_url:
         return solidfiles(text_url)
+# Oct 23
+    elif 'racaty.net' in text_url:
+        return racaty(text_url)
+    elif 'racaty.com' in text_url:
+        return racaty(text_url)
+    elif 'hxfile.co' in text_url:
+        return hxfile(text_url)
+    elif 'files.im' in text_url:
+        return filesIm(text_url)
+    elif 'mirrored.to' in text_url:
+        return mirrored(text_url)
+    elif 'uservideo.xyz' in text_url:
+        return uservideo(text_url)
+    elif 'reupload.org' in text_url:
+        return reupload(text_url)
+####
     else:
         raise DirectDownloadLinkException(
             f'No Direct link function found for {text_url}')
@@ -134,6 +146,38 @@ def anonfiles(url: str) -> str:
     bypasser = lk21.Bypass()
     dl_url = bypasser.bypass_anonfiles(url)
     return dl_url
+
+# Oct 23
+
+
+def mirrored(url: str) -> str:
+    bypasser = lk21.Bypass()
+    dl_url = bypasser.bypass_mirrored(url)
+    return dl_url
+
+
+def uservideo(url: str) -> str:
+    dl_url = ''
+    try:
+        text_url = re.findall(r'\bhttps?://.*uservideo\.xyz\S+', url)[0]
+    except IndexError:
+        raise DirectDownloadLinkException("`No Uservideo links found`\n")
+    bypasser = lk21.Bypass()
+    dl_url = bypasser.bypass_uservideo(url)
+    return dl_url
+
+
+def reupload(url: str) -> str:
+    bypasser = lk21.Bypass()
+    dl_url = bypasser.bypass_reupload(url)
+    return dl_url
+
+
+def filesIm(url: str) -> str:
+    bypasser = lk21.Bypass()
+    dl_url = bypasser.bypass_filesIm(url)
+    return dl_url
+###
 
     # Based Slam mirror bot
     ### Update by manssizz@CendrawasihLeech ###
@@ -298,23 +342,23 @@ def yandex_disk(url: str) -> str:
             "`Error: File not found / Download limit reached`\n")
 
 
-def cm_ru(url: str) -> str:
-    """ cloud.mail.ru direct links generator
-    Using https://github.com/JrMasterModelBuilder/cmrudl.py"""
-    reply = ''
-    try:
-        text_url = re.findall(r'\bhttps?://.*cloud\.mail\.ru\S+', url)[0]
-    except IndexError:
-        raise DirectDownloadLinkException("`No cloud.mail.ru links found`\n")
-    command = f'vendor/cmrudl.py/cmrudl -s {text_url}'
-    result = popen(command).read()
-    result = result.splitlines()[-1]
-    try:
-        data = json.loads(result)
-    except json.decoder.JSONDecodeError:
-        raise DirectDownloadLinkException("`Error: Can't extract the link`\n")
-    dl_url = data['download']
-    return dl_url
+# def cm_ru(url: str) -> str:
+#     """ cloud.mail.ru direct links generator
+#     Using https://github.com/JrMasterModelBuilder/cmrudl.py"""
+#     reply = ''
+#     try:
+#         text_url = re.findall(r'\bhttps?://.*cloud\.mail\.ru\S+', url)[0]
+#     except IndexError:
+#         raise DirectDownloadLinkException("`No cloud.mail.ru links found`\n")
+#     command = f'vendor/cmrudl.py/cmrudl -s {text_url}'
+#     result = popen(command).read()
+#     result = result.splitlines()[-1]
+#     try:
+#         data = json.loads(result)
+#     except json.decoder.JSONDecodeError:
+#         raise DirectDownloadLinkException("`Error: Can't extract the link`\n")
+#     dl_url = data['download']
+#     return dl_url
 
 
 def mediafire(url: str) -> str:
@@ -364,10 +408,10 @@ def github(url: str) -> str:
 
 def racaty(url: str) -> str:
     dl_url = ''
-    try:
-        text_url = re.findall(r'\bhttps?://.*racaty\.net\S+', url)[0]
-    except IndexError:
-        raise DirectDownloadLinkException("`No Racaty links found`\n")
+    # try:
+    #     text_url = re.findall(r'\bhttps?://.*racaty\.net\S+', url)[0]
+    # except IndexError:
+    #     raise DirectDownloadLinkException("`No Racaty links found`\n")
     scraper = cfscrape.create_scraper()
     r = scraper.get(url)
     soup = BeautifulSoup(r.text, "lxml")
