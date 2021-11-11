@@ -3,8 +3,8 @@
 
 import os
 
-from hachoir.metadata import extractMetadata
-from hachoir.parser import createParser
+from tobrot.metadata import extractMetadata
+from tobrot.parser import createParser
 from PIL import Image
 from tobrot import DOWNLOAD_LOCATION
 
