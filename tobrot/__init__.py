@@ -71,7 +71,7 @@ AUTH_CHANNEL.append(OWNER_ID)
 CHUNK_SIZE = int(os.environ.get("CHUNK_SIZE", "64"))
 # default thumbnail to be used in the videos
 DEF_THUMB_NAIL_VID_S = os.environ.get(
-    "DEF_THUMB_NAIL_VID_S", "https://i.ibb.co/Qm4jVbs/No-image-vector-symbol-missing-available-icon-No-gallery-for-this-moment.jpg"
+    "DEF_THUMB_NAIL_VID_S", "https://stikesekaharap-pky.ac.id/wp-content/themes/EHeikra/assets/img/noimage-420x273.jpg"
 )
 # maximum message length in Telegram
 MAX_MESSAGE_LENGTH = 4096
