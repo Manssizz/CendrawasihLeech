@@ -196,7 +196,7 @@ async def g_yt_playlist(client, message):
         return
     if "youtube.com/playlist" in url:
         i_m_sefg = await message.reply_text(
-            f"<b>{usr_mention}\nYour Request has been ADDED</b>\n<code>Please wait until Upload</code>\n<i>This process take some time, so don't cancel or delete your leech</>",
+            f"<b>{usr_mention}\nYour Request has been ADDED</b>\n<code>This process running on backgroud. Please wait until Upload</code>\n<i>Process take some time, so don't cancel or delete your leech</>\n#CendrawasihLeech",
             parse_mode="html",
         )
         await yt_playlist_downg(message, i_m_sefg, client, is_cloud)
