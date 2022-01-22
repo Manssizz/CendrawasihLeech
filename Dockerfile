@@ -22,8 +22,8 @@ RUN chmod 0775 /CendrawasihLeech/Leech/gclone
 # RUN wget -O /CendrawasihLeech/dht.dat https://raw.githubusercontent.com/P3TERX/aria2.conf/master/dht.dat
 # RUN wget -O /CendrawasihLeech/dht6.dat https://raw.githubusercontent.com/P3TERX/aria2.conf/master/dht6.dat
 
-# COPY requirements.txt .
-# RUN pip3 install --no-cache-dir -r requirements.txt
+COPY requirements.txt .
+RUN pip3 install --no-cache-dir -r requirements.txt
 COPY . .
 COPY extract /usr/local/bin
 COPY .netrc $HOME/.netrc
