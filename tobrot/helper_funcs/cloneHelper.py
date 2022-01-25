@@ -133,8 +133,8 @@ class CloneHelper:
                 )
             button_markup = pyrogram.InlineKeyboardMarkup(button)
             msg = await self.lsg.edit_text(
-                f"🤖: {_up} cloned successfully in your Cloud <a href='tg://user?id={self.u_id}'>🤒</a>\
-                \n📀 Info: Calculating...",
+                f"Cloned successfully:\n <b>File: </b>{_up} <a href='tg://user?id={self.from_user.id}'>{self.from_user.first_name}</a> \
+                \nInfo: Calculating...",
                 reply_markup=button_markup,
                 parse_mode="html",
             )
