@@ -25,7 +25,7 @@ async def take_screen_shot(video_file, output_directory, ttl):
             "-vframes",
             "1",
             "-vf",
-            "drawtext=text='CendrawasihLeech':x=10:y=H-th-10:fontsize=12:fontcolor=white:bordercolor=black:borderw=1:fontfile=/usr/share/fonts/Hack-Bold.ttf",
+            "drawtext=text='CendrawasihLeech':x=10:y=H-th-10:fontsize=14:fontcolor=white:bordercolor=black:borderw=1:fontfile=/usr/share/fonts/Hack-Bold.ttf",
             out_put_file_name,
         ]
         # width = "90"
