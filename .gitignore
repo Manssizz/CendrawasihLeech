@@ -136,3 +136,6 @@ rclone.conf
 
 # netrc
 .netrc
+
+# conf
+config.env
