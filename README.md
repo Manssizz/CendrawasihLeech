@@ -1,3 +1,7 @@
+<h1 align="center">
+  <a href="https://github.com/Manssizz/CendrawasihLeech"><img src="https://i.imgur.com/CdNhEj3.png" alt="LOGO"></a>
+</h1>
+
 ## About Repo
 This repo based [GautamKumar](https://github.com/gautamajay52/TorrentLeech-Gdrive) TorrentLeech with some tweaks
 
