@@ -96,6 +96,37 @@ NTFS, RPM, SquashFS, UDF, VHD, XAR, TAR.XZ, Z.
 ```
 
 ### Deploy
+## VPS
+- Install docker and docker.io
+`# apt update && apt install docker docker.io`
+- Clone stable repository
+`# git clone -b stable https://github.com/Manssizz/CendrawasihLeech.git`
+- Copy config file
+`# cp CendrawasihLeech/sample_config.env CendrawasihLeech/config.env`
+- Fill config with your data
+`# nano CendrawasihLeech/config.env`
+- Fill rclone.conf with your rclone data
+`# nano CendrawasihLeech/rclone.conf`
+- Fill .netrc with your credentials data
+`# nano CendrawasihLeech/.netrc`
+- Build image with this command
+`# docker build -t manssizz/cendrwasihleech CendrawasihLeech/`
+- Show image build for grab id image
+`# docker image ls`
+<h1 align="center">
+  <a href="https://github.com/Manssizz/CendrawasihLeech"><img src="https://i.imgur.com/GNrYo76.png" alt="image list"></a>
+</h1>
+- Run docker image
+`# docker run -d --rm --name CendrawasihLeech <image-id>`
+- Check docker container process 
+`# docker ps | grep cendrwasihleech`
+<h1 align="center">
+  <a href="https://github.com/Manssizz/CendrawasihLeech"><img src="https://i.imgur.com/SdcvUFO.png" alt="container list"></a>
+</h1>
+- Check logs bot
+`# docker logs <container-id>`
+
+## Heroku (DEAD)
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/Manssizz/CendrawasihLeech/tree/stable)
 
 ### Credits
