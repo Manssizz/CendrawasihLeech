@@ -130,10 +130,11 @@ NTFS, RPM, SquashFS, UDF, VHD, XAR, TAR.XZ, Z.
 </h1>
 
 - Run docker image
+
 `# docker run -d --rm --name CendrawasihLeech <image-id>`
 
 - Check docker container process 
-SS
+
 `# docker ps | grep cendrwasihleech`
 <h1 align="center">
   <a href="https://github.com/Manssizz/CendrawasihLeech"><img src="https://i.imgur.com/SdcvUFO.png" alt="container list"></a>
