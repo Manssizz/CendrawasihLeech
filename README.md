@@ -100,7 +100,7 @@ NTFS, RPM, SquashFS, UDF, VHD, XAR, TAR.XZ, Z.
 ```
 
 ### Deploy
-## VPS
+#### VPS
 - Install docker and docker.io
 
 `# apt update && apt install docker docker.io`
@@ -133,15 +133,17 @@ NTFS, RPM, SquashFS, UDF, VHD, XAR, TAR.XZ, Z.
 `# docker run -d --rm --name CendrawasihLeech <image-id>`
 
 - Check docker container process 
+SS
 `# docker ps | grep cendrwasihleech`
 <h1 align="center">
   <a href="https://github.com/Manssizz/CendrawasihLeech"><img src="https://i.imgur.com/SdcvUFO.png" alt="container list"></a>
 </h1>
 
 - Check logs bot
+
 `# docker logs <container-id>`
 
-## Heroku (DEAD)
+#### Heroku (DEAD)
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/Manssizz/CendrawasihLeech/tree/stable)
 
 ### Credits
